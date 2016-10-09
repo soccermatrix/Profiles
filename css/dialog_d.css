@@ -1,0 +1,203 @@
+/*@import 'variables';*/
+/* override of default dialog styles */
+.ui-dialog .ui-dialog-content {
+  padding: 0; }
+
+.dialog_main {
+  width: 270px;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+  visibility: hidden; }
+
+.dialog_card {
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+  min-width: 100%;
+  display: inline-block; }
+
+.dialog_content {
+  width: 100%;
+  /*height: 520px;*/
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  text-align: center; }
+
+.dialog_top_bar {
+  position: absolute;
+  background-color: #52D8F7;
+  width: 270px;
+  height: 50px;
+  z-index: -1; }
+
+.dialog_price {
+  position: absolute;
+  left: 205px;
+  top: 15px;
+  width: 50px;
+  color: #fff;
+  font-size: 1.1em; }
+
+.dialog_photo {
+  width: 80px;
+  margin-top: 1em; }
+
+.dialog_name {
+  color: #00B2F0;
+  font-size: 1.5em;
+  margin: 0 auto;
+  margin-top: 1.5%;
+  width: 100%;
+  font-weight: lighter; }
+
+.dialog_title {
+  color: #999;
+  font-size: .8em;
+  margin: 0 auto;
+  width: 100%;
+  font-weight: lighter; }
+
+.dialog_title_border {
+  border-bottom: 2px #D6F5FA solid;
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+  height: 1.3em; }
+
+.dialog_quote {
+  color: #999;
+  font-size: .8em;
+  margin: 0 auto;
+  margin-top: 9%;
+  margin-bottom: 9%;
+  width: 90%;
+  font-weight: lighter;
+  min-height: 80px; }
+
+.dialog_skills {
+  width: 90%;
+  height: 130px;
+  margin: 0 auto;
+  clear: both;
+  text-align: center;
+  display: block; }
+
+.dialog_skill {
+  border: 1px solid #ccc;
+  padding: .3em .8em;
+  font-size: .7em;
+  color: #999;
+  margin: .25em .25em;
+  float: left;
+  display: block;
+  position: relative;
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px; }
+
+.dialog_blue {
+  background-color: #00AEEF;
+  color: white; }
+
+.dialog_buttons {
+  border-top: 2px #D6F5FA solid;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2em 0;
+  background-color: #FAFAFA; }
+
+.dialog_portfolio {
+  color: white;
+  font-size: 1em;
+  margin: 0 auto;
+  height: 2.2em;
+  width: 60%;
+  background-color: #00AEEF;
+  border: none;
+  cursor: hand;
+  cursor: pointer; }
+
+.dialog_portfolio:hover {
+  background: #00AEEF; }
+
+.dialog_social_bar {
+  margin-top: 1.5em; }
+
+/* dialog form styles */
+.dialog_form {
+  width: 300px;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+  visibility: hidden; }
+
+.dialog_top_bar-form_bar {
+  position: relative;
+  height: 20px;
+  background-color: #52D8F7;
+  color: white;
+  padding: 10px 0;
+  margin: 0 0 5px 0; }
+
+.dialog_form_items {
+  background-color: white;
+  text-align: center;
+  padding: 0 0 10px 0; }
+
+.dialog_form_row {
+  margin: 5px auto;
+  display: inline-block; }
+
+.dialog_form_row .icon {
+  float: left;
+  height: 30px;
+  width: 30px;
+  padding: 5px 0 5px 10px;
+  border: 1px solid #EBEBEB;
+  border-width: 1px 0 1px 1px; }
+
+.dialog_form_row input[type="text"] {
+  float: left;
+  height: 30px;
+  padding: 5px 0 5px 10px;
+  outline: none;
+  border: 1px solid #EBEBEB;
+  background-color: #FCFCFC;
+  width: 200px;
+  font-size: .8em;
+  color: #999; }
+
+.dialog_form_row input:focus {
+  /*outline: none;*/
+  background-color: #E3F5FA;
+  border-color: #E3F5FA;
+  color: #00AEEF; }
+
+.dialog_form_row input:blur {
+  background-color: #FCFCFC;
+  border-color: #EBEBEB;
+  color: #999; }
+
+.dialog_form {
+  background-color: #DBE0EA; }
+  .dialog_form ul {
+    margin: 5px;
+    padding: 0; }
+    .dialog_form ul li {
+      background-color: white;
+      text-align: left;
+      list-style: none;
+      margin: 2px;
+      padding: 5px 0 5px 10px;
+      cursor: pointer;
+      border: 1px solid #ccc; }
+    .dialog_form ul li:hover {
+      background-color: #E3F5FA;
+      border-color: #E3F5FA;
+      color: #00AEEF; }

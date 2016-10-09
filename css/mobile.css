@@ -1,0 +1,105 @@
+@charset "utf-8";
+html, body{
+		text-align: center; 
+		margin: 0 auto;
+		font-family: 'Open Sans', sans-serif;
+		height:100%;
+		background-color:white;
+	}
+	#top_bar {
+		position: fixed;
+		background-color:	#52D8F7;
+		width: 100%;
+		height: 10%;
+	}
+
+	#main {
+		height: 100%;
+		width: 100%;
+		margin: 0 auto;
+		padding: 0;
+	}
+
+	#card {
+		margin: 0 auto;
+		text-align:center;
+		overflow: auto;
+		height: 100%;
+		width:100%;
+	}
+	#content {
+		height: 100%;
+		width: 100%;
+		text-align: center;
+		margin: 0 auto;
+	}
+
+	#photo {
+		position: relative;
+		z-index: 1;
+		width: 30%;
+		margin-top: 2%;
+	}
+
+	#name {
+		color: #00B2F0;
+		position: relative;
+		font-size: 4.2em;
+		width:100%;
+		margin-top: 2%;
+		font-weight:lighter;
+	}
+
+	#title{
+		color: #666;
+		position: relative;
+		font-size: 2em;
+		width:100%;
+		font-weight:lighter
+	}
+	
+	#title_border {
+		border-bottom: 2px #D6F5FA solid;
+		width: 50%;	
+		margin: 0 auto;
+		display:block;
+		height: 1.3em;
+	}
+
+	#quote {
+		color: #333;
+		font-size: 2.5em;
+		margin-top:0;
+		width:100%;
+		padding:1em 0;
+		border-bottom: 2px #D6F5FA solid;
+		font-weight:100;
+		position: relative;
+	}
+	#buttons {
+		position: relative;
+		text-align:center;
+		width:100%;
+		margin-top:0;
+		padding-top:10%;
+		background-color:#FAFAFA;
+		height: 600%;
+	}
+
+	#portfolio {
+		background-color:#00AEEF;
+		height:2em;
+		width:60%;
+		color: white;
+		font-size: 3.5em;
+		
+		-webkit-border-radius: 30;
+		-moz-border-radius: 30;
+		border-radius: 30px;
+	}
+
+	#linkedIn {
+		height:5em;
+		color: white;
+		margin-top:3.5em;
+	}

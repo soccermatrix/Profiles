@@ -1,0 +1,272 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Profiles - new</title>	
+	
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+
+  <link  href="js/jquery.mobile-1.5.min.css" rel="stylesheet"/>
+  <script src="js/jquery.mobile-1.4.5.min.js"></script>
+  
+  <link  href="js/jquery-ui.profiles.css" rel="stylesheet">
+  <script src="js/jquery-ui.min.js"></script>
+
+  <script src="js/angular.js"></script>
+  <script src="js/angular-route.js"></script>
+  
+  <script src="js/controller.js"></script>
+  <script src="js/app.js"></script>
+
+  <link href="css/master.css" rel="stylesheet" type="text/css" />
+  <link href="css/dialog_d.css" rel="stylesheet" type="text/css" />
+
+  <script>
+		//replace url to show mobile version		
+		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(			navigator.userAgent) ) {
+  			// tasks to do if it is a Mobile Device
+  			//window.location.replace("mobile.html"); 
+  		}
+  	</script>
+
+  </head>
+  <body>
+    <ng-view></ng-view>
+    <div data-role="page" id="HomeCtrol" ng-controller="HomeCtrol">
+      <div data-role="content">
+        <div id="banner">        
+          Single Page Application <span>ALPHA</span>
+        </div>
+        <div data-role id="wrapper" >  				
+          <div id="header">
+           <p>Frameworks / tools used:</p>
+           <ul>
+            <li>Angular.js</li>
+            <li>Node.js</li>
+            <li>live-server.js</li>
+            <li>json.js</li>
+            <li>jquery.js</li>
+            <li>sass</li>
+            <li>illustrator</li>
+            <li>photoshop</li>
+            <li>html5</li>
+            <li>php</li>
+            <li>mySQL</li>
+            <li>google-fonts</li>
+          </ul>
+        </div>
+        <div class="cards">				
+         <form class="form" ng-submit="setSearch(searchStr)">
+          <div class="form-item-left">  							
+           <span class="label">Search for Talent:</span>
+           <input type="text" id="searchStr" ng-model="searchStr" name="searchStr"/>
+           <button id="submit"><img src="images/search.png"></button>
+         </div>
+         <div class="form-item-right">
+           <image id="menu" src="images/menu_icon.png"/>
+         </div>
+       </form>  					
+       <h1>PROFILES ({{totalEmployees}})</h1>
+       <!-- <div data-role id="{{ 'dz_' + $index }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'" ng-init="set_dg_seq($index)"> -->
+       <div data-role id="{{ 'dz_' + $index }}" class="dz" ng-repeat="employee in employees | filter: search " ng-init="set_dg_seq($index)">
+        <div data-role id="{{ 'dg_' + $index }}" class="main" ng-mousedown="setActiveDraggable($index)">
+         <div class="card">
+          <div class="content">
+           <img id="card_menu_{{ employee.id }}" class="card_menu card_button" src="images/card_menu_icon.png"  ng-controller="UpdateCtrol" ng-click="updateActiveEmployee(employee,employee.id)"/>
+           <div class="price">${{ employee.price }}</div>
+           <img class="photo  card_button" ng-src="images/photo_{{ $index }}.png" ng-click="setActiveEmployee(employee,$index)"/>
+           <div class="name">
+            {{employee.fullName}} ( {{employee.id}} )
+          </div>
+          <div class="title">
+            {{employee.title}}									
+          </div>
+          <div class="title_border"></div>
+          <div class="sub_title sub_title-{{employee.sub_title[1]}}">
+            {{employee.sub_title[0]}}
+          </div>
+          <div class="skills" >
+           <!-- comment this out until bug with duplicates fixed -->
+           <!-- <span ng-repeat="skill in employee.skills | limitTo:3 track by $index" class="skill">{{skill}}</span> -->
+           <span class="skill blue">+{{employee.count}}</span>
+         </div>
+         <div class="description">
+          {{employee.description}}
+        </div>
+        <div class="buttons">
+          <button id="{{ 'btn_' + $index }}" class="portfolio" ng-click="setActiveEmployee(employee,$index)">VIEW PROFILE</button><br/>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</div>
+<form class="form" style="color:lightGray">
+Copyright &copy; www.luisespinal.com | This is a personal project inteded to apply scripting and UI-UX design concepts.<br/>
+All work is being completed by Luis Espinal.
+</form>  
+
+</div>
+</div>
+
+<div data-role id="dialog_active_user">
+ <div data-role id="dialog_active_user_main" class="dialog_main">
+  <div class="dialog_card">
+   <div class="dialog_content">	
+    <div class="dialog_top_bar"></div>
+    <div class="dialog_price">${{ activeEmployee.price }}/hr</div>
+    <img class="dialog_photo" ng-src="images/photo_{{ activeEmployee.id }}.png"/>
+    <div class="dialog_name">
+     {{ activeEmployee.fullName }}
+   </div>
+   <div class="dialog_title">
+     {{ activeEmployee.title }}
+     <span class="title_border"/>
+   </div>
+   <div class="dialog_quote">
+     {{activeEmployee.quote}}
+   </div>
+   <div class="dialog_skills" >
+     <!-- comment this out until bug with duplicates fixed -->
+     <!-- <span class="dialog_skill" ng-repeat="skill in activeEmployee.skills" >{{skill}}</span> -->
+     <span class="dialog_skill dialog_blue">+{{activeEmployee.count}}</span>
+   </div>
+   <div class="dialog_buttons">
+     <button class="dialog_portfolio">CONTACT ME</button><br/>
+     <img class="dialog_social_bar" src="images/social_bar.png"/>
+   </div>
+ </div> 
+</div>
+</div>	
+</div>      
+
+<div data-role id="dialog_form_insert">
+ <div data-role id="dialog_form_insert_main" class="dialog_form" ng-controller="InsertCtrol">
+  <div class="dialog_card">
+   <div class="dialog_content"> 
+     <div class="dialog_top_bar-form_bar">
+       ADD NEW ACCOUNT
+     </div>
+     <div class="dialog_form_items">
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input type="text" size="40" ng-model="fullName">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input type="text" size="40" ng-model="title">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input type="text" size="40" ng-model="sub_title">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input type="text" size="40" ng-model="skills">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input type="text" size="40" ng-model="count">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input type="text" size="40" ng-model="description">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input type="text" size="40" ng-model="quote">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input type="text" size="40" ng-model="available">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input type="text" size="40" ng-model="price">
+       </div>
+
+       <div class="dialog_buttons">
+        <button id="insert_button" class="dialog_portfolio" ng-click="user_insert();">Add New User</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<div data-role id="dialog_form_update">
+ <div data-role id="dialog_form_update_main" class="dialog_form" ng-controller="UpdateCtrol">
+  <div class="dialog_card">
+   <div class="dialog_content"> 
+     <div class="dialog_top_bar-form_bar">
+       UPDATE ACCOUNT
+     </div>
+     <div class="dialog_form_items">
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="update_fullName" type="text" size="40" ng-model="fullName">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="update_title" type="text" size="40" ng-model="title">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="update_sub_title" type="text" size="40" ng-model="sub_title">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="update_skills" type="text" size="40" ng-model="skills">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="update_count" type="text" size="40" ng-model="count">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="update_description" type="text" size="40" ng-model="description">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="update_quote" type="text" size="40" ng-model="quote">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="update_available" type="text" size="40" ng-model="available">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="update_price" type="text" size="40" ng-model="price">
+       </div>
+
+       <div class="dialog_buttons">
+        <button id="update_button" class="dialog_portfolio" ng-click="user_update();">Update User</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+<div data-role id="dialog_menu">
+ <div data-role id="dialog_menu_main" class="dialog_form"> 
+   <div class="dialog_top_bar-form_bar">
+     MAIN MENU
+   </div>
+   <ul>
+    <li id="menu_add">Add New User</li>
+  </ul>
+</div>
+</div>
+
+<div data-role id="card_menu">
+ <div data-role id="card_menu_main" class="dialog_form"> 
+   <ul>
+    <li id="menu_update" >Update User</li>
+    <li id="menu_delete" style="color:#999; font-style:italic;">Delete User (pending)</li>
+  </ul>
+</div>
+</div>
+
+</div>
+
+
+
+<script>
+  $(document).ready(function(){
+  			//console.log('document.ready')
+  		});
+  	</script>
+
+  </body>
+  </html>
