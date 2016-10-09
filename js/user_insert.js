@@ -1,8 +1,8 @@
 
-console.log('user_insert.js');
+//console.log('user_insert.js');
 angular.module('angular_insert_module',[])
 .controller('InsertCtrol',['$scope', '$http', function($scope, $http){
-	console.log('InsertCtrol');
+	//console.log('InsertCtrol');
 	$scope.fullName 		= "Default fullName";
 	$scope.title 			= "Default title";
 	$scope.sub_title 		= '["Default","green"]';
@@ -16,7 +16,7 @@ angular.module('angular_insert_module',[])
 
 
 	$scope.user_insert = function () {
-		console.log('user_insert()');
+		//console.log('user_insert()');
 		$http.post("user_insert.php",{
 			'fullName': $scope.fullName,
 			'title': $scope.title,
@@ -29,13 +29,13 @@ angular.module('angular_insert_module',[])
 			'price': $scope.price
 		})
 		.success(function(data, status, headers, config){
-			console.log("inserted Successfully");
+			//console.log("inserted Successfully");
 			//$scope.$emit('someEvent', args)
 			$scope.loadData();
 			
 		})
 			.error(function(data, status, headers, config){
-				console.log("error inserting");
+				//console.log("error inserting");
 			})
 
 		}

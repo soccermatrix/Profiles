@@ -73,13 +73,13 @@
        </form>  					
        <h1>PROFILES ({{totalEmployees}})</h1>
        <!-- <div data-role id="{{ 'dz_' + $index }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'" ng-init="set_dg_seq($index)"> -->
-       <div data-role id="{{ 'dz_' + $index }}" class="dz" ng-repeat="employee in employees | filter: search " ng-init="set_dg_seq($index)">
-        <div data-role id="{{ 'dg_' + $index }}" class="main" ng-mousedown="setActiveDraggable($index)">
+       <div data-role id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'">
+        <div data-role id="{{ 'dg_' + employee.id }}" class="main" ng-mousedown="setActiveDraggable(employee.id)">
          <div class="card">
           <div class="content">
            <img id="card_menu_{{ employee.id }}" class="card_menu card_button" src="images/card_menu_icon.png"  ng-controller="UpdateCtrol" ng-click="updateActiveEmployee(employee,employee.id)"/>
            <div class="price">${{ employee.price }}</div>
-           <img class="photo  card_button" ng-src="images/photo_{{ $index }}.png" ng-click="setActiveEmployee(employee,$index)"/>
+           <img class="photo  card_button" ng-src="images/photo_{{ employee.id }}.png" ng-click="setActiveEmployee(employee,employee.id)"/>
            <div class="name">
             {{employee.fullName}} ( {{employee.id}} )
           </div>
@@ -99,17 +99,18 @@
           {{employee.description}}
         </div>
         <div class="buttons">
-          <button id="{{ 'btn_' + $index }}" class="portfolio" ng-click="setActiveEmployee(employee,$index)">VIEW PROFILE</button><br/>
+          <button id="{{ 'btn_' + employee.id }}" class="portfolio" ng-click="setActiveEmployee(employee,employee.id)">VIEW PROFILE</button><br/>
         </div>
       </div> 
     </div>
   </div>
 </div>
 </div>
-<form class="form" style="color:lightGray">
+<div id="footer">
 Copyright &copy; www.luisespinal.com | This is a personal project inteded to apply scripting and UI-UX design concepts.<br/>
-All work is being completed by Luis Espinal.
-</form>  
+All work is being completed by Luis Espinal.<br/>
+<a href="https://trello.com/b/dPaqF7PT/profiles-web-application" target="_blank">Track Progress</a>
+</div>  
 
 </div>
 </div>
@@ -154,31 +155,31 @@ All work is being completed by Luis Espinal.
      </div>
      <div class="dialog_form_items">
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" size="40" ng-model="fullName">
+         <span class="icon"></span><input type="text" ng-model="fullName">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" size="40" ng-model="title">
+         <span class="icon"></span><input type="text" ng-model="title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" size="40" ng-model="sub_title">
+         <span class="icon"></span><input type="text" ng-model="sub_title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" size="40" ng-model="skills">
+         <span class="icon"></span><input type="text" ng-model="skills">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" size="40" ng-model="count">
+         <span class="icon"></span><input type="text" ng-model="count">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" size="40" ng-model="description">
+         <span class="icon"></span><textarea maxlength="200" ng-model="description"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" size="40" ng-model="quote">
+         <span class="icon"></span><textarea maxlength="90" class="quote" ng-model="quote"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" size="40" ng-model="available">
+         <span class="icon"></span><input type="text" ng-model="available">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" size="40" ng-model="price">
+         <span class="icon"></span><input type="text" ng-model="price">
        </div>
 
        <div class="dialog_buttons">
@@ -200,31 +201,31 @@ All work is being completed by Luis Espinal.
      </div>
      <div class="dialog_form_items">
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_fullName" type="text" size="40" ng-model="fullName">
+         <span class="icon"></span><input id="update_fullName" type="text" ng-model="fullName">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_title" type="text" size="40" ng-model="title">
+         <span class="icon"></span><input id="update_title" type="text" ng-model="title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_sub_title" type="text" size="40" ng-model="sub_title">
+         <span class="icon"></span><input id="update_sub_title" type="text" ng-model="sub_title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_skills" type="text" size="40" ng-model="skills">
+         <span class="icon"></span><input id="update_skills" type="text" ng-model="skills">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_count" type="text" size="40" ng-model="count">
+         <span class="icon"></span><input id="update_count" type="text" ng-model="count">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_description" type="text" size="40" ng-model="description">
+         <span class="icon"></span><textarea id="update_description" maxlength="200" ng-model="description"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_quote" type="text" size="40" ng-model="quote">
+         <span class="icon"></span><textarea id="update_quote" class="quote" maxlength="90" ng-model="quote"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_available" type="text" size="40" ng-model="available">
+         <span class="icon"></span><input id="update_available" type="text" ng-model="available">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_price" type="text" size="40" ng-model="price">
+         <span class="icon"></span><input id="update_price" type="text" ng-model="price">
        </div>
 
        <div class="dialog_buttons">

@@ -299,3 +299,19 @@ h1 {
 
 #menu {
   cursor: pointer; }
+
+#footer {
+  color: lightGray;
+  opacity: 0;
+  font-size: .8em;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  padding: 25px 0;
+  background-color: #363E4B; }
+  #footer a:link, #footer a:visited {
+    color: white;
+    text-decoration: underline; }
+  #footer a:hover {
+    color: #00AEEF; }

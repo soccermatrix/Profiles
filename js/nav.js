@@ -49,7 +49,7 @@ $(document).ready(function(){
 	});
 
 	$('#menu_update').on('click', function(e){
-		console.log('click(), activeEmployeeID: ' + activeEmployeeID)
+		//console.log('click(), activeEmployeeID: ' + activeEmployeeID)
 		hideAll();
 		dialog_name = 'dialog_form_update';
 		dialog_modal = true;
@@ -58,7 +58,7 @@ $(document).ready(function(){
 	});
 
 	function show_dialog(){
-		console.log('show_dialog(), dialog_name: ' + dialog_name)
+		//console.log('show_dialog(), dialog_name: ' + dialog_name)
 		if(dialog_modal){			
 			$('.cards').addClass('blurEffect');
 			$('.cards').fadeTo("fast", 0.5);
@@ -79,8 +79,8 @@ $(document).ready(function(){
 
 
 	function hideAll(){
-		console.log('hideAll()');
-		console.log('active_dialog: ' + active_dialog);
+		//console.log('hideAll()');
+		//console.log('active_dialog: ' + active_dialog);
 		$('#' + active_dialog).dialog("close");
 		$('.cards').removeClass('blurEffect');
 		$('.cards').fadeTo("fast", 1);

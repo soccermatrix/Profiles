@@ -1,15 +1,15 @@
 
-console.log('user_update.js');
+//console.log('user_update.js');
 angular.module('angular_update_module',[])
 .controller('UpdateCtrol',['$scope', '$http', function($scope, $http){
-	console.log('UpdateCtrol');
+	//console.log('UpdateCtrol');
 	
 	//if($scope.activeEmployee){
 		$scope.updateActiveEmployee = function(employee,id) {
-			console.log('updateActiveEmployee()');
+			//console.log('updateActiveEmployee()');
 
 			$scope.setActiveEmployee(employee,id);
-			console.log ('UpdateCtrol $scope.activeEmployee.fullName: ' + $scope.activeEmployee.fullName)
+			//console.log ('UpdateCtrol $scope.activeEmployee.fullName: ' + $scope.activeEmployee.fullName)
 			//$scope.fullName 		= '"' + $scope.activeEmployee.fullName + '"';
 			var fields = ['fullName','title','sub_title','skills','count','description','quote','available','price'];
 			var field = {};
@@ -25,10 +25,10 @@ angular.module('angular_update_module',[])
 			$scope.available 		= $scope.activeEmployee.available;
 			$scope.price 			= $scope.activeEmployee.price;
 
-			console.log('$scope.id: ' + $scope.id)
+			//console.log('$scope.id: ' + $scope.id)
 		 
 		 for(var i=0; i<fields.length; i++){
-		 	console.log('fields[i]: ' + fields[i])
+		 	//console.log('fields[i]: ' + fields[i])
 		 	field[ fields[i] ] = $('#update_' + fields[i]);
 		 	field[ fields[i] ].val($scope[ fields[i] ]);
 		 	field[ fields[i] ].trigger( fields[i] );
@@ -36,9 +36,9 @@ angular.module('angular_update_module',[])
 
 		}
 $scope.user_update = function () {
-	console.log('user_update(), $scope.id: ' + $scope.id);
-	console.log('user_update(), $scope.fullName: ' + $scope.fullName);
-	console.log('user_update(), $scope.activeEmployee.id: ' + $scope.activeEmployee.id);
+	//console.log('user_update(), $scope.id: ' + $scope.id);
+	//console.log('user_update(), $scope.fullName: ' + $scope.fullName);
+	//console.log('user_update(), $scope.activeEmployee.id: ' + $scope.activeEmployee.id);
 	$http.post("user_update.php",{
 		'id' : $scope.activeEmployee.id,
 		'fullName': $scope.fullName,
@@ -52,13 +52,13 @@ $scope.user_update = function () {
 		'price': $scope.price
 	})
 	.success(function(data, status, headers, config){
-		console.log("updated Successfully");
+		//console.log("updated Successfully");
 			//$scope.$emit('someEvent', args)
 			$scope.loadData();
 			
 		})
 	.error(function(data, status, headers, config){
-		console.log("error inserting");
+		//console.log("error inserting");
 	})
 };
 

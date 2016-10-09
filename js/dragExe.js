@@ -1,11 +1,11 @@
 
 function loadFunction(){
-	////console.log("loadFunction($scope): " + $scope)
 	//console.log("loadFunction()")	
 	$.getScript('js/nav.js', function(){})
 	$(document).ready(function(){
 		//console.log("Load Object Animations / Events")
 		//console.log('totalEmployees: ' + totalEmployees)
+		//console.log('employeesList: ' + employeesList);
 
 		var active_dg;
 		var active_dz;
@@ -16,14 +16,12 @@ function loadFunction(){
 		var active_dialog;
 
 		$('.cards').fadeTo('slow',1,function(){
-			for(var i = 0; i<totalEmployees; i++){
-			//for(var i = totalEmployees; i>0; i--){
-				dropZones['dz_' + i] = 'dg_' + i;
+			$('#footer').fadeTo('fast',1);
+			for(var i = 0; i<employeesList.length; i++){
+				dropZones['dz_' + employeesList[i]] = 'dg_' + employeesList[i];
 				//console.log('dropZones[dz_' + i + '] = ' + dropZones['dz_' + i])
-				////console.log("#dg_" + i)
 				var delay = 50 * i;
-				////console.log('delay: ' + delay);
-				$('#dg_' + i).delay( delay ).fadeTo('slow',1);
+				$('#dg_' + employeesList[i]).delay( delay ).fadeTo('slow',1);
 			}
 		});
 
