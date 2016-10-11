@@ -14,6 +14,9 @@ angular.module('angular_insert_module',[])
 	$scope.price 			= 50;
 	$scope.avatar 			= "avatar_1";
 
+	$scope.description = $scope.description.replace("'","&rsquo;")
+	$scope.quote = $scope.quote.replace("'","&rsquo;")
+
 	for(var i=0; i<fields.length; i++){
 	 	////console.log('fields[i]: ' + fields[i])
 	 	field[ fields[i] ] = $('#insert_' + fields[i]);

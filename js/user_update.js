@@ -24,6 +24,8 @@ angular.module('angular_update_module',[])
 			$scope.price 			= $scope.activeEmployee.price;
 			$scope.avatar 			= $scope.activeEmployee.avatar;
 
+			
+
 			////console.log('$scope.id: ' + $scope.id)
 
 		 //populates the input fields in the update form when the card menu is clicked
@@ -42,6 +44,10 @@ angular.module('angular_update_module',[])
 	
 		 	$scope.sub_title = $scope.sub_title.toString();
 		 	$scope.skills = $scope.skills.toString();
+
+			//replace single quotes characters to prevent sql conflict
+		 	$scope.description = $scope.description.replace("'","&rsquo;")
+			$scope.quote = $scope.quote.replace("'","&rsquo;")
 
 		// //console.log($scope.fullName, $scope.sub_title)
 		$http.post("user_update.php",{

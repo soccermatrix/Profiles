@@ -76,8 +76,8 @@
          </div>
        </form>  					
        <h1>PROFILES ({{totalEmployees}})</h1>
-       <!-- <div data-role id="{{ 'dz_' + $index }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'" ng-init="set_dg_seq($index)"> -->
-       <div data-role id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'">
+       <!-- <div data-role id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'"> -->
+       <div data-role id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search">
         <div data-role id="{{ 'dg_' + employee.id }}" class="main" ng-mousedown="setActiveDraggable(employee.id)">
          <div class="card">
           <div class="content">
@@ -88,7 +88,7 @@
             <div class="price">${{ employee.price }}</div>
             <img class="photo card_button" ng-src="images/{{ employee.avatar }}.png" ng-click="setActiveEmployee(employee,employee.id)"/>
             <div class="name card_button" ng-click="setActiveEmployee(employee,employee.id)">
-              {{employee.fullName}} ( {{employee.id}} )
+              {{employee.fullName}}
             </div>
             <div class="title">
               {{employee.title}}									
@@ -122,12 +122,12 @@
 </div>
 </div>
 
-<div data-role id="dialog_active_user">
+<div data-role id="dialog_active_user" class="dialog_main">
  <div data-role id="dialog_active_user_main" class="dialog_main">
   <div class="dialog_card">
    <div class="dialog_content">	
     <div class="dialog_top_bar"></div>
-    <div class="card_menu_row">
+    <div class="dialog_card_menu_row">
       <img id="card_menu_update_{{ activeEmployee.id }}" class="card_menu_update card_menu card_button" src="images/icon_update_black.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(activeEmployee,activeEmployee.id)"/>           
       <img id="card_menu_delete_{{ activeEmployee.id }}" class="card_menu_delete card_menu card_button" src="images/icon_delete_black.png"  ng-controller="DeleteCtrol" ng-mousedown="updateActiveEmployee(activeEmployee,activeEmployee.id)" />
     </div>           
@@ -157,8 +157,8 @@
 </div>	
 </div>      
 
-<div data-role id="dialog_form_insert">
- <div data-role id="dialog_form_insert_main" class="dialog_form" ng-controller="InsertCtrol">
+<div data-role id="dialog_form_insert" class="dialog_main">
+ <div data-role id="dialog_form_insert_main" class="dialog_form dialog_main" ng-controller="InsertCtrol">
   <div class="dialog_card">
    <div class="dialog_content"> 
      <div class="dialog_top_bar-form_bar">
@@ -206,8 +206,8 @@
 </div>
 
 
-<div data-role id="dialog_form_update">
- <div data-role id="dialog_form_update_main" class="dialog_form" ng-controller="UpdateCtrol">
+<div data-role id="dialog_form_update" class="dialog_form dialog_main" >
+ <div data-role id="dialog_form_update_main" class="dialog_main"  ng-controller="UpdateCtrol">
   <div class="dialog_card">
    <div class="dialog_content"> 
      <div class="dialog_top_bar-form_bar">
@@ -215,7 +215,7 @@
      </div>
      <div class="dialog_form_items">
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_fullName" type="text" ngRequired  ng-model="fullName">
+         <span class="icon name"><img src="images/icon_user.png"/></span><input id="update_fullName" type="text" ngRequired  ng-model="fullName">
        </div>
        <div class="dialog_form_row">       
          <span class="icon"></span><input id="update_title" type="text" ngRequired  ng-model="title">
@@ -255,8 +255,8 @@
 </div>
 
 
-<div data-role id="dialog_form_delete">
- <div data-role id="dialog_form_delete_main" class="dialog_form" ng-controller="DeleteCtrol">
+<div data-role id="dialog_form_delete" class="dialog_main">
+ <div data-role id="dialog_form_delete_main" class="dialog_form dialog_main" ng-controller="DeleteCtrol">
   <div class="dialog_card">
    <div class="dialog_content"> 
      <div class="dialog_top_bar-form_bar">
@@ -295,7 +295,7 @@
        </div>
 
        <div class="dialog_buttons">
-        <button id="delete_button" class="dialog_portfolio" ng-click="user_delete();">delete User</button>
+        <button id="delete_button" class="dialog_portfolio bg-red" ng-click="user_delete();">delete User</button>
       </div>
     </div>
   </div>

@@ -43,7 +43,10 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 			//replace special charter codes back into readable characters
 			for (var i = 0; i<totalEmployees; i++){
 				//$scope.employees.quote = $scope.employees.quote.replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+				//need to get the titles of each text field from the database to auto...
+				//populate this loop and target each field instead of manual.
 				employees[i].quote = employees[i].quote.replace(/&rsquo;/g, "'")
+				employees[i].description = employees[i].description.replace(/&rsquo;/g, "'")
 				employeesList.push(employees[i].id);
 
 				//split sub_title and color theme
