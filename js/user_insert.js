@@ -38,6 +38,10 @@ angular.module('angular_insert_module',[])
 		$scope.skills = $scope.skills.toString();
 		//console.log($scope.fullName)
 
+		//replace single quotes characters to prevent sql conflict
+		 	$scope.description = $scope.description.replace("'","&rsquo;")
+			$scope.quote = $scope.quote.replace("'","&rsquo;")
+
 		$http.post("user_insert.php",{
 		//$http.post("http://www.luisespinal.com/profiles/user_insert.php",{
 		//$http.post("http://www.shiquinkira.com/profiles/user_insert.php",{

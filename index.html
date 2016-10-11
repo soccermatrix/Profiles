@@ -165,35 +165,36 @@
        CREATE NEW ACCOUNT
      </div>
      <div class="dialog_form_items">
+     
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" ng-model="fullName"> {{ fullName }}
+         <span class="icon icon-name"></span><input id="insert_fullName" type="text" ngRequired  ng-model="fullName">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" ng-model="title">
+         <span class="icon icon-title"></span><input id="insert_title" type="text" ngRequired  ng-model="title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" ng-model="sub_title">
+         <span class="icon icon-sub_title"></span><input id="insert_sub_title" type="text" ngRequired  ng-model="sub_title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" ng-model="skills">
+         <span class="icon icon-skills"></span><input id="insert_skills" type="text" ng-model="skills">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" ng-model="count">
+         <span class="icon icon-count"></span><input id="insert_count" type="text" ng-model="count">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><textarea maxlength="285" ng-model="description"></textarea>
+         <span class="icon icon-description"></span><textarea id="insert_description" maxlength="285" ng-model="description"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><textarea maxlength="90" class="textarea-quote" ng-model="quote"></textarea>
+         <span class="icon icon-quote"></span><textarea id="insert_quote" class="textarea-quote" maxlength="90" ng-model="quote"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" ng-model="available">
+         <span class="icon icon-available"></span><input id="insert_available" type="text" ng-model="available">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" ng-model="price">
+         <span class="icon icon-price"></span><input id="insert_price" type="text" ng-model="price">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" ng-model="avatar">
+         <span class="icon icon-avatar"></span><input id="insert_avatar" type="text" ng-model="avatar">
        </div>
 
        <div class="dialog_buttons">
@@ -212,37 +213,38 @@
    <div class="dialog_content"> 
      <div class="dialog_top_bar-form_bar">
        UPDATE ACCOUNT
-     </div>
+     </div>     
      <div class="dialog_form_items">
+
        <div class="dialog_form_row">       
-         <span class="icon name"><img src="images/icon_user.png"/></span><input id="update_fullName" type="text" ngRequired  ng-model="fullName">
+         <span class="icon icon-name"></span><input id="update_fullName" type="text" ngRequired  ng-model="fullName">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_title" type="text" ngRequired  ng-model="title">
+         <span class="icon icon-title"></span><input id="update_title" type="text" ngRequired  ng-model="title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_sub_title" type="text" ngRequired  ng-model="sub_title">
+         <span class="icon icon-sub_title"></span><input id="update_sub_title" type="text" ngRequired  ng-model="sub_title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_skills" type="text" ng-model="skills">
+         <span class="icon icon-skills"></span><input id="update_skills" type="text" ng-model="skills">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_count" type="text" ng-model="count">
+         <span class="icon icon-count"></span><input id="update_count" type="text" ng-model="count">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><textarea id="update_description" maxlength="285" ng-model="description"></textarea>
+         <span class="icon icon-description"></span><textarea id="update_description" maxlength="285" ng-model="description"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><textarea id="update_quote" class="textarea-quote" maxlength="90" ng-model="quote"></textarea>
+         <span class="icon icon-quote"></span><textarea id="update_quote" class="textarea-quote" maxlength="90" ng-model="quote"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_available" type="text" ng-model="available">
+         <span class="icon icon-available"></span><input id="update_available" type="text" ng-model="available">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_price" type="text" ng-model="price">
+         <span class="icon icon-price"></span><input id="update_price" type="text" ng-model="price">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_avatar" type="text" ng-model="avatar">
+         <span class="icon icon-avatar"></span><input id="update_avatar" type="text" ng-model="avatar">
        </div>
 
        <div class="dialog_buttons">
@@ -263,39 +265,40 @@
        DELETE ACCOUNT
      </div>
      <div class="dialog_form_items">
-       <div class="dialog_form_row">
-         <span class="icon"></span><input id="delete_fullName" type="text" ngRequired>
+     
+       <div class="dialog_form_row">       
+         <span class="icon icon-name"></span><input id="delete_fullName" type="text" ngRequired  ng-model="fullName">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="delete_title" type="text" ngRequired  ng-model="title">
+         <span class="icon icon-title"></span><input id="delete_title" type="text" ngRequired  ng-model="title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="delete_sub_title" type="text" ngRequired  ng-model="sub_title">
+         <span class="icon icon-sub_title"></span><input id="delete_sub_title" type="text" ngRequired  ng-model="sub_title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="delete_skills" type="text" ng-model="skills">
+         <span class="icon icon-skills"></span><input id="delete_skills" type="text" ng-model="skills">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="delete_count" type="text" ng-model="count">
+         <span class="icon icon-count"></span><input id="delete_count" type="text" ng-model="count">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><textarea id="delete_description" maxlength="285" ng-model="description"></textarea>
+         <span class="icon icon-description"></span><textarea id="delete_description" maxlength="285" ng-model="description"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><textarea id="delete_quote" class="textarea-quote" maxlength="90" ng-model="quote"></textarea>
+         <span class="icon icon-quote"></span><textarea id="delete_quote" class="textarea-quote" maxlength="90" ng-model="quote"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="delete_available" type="text" ng-model="available">
+         <span class="icon icon-available"></span><input id="delete_available" type="text" ng-model="available">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="delete_price" type="text" ng-model="price">
+         <span class="icon icon-price"></span><input id="delete_price" type="text" ng-model="price">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="delete_avatar" type="text" ng-model="avatar">
+         <span class="icon icon-avatar"></span><input id="delete_avatar" type="text" ng-model="avatar">
        </div>
 
        <div class="dialog_buttons">
-        <button id="delete_button" class="dialog_portfolio bg-red" ng-click="user_delete();">delete User</button>
+        <button id="delete_button" class="dialog_portfolio bg-red" ng-click="user_delete();">Delete User</button>
       </div>
     </div>
   </div>
