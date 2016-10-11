@@ -2,7 +2,7 @@
 <html ng-app="app">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Profiles - new</title>	
+	<title>Profiles</title>	
 	
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
 
@@ -20,6 +20,10 @@
   <script src="js/angular.js"></script>
   <script src="js/angular-route.js"></script>
   
+  <script src="js/globals.js"></script>
+  <script src="js/user_delete.js"></script>
+  <script src="js/user_insert.js"></script>
+  <script src="js/user_update.js"></script>
   <script src="js/controller.js"></script>
   <script src="js/app.js"></script>
 
@@ -77,39 +81,42 @@
         <div data-role id="{{ 'dg_' + employee.id }}" class="main" ng-mousedown="setActiveDraggable(employee.id)">
          <div class="card">
           <div class="content">
-           <img id="card_menu_{{ employee.id }}" class="card_menu card_button" src="images/card_menu_icon.png"  ng-controller="UpdateCtrol" ng-click="updateActiveEmployee(employee,employee.id)"/>
-           <div class="price">${{ employee.price }}</div>
-           <img class="photo  card_button" ng-src="images/photo_{{ employee.id }}.png" ng-click="setActiveEmployee(employee,employee.id)"/>
-           <div class="name">
-            {{employee.fullName}} ( {{employee.id}} )
+            <div class="card_menu_row">
+              <img id="card_menu_update_{{ employee.id }}" class="card_menu_update card_menu card_button" src="images/icon_update.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(employee,employee.id)"/>           
+              <img id="card_menu_delete_{{ employee.id }}" class="card_menu_delete card_menu card_button" src="images/icon_delete.png"  ng-controller="DeleteCtrol" ng-mousedown="updateActiveEmployee(employee,employee.id)" />
+            </div>           
+            <div class="price">${{ employee.price }}</div>
+            <img class="photo card_button" ng-src="images/{{ employee.avatar }}.png" ng-click="setActiveEmployee(employee,employee.id)"/>
+            <div class="name card_button" ng-click="setActiveEmployee(employee,employee.id)">
+              {{employee.fullName}} ( {{employee.id}} )
+            </div>
+            <div class="title">
+              {{employee.title}}									
+            </div>
+            <div class="title_border"></div>
+            <div class="sub_title sub_title-{{employee.sub_title[1]}}">
+              {{employee.sub_title[0]}}
+            </div>
+            <div class="skills" >
+             <!-- comment this out until bug with duplicates fixed -->
+             <span ng-repeat="skill in employee.skills | limitTo:3 track by $index" class="skill">{{skill}}</span>
+             <span class="skill blue">+{{employee.count}}</span>
+           </div>
+           <div class="quote">
+            {{ employee.quote }} 
           </div>
-          <div class="title">
-            {{employee.title}}									
+          <div class="buttons">
+            <button id="{{ 'btn_' + employee.id }}" class="portfolio" ng-click="setActiveEmployee(employee,employee.id)">VIEW PROFILE</button><br/>
           </div>
-          <div class="title_border"></div>
-          <div class="sub_title sub_title-{{employee.sub_title[1]}}">
-            {{employee.sub_title[0]}}
-          </div>
-          <div class="skills" >
-           <!-- comment this out until bug with duplicates fixed -->
-           <!-- <span ng-repeat="skill in employee.skills | limitTo:3 track by $index" class="skill">{{skill}}</span> -->
-           <span class="skill blue">+{{employee.count}}</span>
-         </div>
-         <div class="quote">
-          {{employee.quote}}
-        </div>
-        <div class="buttons">
-          <button id="{{ 'btn_' + employee.id }}" class="portfolio" ng-click="setActiveEmployee(employee,employee.id)">VIEW PROFILE</button><br/>
-        </div>
-      </div> 
+        </div> 
+      </div>
     </div>
   </div>
 </div>
-</div>
 <div id="footer">
-Copyright &copy; www.luisespinal.com | This is a personal project inteded to apply scripting and UI-UX design concepts.<br/>
-All work is being completed by Luis Espinal.<br/>
-<a href="https://trello.com/b/dPaqF7PT/profiles-web-application" target="_blank">Track Progress</a>
+  Copyright &copy; www.luisespinal.com | This is a personal project inteded to apply scripting and UI-UX design concepts.<br/>
+  All work is being completed by Luis Espinal.<br/><br/>
+  <a href="https://trello.com/b/dPaqF7PT/profiles-web-application" target="_blank">tasks @Trello.com</a> | <a href="https://github.com/soccermatrix/Profiles" target="_blank">code @GitHub.com</a>
 </div>  
 
 </div>
@@ -120,8 +127,12 @@ All work is being completed by Luis Espinal.<br/>
   <div class="dialog_card">
    <div class="dialog_content">	
     <div class="dialog_top_bar"></div>
+    <div class="card_menu_row">
+      <img id="card_menu_update_{{ activeEmployee.id }}" class="card_menu_update card_menu card_button" src="images/icon_update_black.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(activeEmployee,activeEmployee.id)"/>           
+      <img id="card_menu_delete_{{ activeEmployee.id }}" class="card_menu_delete card_menu card_button" src="images/icon_delete_black.png"  ng-controller="DeleteCtrol" ng-mousedown="updateActiveEmployee(activeEmployee,activeEmployee.id)" />
+    </div>           
     <div class="dialog_price">${{ activeEmployee.price }}/hr</div>
-    <img class="dialog_photo" ng-src="images/photo_{{ activeEmployee.id }}.png"/>
+    <img class="dialog_photo" ng-src="images/{{ activeEmployee.avatar }}.png"/>
     <div class="dialog_name">
      {{ activeEmployee.fullName }}
    </div>
@@ -130,11 +141,11 @@ All work is being completed by Luis Espinal.<br/>
      <span class="title_border"/>
    </div>
    <div class="dialog_quote">
-     {{activeEmployee.quote}}
+     {{activeEmployee.description}}
    </div>
    <div class="dialog_skills" >
      <!-- comment this out until bug with duplicates fixed -->
-     <!-- <span class="dialog_skill" ng-repeat="skill in activeEmployee.skills" >{{skill}}</span> -->
+     <span class="dialog_skill" ng-repeat="skill in activeEmployee.skills" >{{skill}}</span>
      <span class="dialog_skill dialog_blue">+{{activeEmployee.count}}</span>
    </div>
    <div class="dialog_buttons">
@@ -151,11 +162,11 @@ All work is being completed by Luis Espinal.<br/>
   <div class="dialog_card">
    <div class="dialog_content"> 
      <div class="dialog_top_bar-form_bar">
-       ADD NEW ACCOUNT
+       CREATE NEW ACCOUNT
      </div>
      <div class="dialog_form_items">
        <div class="dialog_form_row">       
-         <span class="icon"></span><input type="text" ng-model="fullName">
+         <span class="icon"></span><input type="text" ng-model="fullName"> {{ fullName }}
        </div>
        <div class="dialog_form_row">       
          <span class="icon"></span><input type="text" ng-model="title">
@@ -170,16 +181,19 @@ All work is being completed by Luis Espinal.<br/>
          <span class="icon"></span><input type="text" ng-model="count">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><textarea maxlength="200" ng-model="description"></textarea>
+         <span class="icon"></span><textarea maxlength="285" ng-model="description"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><textarea maxlength="90" class="quote" ng-model="quote"></textarea>
+         <span class="icon"></span><textarea maxlength="90" class="textarea-quote" ng-model="quote"></textarea>
        </div>
        <div class="dialog_form_row">       
          <span class="icon"></span><input type="text" ng-model="available">
        </div>
        <div class="dialog_form_row">       
          <span class="icon"></span><input type="text" ng-model="price">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input type="text" ng-model="avatar">
        </div>
 
        <div class="dialog_buttons">
@@ -201,13 +215,13 @@ All work is being completed by Luis Espinal.<br/>
      </div>
      <div class="dialog_form_items">
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_fullName" type="text" ng-model="fullName">
+         <span class="icon"></span><input id="update_fullName" type="text" ngRequired  ng-model="fullName">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_title" type="text" ng-model="title">
+         <span class="icon"></span><input id="update_title" type="text" ngRequired  ng-model="title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><input id="update_sub_title" type="text" ng-model="sub_title">
+         <span class="icon"></span><input id="update_sub_title" type="text" ngRequired  ng-model="sub_title">
        </div>
        <div class="dialog_form_row">       
          <span class="icon"></span><input id="update_skills" type="text" ng-model="skills">
@@ -216,10 +230,10 @@ All work is being completed by Luis Espinal.<br/>
          <span class="icon"></span><input id="update_count" type="text" ng-model="count">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><textarea id="update_description" maxlength="200" ng-model="description"></textarea>
+         <span class="icon"></span><textarea id="update_description" maxlength="285" ng-model="description"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon"></span><textarea id="update_quote" class="quote" maxlength="90" ng-model="quote"></textarea>
+         <span class="icon"></span><textarea id="update_quote" class="textarea-quote" maxlength="90" ng-model="quote"></textarea>
        </div>
        <div class="dialog_form_row">       
          <span class="icon"></span><input id="update_available" type="text" ng-model="available">
@@ -227,9 +241,61 @@ All work is being completed by Luis Espinal.<br/>
        <div class="dialog_form_row">       
          <span class="icon"></span><input id="update_price" type="text" ng-model="price">
        </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="update_avatar" type="text" ng-model="avatar">
+       </div>
 
        <div class="dialog_buttons">
         <button id="update_button" class="dialog_portfolio" ng-click="user_update();">Update User</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<div data-role id="dialog_form_delete">
+ <div data-role id="dialog_form_delete_main" class="dialog_form" ng-controller="DeleteCtrol">
+  <div class="dialog_card">
+   <div class="dialog_content"> 
+     <div class="dialog_top_bar-form_bar">
+       DELETE ACCOUNT
+     </div>
+     <div class="dialog_form_items">
+       <div class="dialog_form_row">
+         <span class="icon"></span><input id="delete_fullName" type="text" ngRequired>
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="delete_title" type="text" ngRequired  ng-model="title">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="delete_sub_title" type="text" ngRequired  ng-model="sub_title">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="delete_skills" type="text" ng-model="skills">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="delete_count" type="text" ng-model="count">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><textarea id="delete_description" maxlength="285" ng-model="description"></textarea>
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><textarea id="delete_quote" class="textarea-quote" maxlength="90" ng-model="quote"></textarea>
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="delete_available" type="text" ng-model="available">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="delete_price" type="text" ng-model="price">
+       </div>
+       <div class="dialog_form_row">       
+         <span class="icon"></span><input id="delete_avatar" type="text" ng-model="avatar">
+       </div>
+
+       <div class="dialog_buttons">
+        <button id="delete_button" class="dialog_portfolio" ng-click="user_delete();">delete User</button>
       </div>
     </div>
   </div>
@@ -254,7 +320,7 @@ All work is being completed by Luis Espinal.<br/>
  <div data-role id="card_menu_main" class="dialog_form"> 
    <ul>
     <li id="menu_update" >Update User</li>
-    <li id="menu_delete" style="color:#999; font-style:italic;">Delete User (pending)</li>
+    <li id="menu_delete" >Delete User</li>
   </ul>
 </div>
 </div>

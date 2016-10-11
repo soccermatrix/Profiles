@@ -6,16 +6,16 @@ header('Access-Control-Allow-Origin: *');
 
 $data = json_decode(file_get_contents("php://input"));
 
-$fullName       = $data->fullName;
-$title          = $data->title;
-$sub_title      = $data->sub_title;
-$skills         = $data->skill;
-$count          = $data->count;
-$description    = $data->description;
-$quote          = $data->quote;
-$available      = $data->available;
-$price          = $data->price;
-$avatar         = $data->avatar;
+$fullName       = "fullName";
+$title          = "title";
+$sub_title      = "sub title";
+$skills         = "skills";
+$count          = 25;
+$description    = "description";
+$quote          = "quote";
+$available      = 1;
+$price          = 50;
+$avatar         = "avatar_1";
 
 $host = "projectsUser.db.2596913.hostedresource.com";
 $user = "projectsUser";
@@ -40,7 +40,7 @@ $sql = $conn->query("INSERT INTO employee_tbl (NAME,TITLE,SUB_TITLE,SKILLS,COUNT
 
 
 if($conn->query($sql) === TRUE) {
-    echo "success";
+    echo "New recod created";
 } else {
     echo "Error: " . $sql . "<br" . $conn->error;
 }

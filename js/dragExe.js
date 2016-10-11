@@ -15,16 +15,16 @@ function loadFunction(){
 		var dropZones = {};
 		var active_dialog;
 
-		$('.cards').fadeTo('slow',1,function(){
+		$('.cards').fadeTo('fast',1,function(){
 			$('#footer').fadeTo('fast',1);
 			//var s helps fade in effect start at first item - top-bottom sequence.
 			var s = 0;
-			for(var i = employeesList.length - 1; i>0; i--){
+			for(var i = employeesList.length - 1; i>=0; i--){
 				dropZones['dz_' + employeesList[s]] = 'dg_' + employeesList[s];
-				console.log('employeesList[i]: ' + employeesList[i])
+				//console.log('employeesList[i]: ' + employeesList[i])
 				//console.log('dropZones[dz_' + i + '] = ' + dropZones['dz_' + i])
-				var delay = 50 * s;
-				$('#dg_' + employeesList[i]).delay( delay ).fadeTo('slow',1);
+				var delay = 30 * s;
+				$('#dg_' + employeesList[i]).delay( delay ).fadeTo('fast',1);
 				++s
 			}
 		});

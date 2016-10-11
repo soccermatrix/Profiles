@@ -1,13 +1,9 @@
-////console.log('controller.js');
 var totalEmployees;
 var activeEmployeeID;
 var employeesList = [];
 
-$.getScript('js/user_insert.js', function(){});
-$.getScript('js/user_update.js', function(){});
 
-
-angular.module('controller',['angular_insert_module','angular_update_module'])
+angular.module('controller',['angular_insert_module','angular_update_module','angular_delete_module'])
 .controller('Ctrol404',['$scope', '$http', function($scope, $http){
 	////console.log('Ctrol404');
 
@@ -24,7 +20,10 @@ angular.module('controller',['angular_insert_module','angular_update_module'])
 
 			$.getScript('js/dragExe.js', function(){});
 
-			$http.get('sql.php')
+	//MySQL version
+	//$http.get('http://www.luisespinal.com/profiles/sql.php')
+	$http.get('sql.php')
+	//JSON version
 	//$http.get('employees.js')
 	.success(function(employees_data, employees_status){
 		//////console.log('HomeCtrol - success');
@@ -33,7 +32,7 @@ angular.module('controller',['angular_insert_module','angular_update_module'])
 		var employees = employees_data.employees;
 		// ////console.log(employees[0].quote)
 
-		$scope.employees = employees;
+		$scope.employees = employees;		
 
 		totalEmployees = employees.length;
 		// ////console.log('totalEmployees: ' + totalEmployees)
@@ -43,9 +42,25 @@ angular.module('controller',['angular_insert_module','angular_update_module'])
 
 			//replace special charter codes back into readable characters
 			for (var i = 0; i<totalEmployees; i++){
+				//$scope.employees.quote = $scope.employees.quote.replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 				employees[i].quote = employees[i].quote.replace(/&rsquo;/g, "'")
 				employeesList.push(employees[i].id);
-				//$scope.employees.quote = $scope.employees.quote.replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+
+				//split sub_title and color theme
+				employees[i].sub_title = employees[i].sub_title.split(',');				
+				for (var a = 0; a<employees[i].sub_title.length; a++){
+					//trim() removes leading whitespace
+					employees[i].sub_title[a] = employees[i].sub_title[a].trim();
+					//console.log('employees[i].sub_title[a]: ' + employees[i].sub_title[a])
+				}
+
+				//split skills
+				employees[i].skills = employees[i].skills.split(',');
+				for (var b = 0; b<employees[i].skills.length; b++){
+					//trim() removes leading whitespace
+					employees[i].skills[b] = employees[i].skills[b].trim();
+					//console.log('employees[i].skills[b]: ' + employees[i].skills[b])
+				}
 			}
 
 			
@@ -62,7 +77,8 @@ angular.module('controller',['angular_insert_module','angular_update_module'])
 					description	: employee.description,
 					quote		: employee.quote,
 					available	: employee.available,
-					price		: employee.price
+					price		: employee.price,
+					avatar		: employee.avatar
 				}
 
 				$scope.activeEmployee = activeEmployee;

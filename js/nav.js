@@ -1,11 +1,13 @@
 $(document).ready(function(){
-	$('.portfolio, .photo').on('click', function(e){
+	var active_dialog = false;
+
+	$('.portfolio, .photo, .name').on('click', function(e){
 		$('.cards').addClass('blurEffect');
 		$('.cards').fadeTo("fast", 0.5);
 		$( "#dialog_active_user" ).dialog({
 			modal: true,
 			resizable: false,
-			show: { effect: "fade", duration: 300 },
+			show: { effect: "fade", duration: 100 },
 			close: function( event, ui ) {}
 		});
 		active_dialog = 'dialog_active_user';
@@ -23,7 +25,7 @@ $(document).ready(function(){
 		$( "#dialog_menu" ).dialog({
 			modal: true,
 			resizable: false,
-			show: { effect: "fade", duration: 300 },
+			show: { effect: "fade", duration: 100 },
 			close: function( event, ui ) {}
 		});
 		active_dialog = 'dialog_menu';
@@ -33,7 +35,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#insert_button,#update_button').on('click', function(e){
+	$('#insert_button,#update_button,#delete_button').on('click', function(e){
 		hideAll();
 	});
 
@@ -45,16 +47,25 @@ $(document).ready(function(){
 		dialog_name = 'dialog_form_insert';
 		dialog_modal = true;
 		dialog_appendTo = $('#wrapper');
-		setTimeout(show_dialog, 500);
+		setTimeout(show_dialog, 50);
 	});
 
-	$('#menu_update').on('click', function(e){
+	$('.card_menu_update').on('click', function(e){
 		//console.log('click(), activeEmployeeID: ' + activeEmployeeID)
 		hideAll();
 		dialog_name = 'dialog_form_update';
 		dialog_modal = true;
 		dialog_appendTo = $('#wrapper');
-		setTimeout(show_dialog, 500);
+		setTimeout(show_dialog, 50);
+	});
+
+	$('.card_menu_delete').on('click', function(e){
+		//console.log('click(), activeEmployeeID: ' + activeEmployeeID)
+		hideAll();
+		dialog_name = 'dialog_form_delete';
+		dialog_modal = true;
+		dialog_appendTo = $('#wrapper');
+		setTimeout(show_dialog, 50);
 	});
 
 	function show_dialog(){
@@ -67,7 +78,7 @@ $(document).ready(function(){
 			modal: dialog_modal,
 			resizable: false,
 			appendTo: dialog_appendTo,
-			show: { effect: "fade", duration: 300 },
+			show: { effect: "fade", duration: 50 },
 			close: function( event, ui ) {}
 		});
 		active_dialog = dialog_name;
@@ -81,25 +92,15 @@ $(document).ready(function(){
 	function hideAll(){
 		//console.log('hideAll()');
 		//console.log('active_dialog: ' + active_dialog);
-		$('#' + active_dialog).dialog("close");
-		$('.cards').removeClass('blurEffect');
-		$('.cards').fadeTo("fast", 1);
+		if(active_dialog){
+			$('#' + active_dialog).dialog("close");
+			$('.cards').removeClass('blurEffect');
+			$('.cards').fadeTo("fast", 1);
+			active_dialog = false;
+		}
 	};
 
 	
-	$('.card_menu').on('click', function(e){
-	 	$( "#card_menu" ).dialog({	 		
-	 		modal: true,
-	 		resizable: false,
-	 		position: { my: "left top", at: "left bottom", of: $('#card_menu_' + activeEmployeeID) },
-	 		show: { effect: "fade", duration: 100 },
-	 		close: function( event, ui ) {}
-	 	});	 	
-	 	active_dialog = 'card_menu';
-	 	$( "#card_menu_main" ).css("visibility", "visible");					
-	 	$('.ui-widget-overlay').on('click', function(){
-	 		hideAll();
-	 	});
-	 });
+	
 
 });

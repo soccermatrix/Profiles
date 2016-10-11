@@ -1,4 +1,3 @@
-
 //console.log('user_update.js');
 angular.module('angular_update_module',[])
 .controller('UpdateCtrol',['$scope', '$http', function($scope, $http){
@@ -6,13 +5,12 @@ angular.module('angular_update_module',[])
 	
 	//if($scope.activeEmployee){
 		$scope.updateActiveEmployee = function(employee,id) {
-			//console.log('updateActiveEmployee()');
+			console.log('UpdateCtrol, updateActiveEmployee()');
 
 			$scope.setActiveEmployee(employee,id);
-			//console.log ('UpdateCtrol $scope.activeEmployee.fullName: ' + $scope.activeEmployee.fullName)
+			////console.log ('UpdateCtrol $scope.activeEmployee.fullName: ' + $scope.activeEmployee.fullName)
 			//$scope.fullName 		= '"' + $scope.activeEmployee.fullName + '"';
-			var fields = ['fullName','title','sub_title','skills','count','description','quote','available','price'];
-			var field = {};
+			
 
 			$scope.id 				= $scope.activeEmployee.id;
 			$scope.fullName 		= $scope.activeEmployee.fullName;
@@ -24,42 +22,52 @@ angular.module('angular_update_module',[])
 			$scope.quote 			= $scope.activeEmployee.quote;
 			$scope.available 		= $scope.activeEmployee.available;
 			$scope.price 			= $scope.activeEmployee.price;
+			$scope.avatar 			= $scope.activeEmployee.avatar;
 
-			//console.log('$scope.id: ' + $scope.id)
-		 
+			////console.log('$scope.id: ' + $scope.id)
+
+		 //populates the input fields in the update form when the card menu is clicked
+		 //console.log('fields.length: ' + fields.length);
 		 for(var i=0; i<fields.length; i++){
-		 	//console.log('fields[i]: ' + fields[i])
+		 	////console.log('fields[i]: ' + fields[i])
 		 	field[ fields[i] ] = $('#update_' + fields[i]);
 		 	field[ fields[i] ].val($scope[ fields[i] ]);
-		 	field[ fields[i] ].trigger( fields[i] );
+		 	// field[ fields[i] ].trigger( fields[i] );
+		 	field[ fields[i] ].trigger( 'change' );
 		 }
 
 		}
-$scope.user_update = function () {
-	//console.log('user_update(), $scope.id: ' + $scope.id);
-	//console.log('user_update(), $scope.fullName: ' + $scope.fullName);
-	//console.log('user_update(), $scope.activeEmployee.id: ' + $scope.activeEmployee.id);
-	$http.post("user_update.php",{
+		$scope.user_update = function () {
+			//console.log('UpdateCtrol, user_update()');
+	
+		 	$scope.sub_title = $scope.sub_title.toString();
+		 	$scope.skills = $scope.skills.toString();
+
+		// //console.log($scope.fullName, $scope.sub_title)
+		$http.post("user_update.php",{
+		//$http.post("user_insert_manual.php",{
+	//$http.post("http://www.luisespinal.com/profiles/user_update.php",{
 		'id' : $scope.activeEmployee.id,
 		'fullName': $scope.fullName,
 		'title': $scope.title,
 		'sub_title': $scope.sub_title,
-		'skill': $scope.skills,
+		'skills': $scope.skills,
 		'count': $scope.count,
 		'description': $scope.description,
 		'quote': $scope.quote,
 		'available': $scope.available,
-		'price': $scope.price
+		'price': $scope.price,
+		'avatar': $scope.avatar
 	})
-	.success(function(data, status, headers, config){
+		.success(function(data, status, headers, config){
 		//console.log("updated Successfully");
 			//$scope.$emit('someEvent', args)
 			$scope.loadData();
 			
 		})
-	.error(function(data, status, headers, config){
+		.error(function(data, status, headers, config){
 		//console.log("error inserting");
 	})
-};
+	};
 
 }])

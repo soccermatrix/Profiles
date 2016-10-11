@@ -1,35 +1,22 @@
 <?php
+header('Access-Control-Allow-Origin: *');  
 
 //prevent direct access to this php for security
 //if($_SERVER['HTTP_REFERER'] == "") exit("Direct access not permitted.");
 
 $data = json_decode(file_get_contents("php://input"));
 
-$id           = mysql_real_escape_string($data ->id);
-//$id = 53;
-
-$fullName           = mysql_real_escape_string($data ->fullName);
-$fullName = '"' . $fullName . '"';
-//$fullName = '"luis"';
-
-$title          = mysql_real_escape_string($data->title);
-$title = '"' . $title . '"';
-
-$sub_title      = mysql_real_escape_string($data->sub_title);
-
-$skills         = mysql_real_escape_string($data->skill);
-
-$count          = mysql_real_escape_string($data->count);
-
-$description    = mysql_real_escape_string($data->description);
-$description = '"' . $description . '"';
-
-$quote          = mysql_real_escape_string($data->quote);
-$quote = '"' . $quote . '"';
-
-$available      = mysql_real_escape_string($data->available);
-
-$price          = mysql_real_escape_string($data->price);
+$id             = $data->id;
+$fullName       = $data->fullName;
+$title          = $data->title;
+$sub_title      = $data->sub_title;
+$skills         = $data->skills;
+$count          = $data->count;
+$description    = $data->description;
+$quote          = $data->quote;
+$available      = $data->available;
+$price          = $data->price;
+$avatar         = $data->avatar;
 
 $host = "projectsUser.db.2596913.hostedresource.com";
 $user = "projectsUser";
@@ -38,10 +25,6 @@ $db =  "projectsUser";
 
 
 $conn = new mysqli($host, $user, $pass, $db);
-
-/*
-*/
-
 $sql = $conn->query("UPDATE employee_tbl SET 
     NAME = '" . $fullName . "', 
     TITLE = '" . $title . "',
@@ -51,13 +34,14 @@ $sql = $conn->query("UPDATE employee_tbl SET
     DESCRIPTION = '" . $description . "',
     QUOTE = '" . $quote . "',
     AVAILABLE = '" . $available . "',
-    PRICE = '" . $price . "'
+    PRICE = '" . $price . "',
+    AVATAR = '" . $avatar . "'
 
     WHERE ID = '" . $id ."'")
 
 
 //  if($conn->query($sql) === TRUE) {
-//      echo "Recod updated";
+//      echo "success";
 //  } else {
 //      echo "Error: " . $sql . "<br" . $conn->error;
 //  }

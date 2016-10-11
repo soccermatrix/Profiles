@@ -7,9 +7,14 @@ html, body {
   margin-top: 0; }
 
 #banner {
+  width: 100%;
+  z-index: 200;
+  position: fixed;
   padding: 10px;
-  background-color: black;
-  color: white; }
+  margin-top: -16px;
+  /*background-color:black;*/
+  color: white;
+  background: rgba(0, 0, 0, 0.8); }
   #banner span {
     background-color: #36C974;
     color: white;
@@ -176,11 +181,17 @@ h1 {
   cursor: hand;
   cursor: pointer; }
 
-.card_menu {
+.card_menu_row {
   position: absolute;
-  left: 20px;
+  left: 10px;
   top: 10px;
-  width: 20px; }
+  width: 80px; }
+
+.card_menu {
+  position: inline-block;
+  float: left;
+  width: 18px;
+  margin-right: 10px; }
 
 .price {
   position: absolute;
@@ -222,7 +233,8 @@ h1 {
   font-size: .7em;
   margin: 1em 0;
   width: 100%;
-  font-weight: lighter; }
+  font-weight: lighter;
+  background: none; }
 
 .sub_title-blue {
   color: #56A8FE; }
