@@ -32,9 +32,14 @@ angular.module('angular_delete_module',[])
 		}
 		$scope.user_delete = function () {
 		console.log('user_delete()');
-		$http.post("user_delete.php",{
+		//$http.post("user_delete.php",{
+		$http.post(httpPath + 'user_delete.php',{
 			'id' : $scope.activeEmployee.id
-		})
+		}, {
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+		}
+	})
 		.success(function(data, status, headers, config){
 			console.log("deleted Successfully");
 			//$scope.$emit('someEvent', args)

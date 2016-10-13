@@ -35,28 +35,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#update_button').on('click', function(e){		
-		angular.element('#dialog_form_update_main').scope().$apply();
-		angular.element('#dialog_form_update_main').scope().user_update();
-		hideAll();
-	});
-	$('#insert_button').on('click', function(e){
-		angular.element('#dialog_form_insert_main').scope().$apply();
-		angular.element('#dialog_form_insert_main').scope().user_insert();
-		hideAll();
-	});
-
-	$('#delete_button').on('click', function(e){	
-		//console.log('adminMode: ' + adminMode)
-		if(adminMode){
-			angular.element('#dialog_form_delete_main').scope().$apply();
-			angular.element('#dialog_form_delete_main').scope().user_delete();
-			hideAll();
-		} else {
-			$('#delete_message').css('visibility','visible');
-			$('#delete_message').html('Not allowed on public version');
-		}
-	});
+	
 
 	
 
@@ -119,19 +98,6 @@ $(document).ready(function(){
 		}
 	};
 
-	//get url params
-	//use: $.urlParam('param1');
-	$.urlParam = function(name){ 
-		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-		if (results==null){
-			return null;
-		}
-		else{
-			return results[1] || 0;
-		}
-	}
-
-
 	//check if localhost or local server
 
 	if (location.hostname === "localhost" || location.hostname === "127.0.0.1"){
@@ -144,12 +110,40 @@ $(document).ready(function(){
 	for(var i=0; i<fields.length; i++){
 		 	////console.log('fields[i]: ' + fields[i])
 		 	for(var a=0; a<forms.length; a++){
-			 	field[ fields[i][0] ] = $('#' + forms[a] + '_' + fields[i][0]);
-			 	field[ fields[i][0] ].attr('data-toggle','tooltip');
-			 	field[ fields[i][0] ].attr('data-placement','top');
-			 	field[ fields[i][0] ].attr('title',fields[i][1]);
-			 }
-	 }
-	 $('[data-toggle="tooltip"]').tooltip(); 
-	 field = {};
-});
+		 		field[ fields[i][0] ] = $('#' + forms[a] + '_' + fields[i][0]);
+		 		field[ fields[i][0] ].attr('data-toggle','tooltip');
+		 		field[ fields[i][0] ].attr('data-placement','top');
+		 		field[ fields[i][0] ].attr('title',fields[i][1]);
+		 	}
+		 }
+		 $('[data-toggle="tooltip"]').tooltip(); 
+		 field = {};
+
+		 $('#form_user_update,#form_user_insert,#form_user_delete').submit(function(){
+		 	return hideAll();
+		 })
+
+		 $('#form_user_update').submit(function(){
+		 	angular.element('#dialog_form_update_main').scope().$apply();
+		 	angular.element('#dialog_form_update_main').scope().user_update();
+		 	hideAll();
+		 });
+
+		 $('#form_user_insert').submit(function(){
+		 	angular.element('#dialog_form_insert_main').scope().$apply();
+		 	angular.element('#dialog_form_insert_main').scope().user_insert();
+		 	hideAll();
+		 });
+
+		 $('#form_user_delete').submit(function(){
+		//console.log('adminMode: ' + adminMode)
+		if(adminMode){
+			angular.element('#dialog_form_delete_main').scope().$apply();
+			angular.element('#dialog_form_delete_main').scope().user_delete();
+			hideAll();
+		} else {
+			$('#delete_message').css('visibility','visible');
+			$('#delete_message').html('Not allowed on public version');
+		}
+	});
+		});

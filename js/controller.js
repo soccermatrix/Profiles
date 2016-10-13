@@ -4,12 +4,10 @@ var activeEmployeeID;
 var employeesList = [];
 
 //console.log('location.hostname: ' + location.hostname)
-var httpPath;
+var httpPath = '';
 if (location.hostname === "127.0.0.1"){
- 		httpPath = 'http://www.luisespinal.com/profiles/sql.php';
- 	} else {
- 		httpPath = 'sql.php';
- 	}
+	httpPath = 'http://www.luisespinal.com/profiles/';
+}
 
 
 angular.module('controller',['angular_insert_module','angular_update_module','angular_delete_module'])
@@ -34,7 +32,7 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 	
 	//JSON version
 	//$http.get('employees.js')
-	$http.get(httpPath)
+	$http.get(httpPath + 'sql.php')
 	.success(function(employees_data, employees_status){
 		//////console.log('HomeCtrol - success');
 		//////console.log('success loading json')

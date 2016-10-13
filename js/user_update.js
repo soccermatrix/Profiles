@@ -52,7 +52,8 @@ angular.module('angular_update_module',[])
 			$scope.skills = $scope.skills.replace("'","&rsquo;")
 
 		// //console.log($scope.fullName, $scope.sub_title)
-		$http.post("user_update.php",{
+		//$http.post("user_update.php",{
+		$http.post(httpPath + 'user_update.php',{
 		//$http.post("user_insert_manual.php",{
 	//$http.post("http://www.luisespinal.com/profiles/user_update.php",{
 		'id' : $scope.activeEmployee.id,
@@ -66,6 +67,10 @@ angular.module('angular_update_module',[])
 		'available': $scope.available,
 		'price': $scope.price,
 		'avatar': $scope.avatar
+	}, {
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+		}
 	})
 		.success(function(data, status, headers, config){
 		//console.log("updated Successfully");

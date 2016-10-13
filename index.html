@@ -167,6 +167,7 @@
        CREATE NEW ACCOUNT
      </div>
      <div class="dialog_form_items">
+      <form id="form_user_insert">
      
        <div class="dialog_form_row">       
          <span class="icon icon-name"></span><input id="insert_fullName" type="text" ngRequired  ng-model="fullName">
@@ -203,6 +204,7 @@
         <!-- <button id="insert_button" class="dialog_portfolio" ng-click="user_insert();">Add New User</button> -->
         <button id="insert_button" class="dialog_portfolio">Add New User</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -218,7 +220,7 @@
        UPDATE ACCOUNT
      </div>     
      <div class="dialog_form_items">
-
+      <form id="form_user_update">
        <div class="dialog_form_row">       
          <span class="icon icon-name"></span><input id="update_fullName" type="text" ngRequired  ng-model="fullName">
        </div>
@@ -254,6 +256,7 @@
         <!-- <button id="update_button" class="dialog_portfolio" ng-click="user_update();">Update User</button> -->
         <button id="update_button" class="dialog_portfolio">Update User</button>
       </div>
+    </form>
     </div>
   </div>
 </div>
@@ -270,6 +273,7 @@
      </div>
      <div class="dialog_form_items">
      
+      <form id="form_user_delete">
        <div class="dialog_form_row">       
          <span class="icon icon-name"></span><input id="delete_fullName" type="text" ngRequired  ng-model="fullName" >
        </div>
@@ -306,6 +310,7 @@
         <button id="delete_button" class="dialog_portfolio bg-red">Delete User</button><br/><br/>
         <span id="delete_message" style="color:red; visibility: hidden; height:20px;">  </span>
       </div>
+      </form>
     </div>
   </div>
 </div>

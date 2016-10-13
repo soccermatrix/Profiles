@@ -44,7 +44,8 @@ angular.module('angular_insert_module',[])
 		$scope.description = $scope.description.replace("'","&rsquo;")
 		$scope.quote = $scope.quote.replace("'","&rsquo;")
 
-		$http.post("user_insert.php",{
+		//$http.post("user_insert.php",{
+		$http.post(httpPath + 'user_insert.php',{
 		//$http.post("http://www.luisespinal.com/profiles/user_insert.php",{
 		//$http.post("http://www.shiquinkira.com/profiles/user_insert.php",{
 			//'headers' : {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
@@ -58,7 +59,11 @@ angular.module('angular_insert_module',[])
 			'available': $scope.available,
 			'price': $scope.price,
 			'avatar': $scope.avatar
-		})
+		}, {
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+		}
+	})
 		.success(function(data, status, headers, config){
 			//console.log("inserted Successfully");
 			//$scope.$emit('someEvent', args)
