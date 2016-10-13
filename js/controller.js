@@ -1,6 +1,15 @@
+//console.log('controller')
 var totalEmployees;
 var activeEmployeeID;
 var employeesList = [];
+
+//console.log('location.hostname: ' + location.hostname)
+var httpPath;
+if (location.hostname === "127.0.0.1"){
+ 		httpPath = 'http://www.luisespinal.com/profiles/sql.php';
+ 	} else {
+ 		httpPath = 'sql.php';
+ 	}
 
 
 angular.module('controller',['angular_insert_module','angular_update_module','angular_delete_module'])
@@ -12,6 +21,7 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 	////console.log('BlogCtrol');
 }])
 
+
 .controller('HomeCtrol',['$scope', '$http', function loadDataCtrl($scope, $http){
 	//////console.log('runController: ' + runController);
 	$scope.loadData = function() {
@@ -21,10 +31,10 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 			$.getScript('js/dragExe.js', function(){});
 
 	//MySQL version
-	//$http.get('http://www.luisespinal.com/profiles/sql.php')
-	$http.get('sql.php')
+	
 	//JSON version
 	//$http.get('employees.js')
+	$http.get(httpPath)
 	.success(function(employees_data, employees_status){
 		//////console.log('HomeCtrol - success');
 		//////console.log('success loading json')
@@ -47,6 +57,7 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 				//populate this loop and target each field instead of manual.
 				employees[i].quote = employees[i].quote.replace(/&rsquo;/g, "'")
 				employees[i].description = employees[i].description.replace(/&rsquo;/g, "'")
+				employees[i].sub_title = employees[i].sub_title.replace(/&rsquo;/g, "'")
 				employeesList.push(employees[i].id);
 
 				//split sub_title and color theme
@@ -62,6 +73,7 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 				for (var b = 0; b<employees[i].skills.length; b++){
 					//trim() removes leading whitespace
 					employees[i].skills[b] = employees[i].skills[b].trim();
+					employees[i].skills[b] = employees[i].skills[b].replace(/&rsquo;/g, "'")
 					//console.log('employees[i].skills[b]: ' + employees[i].skills[b])
 				}
 			}

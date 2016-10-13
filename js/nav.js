@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	var active_dialog = false;
+	var adminMode = false;
 
 	$('.portfolio, .photo, .name').on('click', function(e){
 		$('.cards').addClass('blurEffect');
@@ -20,11 +21,10 @@ $(document).ready(function(){
 	});
 
 	$('#menu').on('click', function(e){
-		$('.cards').addClass('blurEffect');
-		$('.cards').fadeTo("fast", 0.5);
-		$( "#dialog_menu" ).dialog({
+		$( "#dialog_menu" ).dialog({			
 			modal: true,
 			resizable: false,
+			position: { my: "right top", at: "right bottom", of: this },
 			show: { effect: "fade", duration: 100 },
 			close: function( event, ui ) {}
 		});
@@ -35,8 +35,27 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#insert_button,#update_button,#delete_button').on('click', function(e){
+	$('#update_button').on('click', function(e){		
+		angular.element('#dialog_form_update_main').scope().$apply();
+		angular.element('#dialog_form_update_main').scope().user_update();
 		hideAll();
+	});
+	$('#insert_button').on('click', function(e){
+		angular.element('#dialog_form_insert_main').scope().$apply();
+		angular.element('#dialog_form_insert_main').scope().user_insert();
+		hideAll();
+	});
+
+	$('#delete_button').on('click', function(e){	
+		//console.log('adminMode: ' + adminMode)
+		if(adminMode){
+			angular.element('#dialog_form_delete_main').scope().$apply();
+			angular.element('#dialog_form_delete_main').scope().user_delete();
+			hideAll();
+		} else {
+			$('#delete_message').css('visibility','visible');
+			$('#delete_message').html('Not allowed on public version');
+		}
 	});
 
 	
@@ -65,7 +84,7 @@ $(document).ready(function(){
 		dialog_name = 'dialog_form_delete';
 		dialog_modal = true;
 		dialog_appendTo = $('#wrapper');
-		setTimeout(show_dialog, 50);
+		setTimeout(show_dialog, 50);			
 	});
 
 	function show_dialog(){
@@ -100,7 +119,37 @@ $(document).ready(function(){
 		}
 	};
 
-	
-	
+	//get url params
+	//use: $.urlParam('param1');
+	$.urlParam = function(name){ 
+		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results==null){
+			return null;
+		}
+		else{
+			return results[1] || 0;
+		}
+	}
 
+
+	//check if localhost or local server
+
+	if (location.hostname === "localhost" || location.hostname === "127.0.0.1"){
+		adminMode = true;
+	}
+
+	
+	//add tooltip attributes to input fields
+	var forms = ['update','insert','delete'];
+	for(var i=0; i<fields.length; i++){
+		 	////console.log('fields[i]: ' + fields[i])
+		 	for(var a=0; a<forms.length; a++){
+			 	field[ fields[i][0] ] = $('#' + forms[a] + '_' + fields[i][0]);
+			 	field[ fields[i][0] ].attr('data-toggle','tooltip');
+			 	field[ fields[i][0] ].attr('data-placement','top');
+			 	field[ fields[i][0] ].attr('title',fields[i][1]);
+			 }
+	 }
+	 $('[data-toggle="tooltip"]').tooltip(); 
+	 field = {};
 });

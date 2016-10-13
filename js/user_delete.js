@@ -21,12 +21,12 @@ angular.module('angular_delete_module',[])
 
 		 //populates the input fields in the update form when the card menu is clicked
 		 for(var i=0; i<fields.length; i++){
-		 	field[ fields[i] ] = $('#delete_' + fields[i]);
-		 	field[ fields[i] ].val($scope[ fields[i] ]);
-		 	field[ fields[i] ].trigger( 'change' );
+		 	field[ fields[i][0] ] = $('#delete_' + fields[i][0]);
+		 	field[ fields[i][0] ].val($scope[ fields[i][0] ]);
+		 	field[ fields[i][0] ].trigger( 'change' );
 
 		 	//disable the input fields
-		 	field[ fields[i] ].prop('disabled', true);
+		 	field[ fields[i][0] ].prop('disabled', true);
 		 }
 
 		}

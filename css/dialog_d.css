@@ -160,7 +160,7 @@
 .dialog_top_bar-form_bar {
   width: 100%;
   position: relative;
-  height: 35px;
+  height: 50px;
   background-color: #52D8F7;
   color: white;
   margin: 0 0 5px 0;
@@ -177,6 +177,11 @@
   margin: 5px 10px;
   width: 100%;
   display: inline-block; }
+  .dialog_form_row .textarea-description {
+    width: 100%;
+    height: 80px;
+    max-height: 80px;
+    overflow: hidden; }
   .dialog_form_row .textarea-quote {
     width: 100%;
     height: 50px;

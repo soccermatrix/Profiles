@@ -16,31 +16,33 @@ angular.module('angular_insert_module',[])
 
 	$scope.description = $scope.description.replace("'","&rsquo;")
 	$scope.quote = $scope.quote.replace("'","&rsquo;")
+	$scope.sub_title = $scope.sub_title.replace("'","&rsquo;")
+	$scope.skills = $scope.skills.replace("'","&rsquo;")
 
 	for(var i=0; i<fields.length; i++){
-	 	////console.log('fields[i]: ' + fields[i])
-	 	field[ fields[i] ] = $('#insert_' + fields[i]);
-	 	field[ fields[i] ].trigger( 'change' );
+	 	//console.log('fields[i]: ' + fields[i])
+	 	field[ fields[i][0] ] = $('#insert_' + fields[i][0]);
+	 	field[ fields[i][0] ].trigger( 'change' );
 	 }
 
 
 
-	$scope.user_insert = function () {
+	 $scope.user_insert = function () {
 		//console.log('user_insert()');
 
 		for(var i=0; i<fields.length; i++){
 		 	////console.log('fields[i]: ' + fields[i])
-		 	field[ fields[i] ] = $('#insert_' + fields[i]);
-		 	field[ fields[i] ].trigger( 'change' );
+		 	field[ fields[i][0] ] = $('#insert_' + fields[i][0]);
+		 	field[ fields[i][0] ].trigger( 'change' );
 		 }
 
-		$scope.sub_title = $scope.sub_title.toString();
-		$scope.skills = $scope.skills.toString();
+		 $scope.sub_title = $scope.sub_title.toString();
+		 $scope.skills = $scope.skills.toString();
 		//console.log($scope.fullName)
 
 		//replace single quotes characters to prevent sql conflict
-		 	$scope.description = $scope.description.replace("'","&rsquo;")
-			$scope.quote = $scope.quote.replace("'","&rsquo;")
+		$scope.description = $scope.description.replace("'","&rsquo;")
+		$scope.quote = $scope.quote.replace("'","&rsquo;")
 
 		$http.post("user_insert.php",{
 		//$http.post("http://www.luisespinal.com/profiles/user_insert.php",{
@@ -63,9 +65,9 @@ angular.module('angular_insert_module',[])
 			$scope.loadData();
 			
 		})
-			.error(function(data, status, headers, config){
+		.error(function(data, status, headers, config){
 				//console.log("error inserting");
 			})
 
-		}
+	}
 }])
