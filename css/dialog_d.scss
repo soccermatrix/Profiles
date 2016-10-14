@@ -10,15 +10,33 @@
 	padding: 0;
 }
 
-.dialog_main {
+.ui-widget-overlay{
+      position: fixed !important;
+}
+
+.ui-dialog {
+	position: absolute;
+}
+
+/*end of override of dialog styles*/
+
+.dialog {
 	width: 500px;
 	max-width:500px;
 	margin: 0 auto;
 	padding: 0;
 	overflow: hidden;
-	background-color: white;
 	visibility: hidden; 
 	display:inline-block;
+	position:fixed;
+}
+
+.dialog_main {
+	width: 500px;
+	max-width:500px;
+	overflow: hidden;
+	display:inline-block;
+	background-color: white;
 }
 
 .dialog_card {

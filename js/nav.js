@@ -76,12 +76,15 @@ function loadNav(){
 				setTimeout(show_dialog, 50);			
 			});
 
+			$( "#" + dialog_name ).hide();
 			function show_dialog(){
 				//console.log('show_dialog(), dialog_name: ' + dialog_name)
 				if(dialog_modal){			
 					$('.cards').addClass('blurEffect');
 					$('.cards').fadeTo("fast", 0.5);
 				}		
+				// $( "#" + dialog_name ).css('display','inline-block');
+				
 				$( "#" + dialog_name ).dialog({
 					modal: dialog_modal,
 					resizable: false,
@@ -178,6 +181,10 @@ function loadNav(){
 					($c).css({'top': '0px'});
 				} 
 			}
+
+			$("div.ui-widget-overlay").css("height", function () {
+			      return $(window).height();
+			});
 
 		}//end if
 		loadNavComplete = false;
