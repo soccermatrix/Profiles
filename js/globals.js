@@ -1,3 +1,5 @@
+console.log('globals.js')
+
 var fields = [
 ['fullName','Full Name'],
 ['title','Title'],
@@ -15,3 +17,6 @@ var fields = [
 //console.log('fields[0][0]: ' + fields[0][0])
 
 var field = {};
+
+$.getScript('js/nav.js', function(){})
+$.getScript('js/dragExe.js', function(){});

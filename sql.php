@@ -41,7 +41,13 @@ while($rs = $sql->fetch_array(MYSQLI_ASSOC)) {
 }
 $data ='{"employees":['.$data.']}';
 
+
+
 $conn->close();
-echo($data);
+//echo($data);
+//new line added Oct 13 to support RESTful web service
+//$result = json_decode($data);
+echo($data)
+//echo($data->$data['employees'])
 
 ?>

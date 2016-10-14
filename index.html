@@ -21,6 +21,7 @@
 
   <script src="js/angular.js"></script>
   <script src="js/angular-route.js"></script>
+  <script src="js/angular-resource.js"></script>
   
   <script src="js/globals.js"></script>
   <script src="js/user_delete.js"></script>
@@ -79,6 +80,7 @@
        </form>  					
        <h1>PROFILES ({{totalEmployees}})</h1>
        <!-- <div data-role id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'"> -->
+       <!-- <input type="text" ng-model="employee.fullName"> -->
        <div id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search">
         <div id="{{ 'dg_' + employee.id }}" class="main" ng-mousedown="setActiveDraggable(employee.id)">
          <div class="card">
@@ -90,7 +92,8 @@
             <div class="price">${{ employee.price }}</div>
             <img class="photo card_button" ng-src="images/{{ employee.avatar }}.png" ng-click="setActiveEmployee(employee,employee.id)"/>
             <div class="name card_button" ng-click="setActiveEmployee(employee,employee.id)">
-              {{employee.fullName}}
+              {{employee.fullName}}   
+              <input class='hidden' id="{{ 'input_fullName_' + employee.id }}" type="text" ng-model="employee.fullName">
             </div>
             <div class="title">
               {{employee.title}}									
@@ -124,6 +127,7 @@
 </div>
 </div>
 
+<!-- Active user dialog -->
 <div data-role id="dialog_active_user" class="dialog_main">
  <div data-role id="dialog_active_user_main" class="dialog_main">
   <div class="dialog_card">
@@ -137,6 +141,7 @@
     <img class="dialog_photo" ng-src="images/{{ activeEmployee.avatar }}.png"/>
     <div class="dialog_name">
      {{ activeEmployee.fullName }}
+     <!-- <input type="text" ng-model="activeEmployee.fullName"> -->
    </div>
    <div class="dialog_title">
      {{ activeEmployee.title }}
@@ -222,7 +227,9 @@
      <div class="dialog_form_items">
       <form id="form_user_update">
        <div class="dialog_form_row">       
-         <span class="icon icon-name"></span><input id="update_fullName" type="text" ngRequired  ng-model="fullName">
+         <span class="icon icon-name"></span><input id="update_fullName" type="text" ngRequired  ng-model="$parent.fullName">
+         fullName: {{ $parent.fullName }}
+         <!-- fullName: {{ activeEmployee.fullName }} -->
        </div>
        <div class="dialog_form_row">       
          <span class="icon icon-title"></span><input id="update_title" type="text" ngRequired  ng-model="title">

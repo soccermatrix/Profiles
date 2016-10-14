@@ -333,3 +333,6 @@ h1 {
     text-decoration: underline; }
   #footer a:hover {
     color: #00AEEF; }
+
+.hidden {
+  display: none; }

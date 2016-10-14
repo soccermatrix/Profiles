@@ -1,12 +1,19 @@
+console.log('dragExe.js')
+var adminMode = false;
 
 function loadFunction(){
-	////console.log("loadFunction()")	
-	$.getScript('js/nav.js', function(){})
+	console.log("loadFunction()")
+	loadNav();
+	console.log('adminMode: ' + adminMode)
 	$(document).ready(function(){
 		////console.log("Load Object Animations / Events")
 		////console.log('totalEmployees: ' + totalEmployees)
 		////console.log('employeesList: ' + employeesList);
-
+		
+ 		//for(var a = 0; a<employeesList.length; a++){
+		// 	$('#dz_' + employeesList[a]).remove();
+		// }
+				
 		
 
 		var active_dg;
