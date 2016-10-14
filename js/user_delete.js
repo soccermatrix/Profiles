@@ -43,7 +43,8 @@ angular.module('angular_delete_module', [])
 					console.log("deleted Successfully");
 					//$scope.$emit('someEvent', args)
 					runController = true;
-					$scope.loadData();
+					$scope.$emit('loadData', [])
+					//$scope.loadData();
 
 				})
 				.error(function(data, status, headers, config) {

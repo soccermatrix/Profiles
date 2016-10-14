@@ -1,18 +1,6 @@
 // Script Library
 
-$('#update_button').on('click', function(e){		
-	angular.element('#dialog_form_update_main').scope().$apply();
-	angular.element('#dialog_form_update_main').scope().user_update();
-	hideAll();
-});
-
-$('#insert_button').on('click', function(e){
-	angular.element('#dialog_form_insert_main').scope().$apply();
-	angular.element('#dialog_form_insert_main').scope().user_insert();
-	hideAll();
-});
-
-$('#delete_button').on('click', function(e){	
+	$('#delete_button').on('click', function(e){	
 		//console.log('adminMode: ' + adminMode)
 		if(adminMode){
 			angular.element('#dialog_form_delete_main').scope().$apply();
@@ -25,7 +13,7 @@ $('#delete_button').on('click', function(e){
 	});
 
 
-//get url params
+	//get url params
 	//use: $.urlParam('param1');
 	$.urlParam = function(name){ 
 		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -36,3 +24,17 @@ $('#delete_button').on('click', function(e){
 			return results[1] || 0;
 		}
 	}
+
+
+	//detect top scroll offset
+	$(window).scroll(function(e){ 
+		var $el = $('.fixedElement'); 
+		var isPositionFixed = ($el.css('position') == 'fixed');
+		if ($(this).scrollTop() > 200 && !isPositionFixed){ 
+			$('.fixedElement').css({'position': 'fixed', 'top': '0px'}); 
+		}
+		if ($(this).scrollTop() < 200 && isPositionFixed)
+		{
+			$('.fixedElement').css({'position': 'static', 'top': '0px'}); 
+		} 
+	});

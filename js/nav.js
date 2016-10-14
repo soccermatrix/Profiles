@@ -3,6 +3,15 @@ console.log('nav.js')
 var loadNavComplete = false;
 function loadNav(){
 	console.log('loadNav()');
+	$(document).click(function(e){
+		console.log('document click()');
+		var target = e.target;
+		console.log('$(target).parents().parents(): ' + $(target).parents().parents().id)
+		if (!$(target).is('#top_menu_options_list') && !$(target).is('#menu')) {
+			$('#top_menu_options_list').hide();
+		}
+	});
+
 	$(document).ready(function(){
 		if(!loadNavComplete){
 			loadNavComplete = true;
@@ -35,31 +44,20 @@ function loadNav(){
 				$('#btn_' + activeEmployeeID).addClass('portfolio-active');
 			});
 
+			$('#top_menu_options_list').hide();
 			$('#menu').on('click', function(e){
-				$( "#dialog_menu" ).dialog({			
-					modal: true,
-					resizable: false,
-					position: { my: "right top", at: "right bottom", of: this },
-					show: { effect: "fade", duration: 100 },
-					close: function( event, ui ) {}
-				});
-				active_dialog = 'dialog_menu';
-				$( "#dialog_menu_main" ).css("visibility", "visible");					
-				$('.ui-widget-overlay,#dialog_menu').on('click', function(){
-					hideAll();
-				});
+				$('#top_menu_options_list').toggle();
 			});
 
 			var dialog_name;
 			$('#menu_add').on('click', function(e){
-				console.log('click() insert')
 				hideAll();
 				dialog_name = 'dialog_form_insert';
 				dialog_modal = true;
 				dialog_appendTo = $('#wrapper');
 				setTimeout(show_dialog, 50);
 			});
-
+			
 			$('.card_menu_update').on('click', function(e){
 				console.log('click() update, activeEmployeeID: ' + activeEmployeeID)
 				hideAll();

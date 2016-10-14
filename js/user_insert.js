@@ -64,7 +64,8 @@ angular.module('angular_insert_module', [])
 				//console.log("inserted Successfully");
 				//$scope.$emit('someEvent', args)
 				runController = true;
-				$scope.loadData();
+				$scope.$emit('loadData', [])
+				//$scope.loadData();
 
 			})
 			.error(function(data, status, headers, config) {
