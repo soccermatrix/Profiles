@@ -57,7 +57,7 @@ function loadNav(){
 				dialog_appendTo = $('#wrapper');
 				setTimeout(show_dialog, 50);
 			});
-			
+
 			$('.card_menu_update').on('click', function(e){
 				console.log('click() update, activeEmployeeID: ' + activeEmployeeID)
 				hideAll();
@@ -153,6 +153,31 @@ function loadNav(){
 					$('#delete_message').html('Not allowed on public version');
 				}
 			});
+
+			 //scrolling snaping of top menu
+			 $(document).ready(function(){
+			 	positionElements();
+			 	$(window).scroll(function(e){ 
+			 		positionElements()
+			 	});
+			 });
+
+			 function positionElements(){
+			 	var $tm = $('#top_menu'); 
+			 	var $c = $('.cards'); 
+			 	var isPositionFixed = ($tm.css('position') == 'fixed');
+			 	if ($(this).scrollTop() > 95 && !isPositionFixed){ 
+					// place it back top of page
+					($tm).css({'position': 'fixed', 'top': '48px', 'width': '90%', 'z-index': '2'});
+					($c).css({'top': '75px'});
+				}
+				if ($(this).scrollTop() < 95 && isPositionFixed)
+				{
+					// show over the scrolling content
+					($tm).css({'position': 'relative', 'top': '0px', 'width': '100%', 'z-index': '2'}); 
+					($c).css({'top': '0px'});
+				} 
+			}
 
 		}//end if
 		loadNavComplete = false;
