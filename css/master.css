@@ -109,24 +109,42 @@ html, body {
   position: absolute;
   z-index: 300;
   opacity: .9;
-  /*display: none;*/ }
+  display: none; }
   #top_menu_options_list ul {
     margin: 0 0 100px 0;
     padding: 0; }
     #top_menu_options_list ul li {
       text-align: left;
       list-style: none;
-      padding: 12px 0 12px 30px;
       cursor: pointer;
       border: 1px solid #404B58;
       border-width: 1px 0 1px 0;
       color: #f5f5f5;
-      font-size: .8em; }
+      font-size: .8em;
+      padding: 12px 0 12px 40px;
+      background-size: 13px 13px;
+      background-position: 10px 15px;
+      background-repeat: no-repeat; }
     #top_menu_options_list ul li:hover {
       background-color: #282F3E; }
     #top_menu_options_list ul .disabled:hover {
       background-color: #38404D;
       cursor: default; }
+
+#menu_add {
+  background: url("../images/icon_add.png"); }
+
+#menu_capabilities {
+  background: url("../images/icon_list.png"); }
+
+#menu_about {
+  background: url("../images/icon_about.png"); }
+
+#menu_contact {
+  background: url("../images/icon_contact.png"); }
+
+#menu_swap {
+  background: url("../images/icon_move.png"); }
 
 .disabled {
   opacity: .3;

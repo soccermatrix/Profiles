@@ -7,7 +7,7 @@ function loadNav(){
 		console.log('document click()');
 		var target = e.target;
 		console.log('$(target).parents().parents(): ' + $(target).parents().parents().id)
-		if (!$(target).is('#top_menu_options_list') && !$(target).is('#menu')) {
+		if (!$(target).is('#top_menu_options_list') && !$(target).is('#menu_icon_btn')) {
 			$('#top_menu_options_list').hide();
 		}
 	});
@@ -44,8 +44,8 @@ function loadNav(){
 				$('#btn_' + activeEmployeeID).addClass('portfolio-active');
 			});
 
-			//$('#top_menu_options_list').hide();
-			$('#menu').on('click', function(e){
+			$('#top_menu_options_list').hide();
+			$('#menu_icon_btn').on('click', function(e){
 				$('#top_menu_options_list').toggle();
 			});
 
@@ -124,7 +124,7 @@ function loadNav(){
 			 	for(var a=0; a<forms.length; a++){
 			 		field[ fields[i][0] ] = $('#' + forms[a] + '_' + fields[i][0]);
 			 		field[ fields[i][0] ].attr('data-toggle','tooltip');
-			 		field[ fields[i][0] ].attr('data-placement','top');
+			 		field[ fields[i][0] ].attr('data-placement','bottom');
 			 		field[ fields[i][0] ].attr('title',fields[i][1]);
 			 	}
 			 }
