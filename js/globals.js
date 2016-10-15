@@ -29,9 +29,43 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
     mobileMode = false;    	
 }
 
+//LOAD DYNAMIC CSS
+$('<link href="css/master.css?v=' + v + '" rel="stylesheet" type="text/css" />').appendTo('head');
+
+$('<link href="css/dialog_d.css?v=' + v + '" rel="stylesheet" type="text/css" />').appendTo('head');
+
+// tasks to do if it is a Mobile Device
+//window.location.replace("mobile.html"); 
+console.log('mobileMode: ' + mobileMode)
+if(mobileMode){
+    var link1 = document.createElement('link');
+    link1.rel = 'stylesheet';
+    link1.id = 'id1';
+    link1.href = 'css/mobile.css?v=' + v;
+    document.head.appendChild(link1);
+
+    var link2 = document.createElement('link');
+    link2.rel = 'stylesheet';
+    link2.id = 'id2';
+    link2.href = 'css/mobile_dialog.css?v=' + v;
+    document.head.appendChild(link2);
+  } else {
+    var link1 = document.createElement('link');
+    link1.rel = 'stylesheet';
+    link1.id = 'id1';
+    link1.href = 'css/desktop.css?v=' + v;
+    document.head.appendChild(link1);
+
+    var link2 = document.createElement('link');
+    link2.rel = 'stylesheet';
+    link2.id = 'id2';
+    link2.href = 'css/desktop_dialog.css?v=' + v;
+    document.head.appendChild(link2);
+  }
+//END LOAD DYNAMIC CSS
+
 $(document).ready(function(){
-	//show the body of the document now that all dynamic js,classes are loaded.
-	$('body').css('visibility','visible');
+
 })
 
 /*

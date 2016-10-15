@@ -17,6 +17,9 @@ function loadNav(){
 			loadNavComplete = true;
 			var active_dialog = false;
 
+			//show the body of the document now that all dynamic js,classes are loaded.
+			$('body').css('visibility','visible');
+
 			
 			//removes previous event handlers so new ones can be reset
 			//this is needed as new objects are added to the list, but existing objects
@@ -103,6 +106,8 @@ function loadNav(){
 				setTimeout(show_dialog, 50);			
 			});
 
+			
+			//DIALOG FUNCTIONALITY / SETTINGS
 			$( "#" + dialog_name ).hide();
 			function show_dialog(){
 				//console.log('show_dialog(), dialog_name: ' + dialog_name)
@@ -120,7 +125,7 @@ function loadNav(){
 					close: function( event, ui ) {}
 				});
 				active_dialog = dialog_name;
-				$( "#" + dialog_name + "_main" ).css("visibility", "visible");					
+				$( "#" + dialog_name + "_main" ).css("visibility", "visible");
 				$('.ui-widget-overlay' ).on('click', function(){
 					hideAll();
 				});
@@ -155,11 +160,13 @@ function loadNav(){
 			 		field[ fields[i][0] ].attr('title',fields[i][1]);
 			 	}
 			 }
+			 field = {};//reset field array
 
+			 //start tooltip on all input fields with a tooltip.
 			 $('[data-toggle="tooltip"]').tooltip(); 
-			 field = {};
 
 			 
+			 //SUBMIT FUNCTIONALITY - FORMS 
 			 $('#form_user_update').submit(function(){
 			 	angular.element('#dialog_form_update_main').scope().$apply();
 			 	angular.element('#dialog_form_update_main').scope().user_update();
@@ -182,8 +189,9 @@ function loadNav(){
 					$('#delete_message').css('visibility','visible');
 					$('#delete_message').html('Not allowed on public version');
 				}
-			});
+			});//END SUBMIT FUNCTIONALITY - FORMS 
 
+			 // SCROLLING FUNCTIONALITY
 			 //scrolling snaping of top menu
 			 $(document).ready(function(){
 			 	positionElements();
@@ -192,6 +200,7 @@ function loadNav(){
 			 	});
 			 });
 
+			 // part of scrolling functionality
 			 function positionElements(){
 			 	var $tm = $('#top_menu'); 
 			 	var $c = $('.cards'); 
@@ -222,11 +231,25 @@ function loadNav(){
 					} 
 				}
 			}
+			 // END SCROLLING FUNCTIONALITY
+
+			// Remove functionality from objects with '.disabled' className 
 			$('.disabled').off();
 
+			//what's this for? i forgot. needs debugging.
 			$("div.ui-widget-overlay").css("height", function () {
 				return $(window).height();
 			});
+
+			//MOBILE ONLY FUNCTIONALITY
+			$(document).ready(function(){
+				if(mobileMode){
+					//hide drag/drop functionality
+					$('#menu_move').hide();
+				} else {
+					//
+				}
+			})
 
 
 		}//end if
