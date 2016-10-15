@@ -47,9 +47,12 @@ function loadNav(){
 			$('#top_menu_options_list').hide();
 			$('#menu_icon_btn').on('click', function(e){
 				$('#top_menu_options_list').toggle();
+				$('#top_menu').css('zIndex','9999')
 			});
 
 			var dialog_name;
+
+			// Top Menu Options-------------------------------
 			$('#menu_add').on('click', function(e){
 				hideAll();
 				dialog_name = 'dialog_form_insert';
@@ -57,6 +60,28 @@ function loadNav(){
 				dialog_appendTo = $('#wrapper');
 				setTimeout(show_dialog, 50);
 			});
+			
+			var draggingMode = false;
+			$('#menu_move').on('click', function(e){
+				hideAll();
+				if(draggingMode){
+					stopDragging();
+					$('#menu_move').html('Turn On Swaping');
+					$('.main').mouseenter(function(){
+						$(this).css('cursor','default');
+					});
+					draggingMode = false;
+				} else {
+					startDragging();
+					$('#menu_move').html('Turn Off Swaping');
+					$('.main').mouseenter(function(){
+						$(this).css('cursor','move');
+					});
+					draggingMode = true;
+					
+				}
+			});
+			// END Top Menu Options-------------------------------
 
 			$('.card_menu_update').on('click', function(e){
 				console.log('click() update, activeEmployeeID: ' + activeEmployeeID)

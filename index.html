@@ -32,14 +32,35 @@
 
   <link href="css/master.css" rel="stylesheet" type="text/css" />
   <link href="css/dialog_d.css" rel="stylesheet" type="text/css" />
+  <script>    
+        // tasks to do if it is a Mobile Device
+        //window.location.replace("mobile.html"); 
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(      navigator.userAgent) ) {
+        var link1 = document.createElement('link');
+        link1.rel = 'stylesheet';
+        link1.id = 'id1';
+        link1.href = 'css/mobile';
+        document.head.appendChild(link1);
 
-  <script>
-		//replace url to show mobile version		
-		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(			navigator.userAgent) ) {
-  			// tasks to do if it is a Mobile Device
-  			//window.location.replace("mobile.html"); 
-  		}
-  	</script>
+        var link2 = document.createElement('link');
+        link2.rel = 'stylesheet';
+        link2.id = 'id2';
+        link2.href = 'css/mobile_dialog';
+        document.head.appendChild(link2);
+      } else {
+        var link1 = document.createElement('link');
+        link1.rel = 'stylesheet';
+        link1.id = 'id1';
+        link1.href = 'css/desktop.css';
+        document.head.appendChild(link1);
+
+        var link2 = document.createElement('link');
+        link2.rel = 'stylesheet';
+        link2.id = 'id2';
+        link2.href = 'css/desktop_dialog.css';
+        document.head.appendChild(link2);
+      }
+    </script>
 
   </head>
   <body>
@@ -85,10 +106,10 @@
          <div id="top_menu_options_list">
            <ul>
              <li id="menu_add">Create New Account</li>
+             <li id="menu_move">Turn On Swaping</li>
              <li class="disabled" id="menu_capabilities">Our Capabilities</li>
              <li class="disabled" id="menu_about">About Us</li>
              <li class="disabled" id="menu_contact">Contact Us</li>
-             <li class="disabled" id="menu_swap">Turn On Swaping</li>
            </ul>
          </div>          
        </div>
