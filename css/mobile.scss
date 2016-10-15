@@ -290,10 +290,12 @@ h1 {
 
 .skills {
 	width:90%;
-	display:inline-block;
 }
 .skill {
 	font-size: 200%;
+	position:relative;
+	margin:1% 1%;
+	display:inline-block;
 }
 
 .quote {

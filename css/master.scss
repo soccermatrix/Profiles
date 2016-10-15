@@ -11,6 +11,9 @@ html, body{
 	margin-top:0; 
 	font-size:1em;
 }
+body {
+	visibility: hidden;	
+}
 #banner {
 	width:100%;
 	z-index: 2;

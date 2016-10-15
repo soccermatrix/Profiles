@@ -29,6 +29,11 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
     mobileMode = false;    	
 }
 
+$(document).ready(function(){
+	//show the body of the document now that all dynamic js,classes are loaded.
+	$('body').css('visibility','visible');
+})
+
 /*
 //LOAD EACH SCRIPT IN SEQUENCE
 // var v = Math.random();

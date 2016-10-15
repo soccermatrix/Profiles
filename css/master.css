@@ -5,7 +5,8 @@ html, body {
   background-color: #505865;
   padding: 0 0 30px 0;
   margin-top: 0;
-  font-size: 1em; }
+  font-size: 1em;
+  visibility: visible; }
 
 #banner {
   width: 100%;
