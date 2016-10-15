@@ -44,7 +44,7 @@ function loadNav(){
 				$('#btn_' + activeEmployeeID).addClass('portfolio-active');
 			});
 
-			$('#top_menu_options_list').hide();
+			//$('#top_menu_options_list').hide();
 			$('#menu').on('click', function(e){
 				$('#top_menu_options_list').toggle();
 			});
@@ -181,6 +181,7 @@ function loadNav(){
 					($c).css({'top': '0px'});
 				} 
 			}
+			$('.disabled').off();
 
 			$("div.ui-widget-overlay").css("height", function () {
 			      return $(window).height();

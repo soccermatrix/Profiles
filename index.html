@@ -84,11 +84,11 @@
        <div id="top_menu_options">
          <div id="top_menu_options_list">
            <ul>
-             <li id="menu_add">1. Create New Account</li>
-             <li>Create New Account</li>
-             <li>Create New Account</li>
-             <li>Create New Account</li>
-             <li>5. Create New Account</li>
+             <li id="menu_add">Create New Account</li>
+             <li class="disabled" id="menu_capabilities">Our Capabilities</li>
+             <li class="disabled" id="menu_about">About Us</li>
+             <li class="disabled" id="menu_contact">Contact Us</li>
+             <li class="disabled" id="menu_swap">Turn On Swaping</li>
            </ul>
          </div>          
        </div>
@@ -246,7 +246,7 @@
       <form id="form_user_update">
        <div class="dialog_form_row">       
          <span class="icon icon-name"></span><input id="update_fullName" type="text" ngRequired  ng-model="$parent.fullName">
-         fullName: {{ $parent.fullName }}
+         <!-- fullName: {{ $parent.fullName }} -->
          <!-- fullName: {{ activeEmployee.fullName }} -->
        </div>
        <div class="dialog_form_row">       
