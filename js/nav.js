@@ -17,6 +17,7 @@ function loadNav(){
 			loadNavComplete = true;
 			var active_dialog = false;
 
+			
 			//removes previous event handlers so new ones can be reset
 			//this is needed as new objects are added to the list, but existing objects
 			//do not get multiple event handlers
@@ -72,6 +73,7 @@ function loadNav(){
 					});
 					draggingMode = false;
 				} else {
+					if(!draggingReady){setDragging()};
 					startDragging();
 					$('#menu_move').html('Turn Off Swaping');
 					$('.main').mouseenter(function(){
@@ -194,23 +196,38 @@ function loadNav(){
 			 	var $tm = $('#top_menu'); 
 			 	var $c = $('.cards'); 
 			 	var isPositionFixed = ($tm.css('position') == 'fixed');
-			 	if ($(this).scrollTop() > 95 && !isPositionFixed){ 
-					// place it back top of page
-					($tm).css({'position': 'fixed', 'top': '48px', 'width': '90%', 'z-index': '2'});
-					($c).css({'top': '75px'});
+			 	if(!mobileMode){
+			 		if ($(this).scrollTop() > 95 && !isPositionFixed){ 
+						// place it back top of page
+						($tm).css({'position': 'fixed', 'top': '48px', 'width': '90%', 'z-index': '2'});
+						($c).css({'top': '75px'});
+					}
+					if ($(this).scrollTop() < 95 && isPositionFixed)
+					{
+						// show over the scrolling content
+						($tm).css({'position': 'relative', 'top': '0px', 'width': '100%', 'z-index': '2'}); 
+						($c).css({'top': '0px'});
+					} 
+				} else {
+					if ($(this).scrollTop() > 0 && !isPositionFixed){ 
+						// place it back top of page
+						($tm).css({'position': 'fixed', 'top': '0px', 'width': '100%', 'z-index': '2'});
+						($c).css({'top': '150px'});
+					}
+					if ($(this).scrollTop() < 0 && isPositionFixed)
+					{
+						// show over the scrolling content
+						($tm).css({'position': 'relative', 'top': '0px', 'width': '100%', 'z-index': '2'}); 
+						($c).css({'top': '0px'});
+					} 
 				}
-				if ($(this).scrollTop() < 95 && isPositionFixed)
-				{
-					// show over the scrolling content
-					($tm).css({'position': 'relative', 'top': '0px', 'width': '100%', 'z-index': '2'}); 
-					($c).css({'top': '0px'});
-				} 
 			}
 			$('.disabled').off();
 
 			$("div.ui-widget-overlay").css("height", function () {
-			      return $(window).height();
+				return $(window).height();
 			});
+
 
 		}//end if
 		loadNavComplete = false;

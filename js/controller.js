@@ -1,4 +1,4 @@
-//console.log('controller')
+console.log('controller.js')
 var totalEmployees;
 var activeEmployeeID;
 var employeesList = [];
@@ -76,6 +76,7 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 			$http.get(httpPath + 'sql.php')
 			.success(function(employees_data, employees_status){
 				console.log('HomeCtrol - success');
+				console.log('mobileMode: ' + mobileMode)
 				//////console.log('success loading json')
 				//////console.log(employees_data.employees )
 				var employees = employees_data.employees;
@@ -85,6 +86,7 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 
 				totalEmployees = employees.length;
 				// ////console.log('totalEmployees: ' + totalEmployees)
+
 				
 				
 
@@ -116,6 +118,12 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 						employees[i].skills[b] = employees[i].skills[b].replace(/&rsquo;/g, "'")
 						//console.log('employees[i].skills[b]: ' + employees[i].skills[b])
 					}
+				}
+
+				if(mobileMode){
+					$scope.skillsToDisplay = 10;
+				} else {
+					$scope.skillsToDisplay = 3;
 				}
 
 				loadFunction();

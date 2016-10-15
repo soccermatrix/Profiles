@@ -1,4 +1,4 @@
-//console.log('user_update.js');
+console.log('user_update.js');
 angular.module('angular_update_module', [])
 .controller('UpdateCtrol', ['$scope', '$http', function($scope, $http) {
 	console.log('UpdateCtrol');

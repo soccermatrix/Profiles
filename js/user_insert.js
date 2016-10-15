@@ -1,4 +1,4 @@
-////console.log('user_insert.js');
+console.log('user_insert.js');
 angular.module('angular_insert_module', [])
 	.controller('InsertCtrol', ['$scope', '$http', function($scope, $http) {
 		////console.log('InsertCtrol');

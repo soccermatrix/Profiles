@@ -18,8 +18,82 @@ var fields = [
 
 var field = {};
 
+//var v = Math.random();
+ $.getScript('js/nav.js?v=' + v, function(){})
+ $.getScript('js/dragExe.js?v=' + v, function(){});
 
-$.getScript('js/nav.js', function(){})
-$.getScript('js/dragExe.js', function(){});
+var mobileMode;
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    mobileMode = true;
+} else {
+    mobileMode = false;    	
+}
+
+/*
+//LOAD EACH SCRIPT IN SEQUENCE
+// var v = Math.random();
+// $.getScript('js/user_delete.js?v=' + v, function(){})
+// $.getScript('js/user_insert.js?v=' + v, function(){})
+// $.getScript('js/user_update.js?v=' + v, function(){})
+
+
+
+// $.getScript('js/nav.js?v=' + v, function(){})
+// $.getScript('js/dragExe.js?v=' + v, function(){});
+
+// <script src="js/controller.js"></script>
+// <script src="js/app.js"></script>
+
+var scripts   = [
+	'js/user_delete.js',
+	'js/user_insert.js',
+	'js/user_update.js',
+	'js/nav.js',
+	'js/dragExe.js'
+	// 'js/controller.js',
+	// 'js/app.js'
+	],
+
+    //setup object to store results of AJAX requests
+    responses = {};
+
+//create function that evaluates each response in order
+//$(document).ready(function(){
+	function eval_scripts() {
+		console.log('eval_scripts()')
+	    for (var i = 0, len = scripts.length; i < len; i++) {
+	        eval(responses[scripts[i]]);
+	    }
+	}
+
+	$.each(scripts, function (index, value) {
+	    $.ajax({
+	        url      : scripts[index],
+
+	        //force the dataType to be `text` rather than `script`
+	        dataType : 'text',
+	        success  : function (textScript) {
+	        	console.log('success, ' + textScript)
+
+	            //add the response to the `responses` object
+	            responses[value] = textScript;
+
+	            //check if the `responses` object has the same length as the `scripts` array,
+	            //if so then evaluate the scripts
+	            if (responses.length === scripts.length) { eval_scripts(); }
+	        },
+	        error    : function (jqXHR, textStatus, errorThrown) {
+	         //don't forget to handle errors
+	         console.log('error')
+	     	}
+	    });
+	});
+//END LOAD EACH SCRIPT IN SEQUENCE
+//})
+*/
+
+
+
+
 
 

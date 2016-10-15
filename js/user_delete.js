@@ -1,4 +1,4 @@
-////console.log('user_insert.js');
+console.log('user_delete.js');
 angular.module('angular_delete_module', [])
 	.controller('DeleteCtrol', ['$scope', '$http', function($scope, $http) {
 		////console.log('DeleteCtrol');

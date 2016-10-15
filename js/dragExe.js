@@ -39,7 +39,7 @@ function loadFunction(){
 			}
 		});
 
-		setDragging();
+		//setDragging();
 	});
 }
 
@@ -51,7 +51,10 @@ function stopDragging(){
 	$('.main').draggable('disable');
 }
 
+var draggingReady = false;
 function setDragging(){	
+	console.log('setDragging()');
+	draggingReady = true;
 	$('.main').draggable({
 
 		//toggles z-index on all .main objects
