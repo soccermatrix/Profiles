@@ -32,6 +32,8 @@ angular.module('angular_delete_module', [])
 		$scope.user_delete = function() {
 			console.log('user_delete()');
 			//$http.post("user_delete.php",{
+
+			$scope.id = $scope.activeEmployee.id
 			$http.post(httpPath + 'user_delete.php', {
 					'id': $scope.activeEmployee.id
 				}, {
@@ -43,7 +45,9 @@ angular.module('angular_delete_module', [])
 					console.log("deleted Successfully");
 					//$scope.$emit('someEvent', args)
 					runController = true;
-					$scope.$emit('loadData', [])
+					//$scope.$emit('loadData', [])
+					runController = true;
+					$scope.$emit('deleteEmployee', data);
 					//$scope.loadData();
 
 				})

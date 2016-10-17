@@ -8,6 +8,7 @@
 /* override of default dialog styles */
 .ui-dialog .ui-dialog-content {
 	padding: 0;
+	width:100%;
 }
 
 .ui-widget-overlay{
@@ -16,13 +17,18 @@
 
 .ui-dialog {
 	position: absolute;
+	width:100%;
+	display:block;
+}
+
+div[role="dialog"]{
+	box-sizing: border-box;
 }
 
 /*end of override of dialog styles*/
 
 .dialog {
-	width: 500px;
-	max-width:500px;
+	width: 100%;
 	margin: 0 auto;
 	padding: 0;
 	overflow: hidden;
@@ -32,8 +38,7 @@
 }
 
 .dialog_main {
-	width: 500px;
-	max-width:500px;
+	width: 100%;
 	overflow: hidden;
 	display:inline-block;
 	background-color: white;

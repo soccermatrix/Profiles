@@ -3,6 +3,8 @@ console.log('nav.js')
 var loadNavComplete = false;
 function loadNav(){
 	console.log('loadNav()');
+	
+	//cllick functionality anywhere in the screen
 	$(document).click(function(e){
 		console.log('document click()');
 		var target = e.target;
@@ -16,6 +18,10 @@ function loadNav(){
 		if(!loadNavComplete){
 			loadNavComplete = true;
 			var active_dialog = false;
+			
+			//get dimmensions of devices's screen
+			var w = $(window).width();
+			var h = $(window).height();
 
 			//show the body of the document now that all dynamic js,classes are loaded.
 			$('body').css('visibility','visible');
@@ -28,24 +34,49 @@ function loadNav(){
 			$('#form_user_update,#form_user_insert,#form_user_delete').unbind("submit");
 			$('#menu_add').off();
 
+			//elements affected only by mobile version
+
+
+			//dialog calls
+			$('#skills_' + activeEmployeeID).hide();
 			$('.portfolio, .photo, .name').on('click', function(e){
-				$('.cards').addClass('blurEffect');
-				$('.cards').fadeTo("fast", 0.5);
-				$( "#dialog_active_user" ).dialog({
-					modal: true,
-					resizable: false,
-					show: { effect: "fade", duration: 100 },
-					close: function( event, ui ) {}
-				});
-				active_dialog = 'dialog_active_user';
-				$( "#dialog_active_user_main" ).css("visibility", "visible");					
-				$('.ui-widget-overlay,#dialog_active_user').on('click', function(){
-					hideAll();
-				});
-				console.log('activeEmployeeID: ' + activeEmployeeID)
-				console.log('className: ' + $('.' + e.currentTarget.className))
-				$('.portfolio-active').removeClass('portfolio-active');
-				$('#btn_' + activeEmployeeID).addClass('portfolio-active');
+				if(!mobileMode){
+					$('.cards').addClass('blurEffect');
+					$('.cards').fadeTo("fast", 0.5);
+					$( "#dialog_active_user" ).dialog({
+						modal: true,
+						resizable: false,
+						show: { effect: "fade", duration: 100 },
+						close: function( event, ui ) {}
+					});
+					active_dialog = 'dialog_active_user';
+					$( "#dialog_active_user_main" ).css("visibility", "visible");					
+					$('.ui-widget-overlay,#dialog_active_user').on('click', function(){
+						hideAll();
+					});
+					console.log('activeEmployeeID: ' + activeEmployeeID)
+					console.log('className: ' + $('.' + e.currentTarget.className))
+					$('.portfolio-active').removeClass('portfolio-active');
+					$('#btn_' + activeEmployeeID).addClass('portfolio-active');
+				} else {
+					//only for mobile version
+					$('#dg_' + activeEmployeeID).css({
+						'position': 'absolute',
+						'zIndex': '300',
+						'overflow': 'scroll',
+						'max-height': h
+					});
+					$('#dg_' + activeEmployeeID).animate({
+						'width': w,
+						'left' : '-5.6%',
+						'top' : '-28%'
+					});
+					$('html, body').css({
+					    'overflow': 'hidden',
+					    'height': '100%'
+					});
+					$('#skills_' + activeEmployeeID).show();
+				}
 			});
 
 			$('#top_menu_options_list').hide();
@@ -107,7 +138,7 @@ function loadNav(){
 			});
 
 			
-			//DIALOG FUNCTIONALITY / SETTINGS
+			//DIALOG FUNCTIONALITY / SETTINGS---------------------
 			$( "#" + dialog_name ).hide();
 			function show_dialog(){
 				//console.log('show_dialog(), dialog_name: ' + dialog_name)
@@ -129,7 +160,7 @@ function loadNav(){
 				$('.ui-widget-overlay' ).on('click', function(){
 					hideAll();
 				});
-			}
+			}//END DIALOG FUNCTIONALITY / SETTINGS---------------------
 
 			function hideAll(){
 				//console.log('hideAll()');
@@ -191,14 +222,12 @@ function loadNav(){
 				}
 			});//END SUBMIT FUNCTIONALITY - FORMS 
 
-			 // SCROLLING FUNCTIONALITY
-			 //scrolling snaping of top menu
-			 $(document).ready(function(){
-			 	positionElements();
-			 	$(window).scroll(function(e){ 
-			 		positionElements()
-			 	});
-			 });
+			// SCROLLING FUNCTIONALITY
+			//scrolling snaping of top menu
+		 	positionElements();
+		 	$(window).scroll(function(e){ 
+		 		positionElements()
+		 	});
 
 			 // part of scrolling functionality
 			 function positionElements(){
@@ -242,14 +271,14 @@ function loadNav(){
 			});
 
 			//MOBILE ONLY FUNCTIONALITY
-			$(document).ready(function(){
-				if(mobileMode){
-					//hide drag/drop functionality
-					$('#menu_move').hide();
-				} else {
-					//
-				}
-			})
+			if(mobileMode){
+				//hide drag/drop functionality
+				$('#menu_move').hide();
+
+				
+			} else {
+				//
+			}
 
 
 		}//end if

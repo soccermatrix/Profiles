@@ -1,6 +1,7 @@
 console.log('controller.js')
 var totalEmployees;
 var activeEmployeeID;
+var activeEmployee;
 var employeesList = [];
 var loadDataComplete = false;
 
@@ -42,9 +43,50 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 		}
 
 		$scope.activeEmployee = activeEmployee;
+		activeEmployee = activeEmployee;
 		activeEmployeeID = activeEmployee.id;
 		////console.log('activeEmployee.fullName: ' + $scope.activeEmployee.fullName)
-	}			
+	}		
+
+	$scope.$on('updateEmployee', function(data){
+		console.log('updateEmployee()')
+		console.log('data: ' + data);
+		console.log('data.currentScope.fullName: ' + data.currentScope.fullName);
+		for (var i = 0; i<totalEmployees; i++){
+			if($scope.employees[i].id == activeEmployeeID){
+				//console.log('found user: ' + $scope.employees[i].fullName)
+				// update every field value within the $scope
+				for (var a = 0; a < fields.length; a++) {
+					console.log('fields[a][0]: ' + fields[a][0])
+					if([fields[a][0]] == 'sub_title' || [fields[a][0]] == 'skills'){
+						//array fields need to be split back from strings
+						console.log('array: ' + data.currentScope[fields[a][0]])
+						var stringToArray = data.currentScope[fields[a][0]].split(','); 
+				 		$scope.employees[i][fields[a][0]] = stringToArray;
+					} else {
+				 		$scope.employees[i][fields[a][0]] = data.currentScope[fields[a][0]];
+					}
+				}
+				break;
+			}
+		}
+	});		
+
+	$scope.$on('deleteEmployee', function(data){
+		console.log('deleteEmployee()')
+		console.log('data: ' + data);
+		console.log('data.currentScope.fullName: ' + data.currentScope.fullName);
+		for (var i = 0; i<totalEmployees; i++){
+			if($scope.employees[i].id == activeEmployeeID){
+				//console.log('found user: ' + $scope.employees[i].fullName)
+				// update every field value within the $scope
+				$('#dz_' + activeEmployeeID).hide('slow', function(){
+					//$('#dz_' + activeEmployeeID).remove();
+				});
+				break;
+			}
+		}
+	});				
 
 	$scope.setSearch = function(str){
 		console.log('setSearch, str: ' + str)
@@ -66,8 +108,8 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 		//console.log('$scope.loadData()')
 		if(runController == true){
 			runController = false;
-			// $.getScript('js/dragExe.js', function(){});
 			console.log('loadData()');
+			// $.getScript('js/dragExe.js', function(){});
 			//MySQL version					
 			//$http.get(httpPath + 'sql.php')
 			//JSON version
@@ -79,6 +121,7 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 				console.log('mobileMode: ' + mobileMode)
 				//////console.log('success loading json')
 				//////console.log(employees_data.employees )
+				//employees_data_string = JSON.stringify(employees_data);
 				var employees = employees_data.employees;
 				// ////console.log(employees[0].quote)
 
@@ -94,12 +137,15 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 
 				//replace special charter codes back into readable characters
 				for (var i = 0; i<totalEmployees; i++){
-					//$scope.employees.quote = $scope.employees.quote.replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-					//need to get the titles of each text field from the database to auto...
-					//populate this loop and target each field instead of manual.
-					employees[i].quote = employees[i].quote.replace(/&rsquo;/g, "'")
-					employees[i].description = employees[i].description.replace(/&rsquo;/g, "'")
-					employees[i].sub_title = employees[i].sub_title.replace(/&rsquo;/g, "'")
+					for (var ii = 0; ii < fields.length; ii++) {
+						employees[i][ fields[ii][0] ] = employees[i][ fields[ii][0] ]
+								.replace(/&rsquo;/g, "'")
+								.replace(/&gt;/g, ">")
+								.replace(/&lt;/g, "<")
+								.replace(/&quot;/g, '"')
+								.replace(/&#33;/g, '!')
+					}
+
 					employeesList.push(employees[i].id);
 
 					//split sub_title and color theme
@@ -115,13 +161,15 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 					for (var b = 0; b<employees[i].skills.length; b++){
 						//trim() removes leading whitespace
 						employees[i].skills[b] = employees[i].skills[b].trim();
-						employees[i].skills[b] = employees[i].skills[b].replace(/&rsquo;/g, "'")
+						//employees[i].skills[b] = employees[i].skills[b].replace(/&rsquo;/g, "'")
 						//console.log('employees[i].skills[b]: ' + employees[i].skills[b])
 					}
-				}
+					//shuffle skills array using lodash.js
+					employees[i].skills = _.shuffle(employees[i].skills)
+				}//end loop through each recordset
 
 				if(mobileMode){
-					$scope.skillsToDisplay = 10;
+					$scope.skillsToDisplay = 8;
 				} else {
 					$scope.skillsToDisplay = 3;
 				}
@@ -129,9 +177,9 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 				loadFunction();
 			})
 			.error(function(employees_data, employees_status){
+				console.log('error not loaded');
 				$scope.message = employees_data || "Request failed";
 				$scope.status = employees_status;
-					//////console.log(employees_data);
 				});
 
 		}//end if

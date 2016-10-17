@@ -16,6 +16,8 @@
   <link  href="js/jquery-ui.profiles.css" rel="stylesheet">
   <script src="js/jquery-ui.min.js"></script>
   
+  <script src="js/lodash.js"></script>
+
   <link  href="js/bootstrap.min.css" rel="stylesheet">
   <script src="js/bootstrap.min.js"></script>
 
@@ -23,112 +25,113 @@
   <script src="js/angular-route.js"></script>
   <script src="js/angular-resource.js"></script>
   
+  
   <script>
-  var v = Math.floor((Math.random() * 10) + 1);
+    var v = Math.floor((Math.random() * 10) + 1);
   // var v = 1;
-  </script>
-  <script src="js/globals.js?v=" + v></script>
-  <script src="js/user_delete.js?v=" + v></script>
-  <script src="js/user_insert.js?v=" + v></script>
-  <script src="js/user_update.js?v=" + v></script>
+</script>
+<script src="js/globals.js?v=" + v></script>
+<script src="js/user_delete.js?v=" + v></script>
+<script src="js/user_insert.js?v=" + v></script>
+<script src="js/user_update.js?v=" + v></script>
 
-  <script src="js/controller.js?v=" + v></script>
-  <script src="js/app.js?v=" + v></script>
+<script src="js/controller.js?v=" + v></script>
+<script src="js/app.js?v=" + v></script>
 
-  </head>
-  <body style="visibility: hidden;">
-    <ng-view></ng-view>
-    <div id="HomeCtrol" ng-controller="HomeCtrol">
-      <div id="banner">
-        Single Page Application <span>ALPHA</span>
-      </div><!-- end  banner -->
+</head>
+<body style="visibility: hidden;">
+  <ng-view></ng-view>
+  <div id="HomeCtrol" ng-controller="HomeCtrol">
+    <div id="banner">
+      Single Page Application <span>ALPHA</span>
+    </div><!-- end  banner -->
 
-      <div id="wrapper" >  
+    <div id="wrapper" >  
 
-        <div id="header">
-         <p>Frameworks / tools used:</p>
-         <ul>
-          <li>Angular.js</li>
-          <li>Node.js</li>
-          <li>live-server.js</li>
-          <li>json.js</li>
-          <li>jquery.js</li>
-          <li>sass</li>
-          <li>illustrator</li>
-          <li>photoshop</li>
-          <li>html5</li>
-          <li>php</li>
-          <li>mySQL</li>
-          <li>google-fonts</li>
-        </ul>
-      </div><!-- end  header -->
+      <div id="header">
+       <p>Frameworks / tools used:</p>
+       <ul>
+        <li>Angular.js</li>
+        <li>Node.js</li>
+        <li>live-server.js</li>
+        <li>json.js</li>
+        <li>jquery.js</li>
+        <li>sass</li>
+        <li>illustrator</li>
+        <li>photoshop</li>
+        <li>html5</li>
+        <li>php</li>
+        <li>mySQL</li>
+        <li>google-fonts</li>
+      </ul>
+    </div><!-- end  header -->
 
 
-      <div id="top_menu">
-        <form class="form fixedElement" ng-submit="setSearch(searchStr)">
-          <div class="form-item-left">                
-           <span class="label">Search for Talent:</span>
-           <input type="text" id="searchStr" ng-model="searchStr" name="searchStr"/>
-           <button id="submit"></button>
-         </div>
-         <div class="form-item-right">
-           <image id="menu_icon_btn" src="images/icon_menu.png"/>
-         </div>
-       </form>  
-       <div id="top_menu_options">
-         <div id="top_menu_options_list">
-           <ul>
-             <li id="menu_add">Create New Account</li>
-             <li id="menu_move">Turn On Swaping</li>
-             <li class="disabled" id="menu_capabilities">Our Capabilities</li>
-             <li class="disabled" id="menu_about">About Us</li>
-             <li class="disabled" id="menu_contact">Contact Us</li>
-           </ul>
-         </div>          
+    <div id="top_menu">
+      <form class="form fixedElement" ng-submit="setSearch(searchStr)">
+        <div class="form-item-left">                
+         <span class="label">Search for Talent:</span>
+         <input type="text" id="searchStr" ng-model="searchStr" name="searchStr" ng-change="setSearch(searchStr)"/>
+         <button id="submit"></button>
        </div>
-     </div><!-- end top_menu -->
+       <div class="form-item-right">
+         <image id="menu_icon_btn" src="images/icon_menu.png"/>
+       </div>
+     </form>  
+     <div id="top_menu_options">
+       <div id="top_menu_options_list">
+         <ul>
+           <li id="menu_add">Create New Account</li>
+           <li id="menu_move">Turn On Swaping</li>
+           <li class="disabled" id="menu_capabilities">Our Capabilities</li>
+           <li class="disabled" id="menu_about">About Us</li>
+           <li class="disabled" id="menu_contact">Contact Us</li>
+         </ul>
+       </div>          
+     </div>
+   </div><!-- end top_menu -->
 
 
-     <div class="cards">
-       <h1>PROFILES ({{totalEmployees}})</h1>
-       <!-- <div data-role id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'"> -->
-       <!-- <input type="text" ng-model="employee.fullName"> -->
-       <div id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search">
-        <div id="{{ 'dg_' + employee.id }}" class="main" ng-mousedown="setActiveDraggable(employee.id)">
-         <div class="card">
-          <div class="content">
-            <div class="card_menu_row">
-              <img id="card_menu_update_{{ employee.id }}" class="card_menu_update card_menu card_button" src="images/icon_update.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(employee,employee.id)"/>           
-              <img id="card_menu_delete_{{ employee.id }}" class="card_menu_delete card_menu card_button" src="images/icon_delete.png"  ng-controller="DeleteCtrol" ng-mousedown="updateActiveEmployee(employee,employee.id)" />
-            </div>           
-            <div class="price">${{ employee.price }}/hr</div>
-            <img class="photo card_button" ng-src="images/{{ employee.avatar }}.png" ng-click="setActiveEmployee(employee,employee.id)"/>
-            <div class="name card_button" ng-click="setActiveEmployee(employee,employee.id)">
-              {{employee.fullName}}   
-              <input class='hidden' id="{{ 'input_fullName_' + employee.id }}" type="text" ng-model="employee.fullName">
-            </div>
-            <div class="title">
-              {{employee.title}}									
-            </div>
-            <div class="title_border"></div>
-            <div class="sub_title sub_title-{{employee.sub_title[1]}}">
-              {{employee.sub_title[0]}}
-            </div>
-            <div class="skills" >
-             <!-- comment this out until bug with duplicates fixed -->
-             <span ng-repeat="skill in employee.skills | limitTo: skillsToDisplay track by $index" class="skill">{{skill}}</span>
-             <span class="skill blue">+{{employee.count}}</span>
-           </div>
-           <div class="quote">
-            {{ employee.quote }} 
+   <div class="cards">
+     <h1>PROFILES ({{totalEmployees}})</h1>
+     <!-- <div data-role id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'"> -->
+     <!-- <input type="text" ng-model="employee.fullName"> -->
+     <div id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search">
+      <div id="{{ 'dg_' + employee.id }}" class="main" ng-mousedown="setActiveDraggable(employee.id)">
+       <div class="card">
+        <div class="content">
+          <div class="card_menu_row">
+            <img id="card_menu_update_{{ employee.id }}" class="card_menu_update card_menu card_button" src="images/icon_update.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(employee,employee.id)"/>           
+            <img id="card_menu_delete_{{ employee.id }}" class="card_menu_delete card_menu card_button" src="images/icon_delete.png"  ng-controller="DeleteCtrol" ng-mousedown="updateActiveEmployee(employee,employee.id)" />
+          </div>           
+          <div class="price">${{ employee.price }}/hr</div>
+          <img class="photo card_button" ng-src="images/{{ employee.avatar }}.png" ng-click="setActiveEmployee(employee,employee.id)"/>
+          <div class="name card_button" ng-click="setActiveEmployee(employee,employee.id)">
+            {{employee.fullName}}               
           </div>
-          <div class="buttons">
-            <button id="{{ 'btn_' + employee.id }}" class="portfolio" ng-click="setActiveEmployee(employee,employee.id)">VIEW PROFILE</button>
+          <div class="title">
+            {{employee.title}}									
           </div>
-        </div> 
-      </div>
+          <div class="title_border"></div>
+          <div class="sub_title sub_title-{{employee.sub_title[1]}}">
+            {{employee.sub_title[0]}}
+          </div>
+          <div class="skills" >
+           <span ng-repeat="skill in employee.skills | limitTo: skillsToDisplay track by $index" class="skill">{{skill}}</span><br/>
+           <span class="skill blue">+{{employee.count}}</span>
+         </div>
+         <div class="quote">
+          {{ employee.quote }} 
+        </div>
+        <div class="buttons">
+          <button id="{{ 'btn_' + employee.id }}" class="portfolio btn-blue-light" ng-click="setActiveEmployee(employee,employee.id)"> PROFILE</button>
+
+          <button id="{{ 'btn_assemble_' + employee.id }}" class="portfolio btn-green-light" ng-click="setActiveEmployee(employee,employee.id)" onclick="window.location.href='#assemble'">ASSEMBLE</button>
+        </div>
+      </div> 
     </div>
   </div>
+</div>
 </div><!-- end cards -->
 
 <div id="footer">
@@ -162,12 +165,12 @@
      {{activeEmployee.description}}
    </div>
    <div class="dialog_skills" >
-     <!-- comment this out until bug with duplicates fixed -->
-     <span class="dialog_skill" ng-repeat="skill in activeEmployee.skills" >{{skill}}</span>
+   <span class="dialog_skill" ng-repeat="skill in activeEmployee.skills | limitTo: 24 track by $index">{{skill}}</span><br/>
      <span class="dialog_skill dialog_blue">+{{activeEmployee.count}}</span>
    </div>
    <div class="dialog_buttons">
-     <button class="dialog_portfolio">CONTACT ME</button><br/>
+     <button>CONTACT ME</button>   
+     <button>ASSEMBLE ME</button><br/>
      <img class="dialog_social_bar" src="images/social_bar.png"/>
    </div>
  </div> 
@@ -244,31 +247,31 @@
          <!-- fullName: {{ activeEmployee.fullName }} -->
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-title"></span><input id="update_title" type="text" ngRequired  ng-model="title">
+         <span class="icon icon-title"></span><input id="update_title" type="text" ngRequired  ng-model="$parent.title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-sub_title"></span><input id="update_sub_title" type="text" ngRequired  ng-model="sub_title">
+         <span class="icon icon-sub_title"></span><input id="update_sub_title" type="text" ngRequired  ng-model="$parent.sub_title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-skills"></span><input id="update_skills" type="text" ng-model="skills">
+         <span class="icon icon-skills"></span><input id="update_skills" type="text" ng-model="$parent.skills">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-count"></span><input id="update_count" type="text" ng-model="count">
+         <span class="icon icon-count"></span><input id="update_count" type="text" ng-model="$parent.count">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-description"></span><textarea id="update_description"  class="textarea-description" maxlength="285" ng-model="description"></textarea>
+         <span class="icon icon-description"></span><textarea id="update_description"  class="textarea-description" maxlength="285" ng-model="$parent.description"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-quote"></span><textarea id="update_quote" class="textarea-quote" maxlength="90" ng-model="quote"></textarea>
+         <span class="icon icon-quote"></span><textarea id="update_quote" class="textarea-quote" maxlength="90" ng-model="$parent.quote"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-available"></span><input id="update_available" type="text" ng-model="available">
+         <span class="icon icon-available"></span><input id="update_available" type="text" ng-model="$parent.available">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-price"></span><input id="update_price" type="text" ng-model="price">
+         <span class="icon icon-price"></span><input id="update_price" type="text" ng-model="$parent.price">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-avatar"></span><input id="update_avatar" type="text" ng-model="avatar">
+         <span class="icon icon-avatar"></span><input id="update_avatar" type="text" ng-model="$parent.avatar">
        </div>
 
        <div class="dialog_buttons">

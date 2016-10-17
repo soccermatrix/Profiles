@@ -131,27 +131,30 @@
   width: 100%;
   padding: 2em 0;
   background-color: #FAFAFA; }
-
-.dialog_portfolio {
-  color: white;
-  font-size: 1em;
-  margin: 0 auto;
-  height: 3em;
-  width: 50%;
-  background-color: #00AEEF;
-  border: none;
-  cursor: hand;
-  cursor: pointer;
-  outline: none;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -o-border-radius: 0px;
-  border-radius: 0px;
-  border: 0px;
-  -webkit-border-radius: 10px 10px 10px 10px;
-  -moz-border-radius: 10px 10px 10px 10px;
-  -ms-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px; }
+  .dialog_buttons button {
+    color: white;
+    font-size: 1em;
+    margin: 0 auto;
+    height: 3em;
+    width: 45%;
+    background-color: #00AEEF;
+    border: none;
+    cursor: hand;
+    cursor: pointer;
+    outline: none;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+    border: 0px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -ms-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px; }
+  .dialog_buttons .left {
+    float: left; }
+  .dialog_buttons .right {
+    float: right; }
 
 .bg-red {
   background-color: #F75252; }

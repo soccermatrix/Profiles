@@ -219,27 +219,37 @@ h1 {
   /*background:red;*/ }
 
 .price {
-  left: 80%;
+  left: 88%;
   top: 10px;
   width: 10%;
-  font-size: 320%; }
+  font-size: 180%; }
 
 .photo {
-  width: 30%;
-  margin-top: 30px;
-  min-height: 81px; }
+  width: 25%;
+  margin: 15% 0 0% 5%;
+  float: left; }
 
 .name {
-  font-size: 500%;
-  margin-top: 1.5%;
-  width: 100%; }
+  font-size: 300%;
+  margin: 15% 0% 0 35%;
+  width: 65%;
+  text-align: left; }
 
 .title {
-  font-size: 250%; }
+  font-size: 200%;
+  margin: 0 0% 0 35%;
+  width: 65%;
+  text-align: left; }
+
+.title_border {
+  margin: 0 0% 0 35%;
+  width: 50%; }
 
 .sub_title {
   font-size: 200%;
-  margin: 1em 0; }
+  margin: 2% 0% 0 35%;
+  width: 65%;
+  text-align: left; }
 
 .sub_title-blue {
   color: #56A8FE; }
@@ -248,7 +258,8 @@ h1 {
   color: #58D595; }
 
 .skills {
-  width: 90%; }
+  width: 90%;
+  margin-top: 5%; }
 
 .skill {
   font-size: 200%;
@@ -256,35 +267,37 @@ h1 {
   margin: 1% 1%;
   display: inline-block; }
 
+.skills-full {
+  width: 95%;
+  margin-top: 5%; }
+  .skills-full .skill {
+    background-color: #f5f5f5; }
+
 .quote {
-  font-size: 250%;
-  margin-top: 9%;
+  font-size: 200%;
+  margin-top: 5%;
   width: 95%;
   padding: 0 2%;
   display: inline-block; }
 
-.buttons {
-  border-top: 2px #D6F5FA solid;
-  text-align: center;
+.description {
+  color: #999;
+  font-size: 250%;
   margin: 0 auto;
-  width: 100%;
-  background-color: #FAFAFA;
+  margin-top: 9%;
+  margin-bottom: 9%;
+  width: 90%;
+  font-weight: lighter;
+  min-height: 80px; }
+
+.buttons {
+  position: relative;
   height: 230%;
-  margin-top: 1.5em;
-  display: inline-block; }
+  top: 0;
+  margin-top: 4%; }
 
 .portfolio, .form_button {
-  color: black;
-  font-size: 200%;
-  margin: 0 auto;
-  height: 5em;
-  width: 100%;
-  background-color: #f5f5f5;
-  border: none;
-  cursor: hand;
-  cursor: pointer;
-  outline: none;
-  display: inline-block; }
+  font-size: 200%; }
 
 .portfolio-active {
   background: #00AEEF;

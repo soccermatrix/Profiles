@@ -42,21 +42,25 @@ angular.module('angular_update_module', [])
 		$scope.user_update = function() {
 			console.log('UpdateCtrol, user_update()');
 
+			//convert arrays into strings before saved as json format into SQL
 			$scope.sub_title = $scope.sub_title.toString();
 			$scope.skills = $scope.skills.toString();
 
 			//replace single quotes characters to prevent sql conflict
-			$scope.description = $scope.description.replace("'", "&rsquo;")
-			$scope.quote = $scope.quote.replace("'", "&rsquo;")
-			$scope.sub_title = $scope.sub_title.replace("'", "&rsquo;")
-			$scope.skills = $scope.skills.replace("'", "&rsquo;")
+			//replace this with a for loop of fields
+			
+			for (var i = 0; i < fields.length; i++) {
+				$scope[ fields[i][0] ] = $scope[ fields[i][0] ].replace("'", "&rsquo;")
+			}
+
+			$scope.id = $scope.activeEmployee.id
 
 			// //console.log($scope.fullName, $scope.sub_title)
 			//$http.post("user_update.php",{
 			$http.post(httpPath + 'user_update.php', {
 				//$http.post("user_insert_manual.php",{
 				//$http.post("http://www.luisespinal.com/profiles/user_update.php",{
-				'id': $scope.activeEmployee.id,
+				'id': $scope.id,
 				'fullName': $scope.fullName,
 				'title': $scope.title,
 				'sub_title': $scope.sub_title,
@@ -77,13 +81,29 @@ angular.module('angular_update_module', [])
 				//$scope.$broadcast -- dispatches the event downwards to all child scopes,
 				//$rootScope.$broadcast -- dispatches the event downwards to all child scopes,
 				//$emit -- dispatches the event upwards through the scope hierarchy.
-				for (var i = 0; i < fields.length; i++) {
-					//console.log('#input_' + fields[i][0] + '_' + activeEmployeeID)
-					field[fields[i][0]] = $('#input_' + fields[i][0] + '_' + activeEmployeeID);
-					field[fields[i][0]].val($scope[fields[i][0]]);
-					field[fields[i][0]].trigger('change');
-				}
-				field = {};
+				runController = true;
+				$scope.$emit('updateEmployee', data);
+				
+
+				//push ng-model.trigger to values in the page after SQL call is made.
+				//this way, there is no need to make another call to the server to reload data.
+				// for (var i = 0; i < fields.length; i++) {
+				// 	//console.log('#input_' + fields[i][0] + '_' + activeEmployeeID)
+				// 	field[fields[i][0]] = $('#input_' + fields[i][0] + '_' + activeEmployeeID);
+				// 	if(fields[i][0] == 'sub_title'){
+				// 		//split json string (SQL output) into array.
+				// 		console.log('sub_title value, ' + $scope[fields[i][0]]);
+						
+				// 		$scope[fields[i][0]] = $scope[fields[i][0]].split(',');
+				// 		field[fields[i][0]].val($scope[fields[i][0]]);
+				// 		//field[fields[i][0]].trigger('change');
+				// 	} else {
+				// 		field[fields[i][0]].val($scope[fields[i][0]]);
+				// 	field[fields[i][0]].trigger('change');
+				// 	}
+
+				// }
+				// field = {};
 
 				$('#dg_' + activeEmployeeID).animate({
 					backgroundColor: "#DBFFEA"

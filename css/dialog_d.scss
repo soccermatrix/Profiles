@@ -11,7 +11,7 @@
 }
 
 .ui-widget-overlay{
-      position: fixed !important;
+	position: fixed !important;
 }
 
 .ui-dialog {
@@ -156,29 +156,36 @@
 	padding: 2em 0;
 	background-color: #FAFAFA; 
 
+	button  {
+		color: white;
+		font-size: 1em;
+		margin: 0 auto;
+		height: 3em;
+		width: 45%;
+		background-color: #00AEEF;
+		border: none;
+		cursor: hand;
+		cursor: pointer;
+		outline:none;
+
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		-o-border-radius: 0px;
+		border-radius: 0px;
+		border: 0px;
+
+		@include border-radius(10px,10px,10px,10px);
+
+	}
+
+	.left {
+		float:left;
+	}
+	.right {
+		float:right;
+	}
 }
 
-.dialog_portfolio {
-	color: white;
-	font-size: 1em;
-	margin: 0 auto;
-	height: 3em;
-	width: 50%;
-	background-color: #00AEEF;
-	border: none;
-	cursor: hand;
-	cursor: pointer;
-	outline:none;
-
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	-o-border-radius: 0px;
-	border-radius: 0px;
-	border: 0px;
-
-	@include border-radius(10px,10px,10px,10px);
-
-}
 
 .bg-red {
 	background-color:#F75252;
