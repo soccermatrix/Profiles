@@ -129,7 +129,7 @@
          <div class="quote">
           {{ employee.quote }} 
         </div>
-        <div class="buttons">
+        <div class="buttons mobile_buttons">
           <button id="{{ 'btn_' + employee.id }}" class="portfolio btn-blue-light" ng-click="setActiveEmployee(employee,employee.id)"> PROFILE</button>
 
           <button id="{{ 'btn_assemble_' + employee.id }}" class="portfolio btn-green-light" ng-click="setActiveEmployee(employee,employee.id)" onclick="window.location.href='#assemble'">ASSEMBLE</button>
@@ -174,7 +174,7 @@
    <span class="dialog_skill" ng-repeat="skill in activeEmployee.skills | limitTo: 24 track by $index">{{skill}}</span><br/>
      <span class="dialog_skill dialog_blue">+{{activeEmployee.count}}</span>
    </div>
-   <div class="dialog_buttons">
+    <div class="dialog_buttons mobile_buttons">
      <button>CONTACT ME</button>   
      <button>ASSEMBLE ME</button><br/>
      <img class="dialog_social_bar" src="/images/social_bar.png"/>

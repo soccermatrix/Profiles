@@ -60,8 +60,14 @@ function loadNav(){
 					$('#btn_' + activeEmployeeID).addClass('portfolio-active');
 				} else {
 					//only for mobile version
-					window.location.href = '/u?uid=' + activeEmployeeID;
-					//window.location.href = 'http://profiles.luisespinal.com/u';
+
+					//here i'm trying to link to a hash to support back button to land on scrolling spot,
+					//however, with no luck, page reloads to the top as soon as it's reloaded using back button.
+					//implement mechanism so on back navigation, user goes back to scrolling spot.
+					window.location.hash="test";
+					setTimeout(function(){
+						window.location.href = '/u?uid=' + activeEmployeeID;
+					}, 50);
 				}
 			});
 
