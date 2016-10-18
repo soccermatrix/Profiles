@@ -214,43 +214,43 @@
 
 /*eventually use an include and make a new scss for just icons*/
 .icon-name {
-  background: url("../images/icon_user.png") no-repeat 13px 12px;
+  background: url("/images/icon_user.png") no-repeat 13px 12px;
   opacity: .3; }
 
 .icon-title {
-  background: url("../images/icon_card.png") no-repeat 13px 12px;
+  background: url("/images/icon_card.png") no-repeat 13px 12px;
   opacity: .3; }
 
 .icon-sub_title {
-  background: url("../images/icon_card.png") no-repeat 13px 12px;
+  background: url("/images/icon_card.png") no-repeat 13px 12px;
   opacity: .3; }
 
 .icon-skills {
-  background: url("../images/icon_skills.png") no-repeat 13px 12px;
+  background: url("/images/icon_skills.png") no-repeat 13px 12px;
   opacity: .3; }
 
 .icon-count {
-  background: url("../images/icon_like.png") no-repeat 13px 12px;
+  background: url("/images/icon_like.png") no-repeat 13px 12px;
   opacity: .3; }
 
 .icon-description {
-  background: url("../images/icon_comment.png") no-repeat 13px 12px;
+  background: url("/images/icon_comment.png") no-repeat 13px 12px;
   opacity: .3; }
 
 .icon-quote {
-  background: url("../images/icon_comment.png") no-repeat 13px 12px;
+  background: url("/images/icon_comment.png") no-repeat 13px 12px;
   opacity: .3; }
 
 .icon-available {
-  background: url("../images/icon_check.png") no-repeat 13px 12px;
+  background: url("/images/icon_check.png") no-repeat 13px 12px;
   opacity: .3; }
 
 .icon-price {
-  background: url("../images/icon_user.png") no-repeat 13px 12px;
+  background: url("/images/icon_user.png") no-repeat 13px 12px;
   opacity: .3; }
 
 .icon-avatar {
-  background: url("../images/icon_user.png") no-repeat 13px 12px;
+  background: url("/images/icon_user.png") no-repeat 13px 12px;
   opacity: .3; }
 
 .dialog_form_row input[type="text"] {

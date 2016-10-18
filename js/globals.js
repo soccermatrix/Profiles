@@ -19,8 +19,8 @@ var fields = [
 var field = {};
 
 //var v = Math.random();
- $.getScript('js/nav.js?v=' + v, function(){})
- $.getScript('js/dragExe.js?v=' + v, function(){});
+ $.getScript('/js/nav.js?v=' + v, function(){})
+ $.getScript('/js/dragExe.js?v=' + v, function(){});
 
 var mobileMode;
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -30,9 +30,9 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 }
 
 //LOAD DYNAMIC CSS
-$('<link href="css/master.css?v=' + v + '" rel="stylesheet" type="text/css" />').appendTo('head');
+$('<link href="/css/master.css?v=' + v + '" rel="stylesheet" type="text/css" />').appendTo('head');
 
-$('<link href="css/dialog_d.css?v=' + v + '" rel="stylesheet" type="text/css" />').appendTo('head');
+$('<link href="/css/dialog_d.css?v=' + v + '" rel="stylesheet" type="text/css" />').appendTo('head');
 
 // tasks to do if it is a Mobile Device
 //window.location.replace("mobile.html"); 
@@ -41,25 +41,25 @@ if(mobileMode){
     var link1 = document.createElement('link');
     link1.rel = 'stylesheet';
     link1.id = 'id1';
-    link1.href = 'css/mobile.css?v=' + v;
+    link1.href = '/css/mobile.css?v=' + v;
     document.head.appendChild(link1);
 
     var link2 = document.createElement('link');
     link2.rel = 'stylesheet';
     link2.id = 'id2';
-    link2.href = 'css/mobile_dialog.css?v=' + v;
+    link2.href = '/css/mobile_dialog.css?v=' + v;
     document.head.appendChild(link2);
   } else {
     var link1 = document.createElement('link');
     link1.rel = 'stylesheet';
     link1.id = 'id1';
-    link1.href = 'css/desktop.css?v=' + v;
+    link1.href = '/css/desktop.css?v=' + v;
     document.head.appendChild(link1);
 
     var link2 = document.createElement('link');
     link2.rel = 'stylesheet';
     link2.id = 'id2';
-    link2.href = 'css/desktop_dialog.css?v=' + v;
+    link2.href = '/css/desktop_dialog.css?v=' + v;
     document.head.appendChild(link2);
   }
 //END LOAD DYNAMIC CSS
@@ -67,6 +67,16 @@ if(mobileMode){
 $(document).ready(function(){
 
 })
+
+$.urlParam = function(name){ 
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (results==null){
+		return null;
+	}
+	else{
+		return results[1] || 0;
+	}
+}
 
 /*
 //LOAD EACH SCRIPT IN SEQUENCE

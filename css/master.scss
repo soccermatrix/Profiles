@@ -12,8 +12,17 @@ html, body{
 	font-size:1em;
 }
 body {
-	visibility: hidden;	
+	/*visibility: hidden;	*/
 }
+
+#page_content {
+	width:100%;
+	height:500px;
+	background:yellow;
+	/*position: absolute;*/
+	/*z-index: 300;*/
+}
+
 #banner {
 	width:100%;
 	z-index: 2;
@@ -104,6 +113,7 @@ body {
 	margin-top:10px;
 	text-align: center;
 	margin-bottom:10px;
+	z-index: 0;
 }
 
 #top_menu {
@@ -112,7 +122,8 @@ body {
 	position: relative;
 	padding:0;	
 	text-align: center;
-	z-index: 2;
+	/*z-index: 300;*/
+	cursor: pointer;
 }
 #top_menu_options {
 	margin: 0 auto;
@@ -154,19 +165,19 @@ body {
 	}
 }
 #menu_add {
-	background:url('../images/icon_add.png');
+	background:url('/images/icon_add.png');
 }
 #menu_capabilities {
-	background:url('../images/icon_list.png');
+	background:url('/images/icon_list.png');
 }
 #menu_about {
-	background:url('../images/icon_about.png');
+	background:url('/images/icon_about.png');
 }
 #menu_contact {
-	background:url('../images/icon_contact.png');
+	background:url('/images/icon_contact.png');
 }
 #menu_move {
-	background:url('../images/icon_move.png');
+	background:url('/images/icon_move.png');
 }
 
 .disabled {
@@ -220,7 +231,7 @@ body {
 	height:28px;
 	width:30px;
 	float:left;
-	background:url('../images/search.png') no-repeat #f5f5f5 0px 5px;
+	background:url('/images/search.png') no-repeat #f5f5f5 0px 5px;
 	border:1px solid white;
 	color: #666;
 	padding: .3em .5em;

@@ -38,3 +38,15 @@
 			$('.fixedElement').css({'position': 'static', 'top': '0px'}); 
 		} 
 	});
+
+
+
+
+//This sets a class on the <html> tag, that you can use to dim the body, and use a background image that spins.
+$('html')
+	.ajaxStart(function(){
+		$(this).addClass('ajax')
+	})
+	.ajaxStop(function(){
+		$(this).removeClass('ajax')
+	})

@@ -60,22 +60,8 @@ function loadNav(){
 					$('#btn_' + activeEmployeeID).addClass('portfolio-active');
 				} else {
 					//only for mobile version
-					$('#dg_' + activeEmployeeID).css({
-						'position': 'absolute',
-						'zIndex': '300',
-						'overflow': 'scroll',
-						'max-height': h
-					});
-					$('#dg_' + activeEmployeeID).animate({
-						'width': w,
-						'left' : '-5.6%',
-						'top' : '-28%'
-					});
-					$('html, body').css({
-					    'overflow': 'hidden',
-					    'height': '100%'
-					});
-					$('#skills_' + activeEmployeeID).show();
+					window.location.href = '/u?uid=' + activeEmployeeID;
+					//window.location.href = 'http://profiles.luisespinal.com/u';
 				}
 			});
 
@@ -237,13 +223,13 @@ function loadNav(){
 			 	if(!mobileMode){
 			 		if ($(this).scrollTop() > 95 && !isPositionFixed){ 
 						// place it back top of page
-						($tm).css({'position': 'fixed', 'top': '48px', 'width': '90%', 'z-index': '2'});
+						($tm).css({'position': 'fixed', 'top': '48px', 'width': '90%', 'z-index': '3'});
 						($c).css({'top': '75px'});
 					}
 					if ($(this).scrollTop() < 95 && isPositionFixed)
 					{
 						// show over the scrolling content
-						($tm).css({'position': 'relative', 'top': '0px', 'width': '100%', 'z-index': '2'}); 
+						($tm).css({'position': 'relative', 'top': '0px', 'width': '100%', 'z-index': '3'}); 
 						($c).css({'top': '0px'});
 					} 
 				} else {

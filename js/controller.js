@@ -6,13 +6,16 @@ var employeesList = [];
 var loadDataComplete = false;
 
 //console.log('location.hostname: ' + location.hostname)
+var httpPath = 'http://profiles.luisespinal.com/';
+/*
 var httpPath = '';
 if (location.hostname === "127.0.0.1"){
-	httpPath = 'http://www.luisespinal.com/profiles/';
+	httpPath = 'http://profiles.luisespinal.com/';
 }
+*/
 
 
-angular.module('controller',['angular_insert_module','angular_update_module','angular_delete_module'])
+angular.module('controller',['angular_insert_module','angular_update_module','angular_delete_module','angular_get_module'])
 .controller('Ctrol404',['$scope', '$http', function($scope, $http){
 	////console.log('Ctrol404');
 
@@ -102,6 +105,11 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 		runController = true;
 	}
 	
+	$scope.init = function(){
+		console.log('init();')
+		$scope.$emit('loadData', [])
+	}
+
 	$scope.$on('loadData', function(){
 		console.log('$scope.$on loadData()');
 	//$scope.loadData = function() {
@@ -188,5 +196,6 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 
 	//initial load
 	//$scope.loadData();
-	$scope.$emit('loadData', [])
+	//$scope.$emit('loadData', [])
+	//$scope.loadData();
 }])

@@ -305,6 +305,11 @@ h1 {
 	display:inline-block;
 }
 
+.profile .skill {
+	font-size: 250%;
+	padding:1% 3%;
+}
+
 .skills-full {
 	width:95%;
 	margin-top:5%;
@@ -321,6 +326,10 @@ h1 {
 	padding:0 2%;
 	display:inline-block;
 }
+
+.profile .quote {
+	font-size:250%;
+}
 .description {
 	color: #999;
 	font-size: 250%;
@@ -332,11 +341,21 @@ h1 {
 	min-height: 80px; 
 }
 
-.buttons {
+.mobile_buttons {
 	position: relative;
 	height: 230%;
 	top:0;
 	margin-top:4%;
+
+	button  {
+		height:3em;
+		font-size: 200%;
+	}
+}
+
+.mobile_social_bar {
+	margin-top: 1.5em; 
+	width:30%;
 }
 
 .portfolio, .form_button {
@@ -364,8 +383,7 @@ h1 {
 
 }
 
-#dialog {
-}
+
 
 #menu {
 	cursor: pointer;

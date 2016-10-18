@@ -3,7 +3,7 @@ runController = true;
 
 
 // var myApp = angular.module("app", []);
-var myApp = angular.module('app', ['ngRoute','controller'])
+var myApp = angular.module('app', ['ngRoute','controller','angular_get_module'])
 .config(function($routeProvider){
 		$routeProvider
 		.when('/index.html', {
