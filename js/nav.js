@@ -71,10 +71,16 @@ function loadNav(){
 				}
 			});
 
+			//top menu / navigation buttons
 			$('#top_menu_options_list').hide();
 			$('#menu_icon_btn').on('click', function(e){
 				$('#top_menu_options_list').toggle();
 				$('#top_menu').css('zIndex','9999')
+			});
+
+			$('#back_icon_btn, #back_icon_btn_label').on('click', function(e){
+				parent.history.back();
+				return false;
 			});
 
 			var dialog_name;

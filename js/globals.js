@@ -19,6 +19,7 @@ var fields = [
 var field = {};
 
 //var v = Math.random();
+ // $.getScript('/js/utilities.js?v=' + v, function(){})
  $.getScript('/js/nav.js?v=' + v, function(){})
  $.getScript('/js/dragExe.js?v=' + v, function(){});
 
@@ -68,15 +69,7 @@ $(document).ready(function(){
 
 })
 
-$.urlParam = function(name){ 
-	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	if (results==null){
-		return null;
-	}
-	else{
-		return results[1] || 0;
-	}
-}
+
 
 /*
 //LOAD EACH SCRIPT IN SEQUENCE

@@ -1,0 +1,9 @@
+# Turn on the rewrite engine
+Options +FollowSymlinks
+RewriteEngine on
+
+#Request routing
+RewriteRule ^([a-zA-Z_-]*)$   index.php?name=$1  [nc,qsa]
+
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz

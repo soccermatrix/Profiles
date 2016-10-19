@@ -52,6 +52,11 @@ html, body {
   #footer a:hover {
     color: #00AEEF; }
 
+.dz {
+  position: relative;
+  width: 235px;
+  min-height: 700px; }
+
 .cards {
   min-height: 100%;
   margin: 0 auto;
@@ -71,6 +76,35 @@ html, body {
   text-align: center;
   z-index: 2; }
 
+.form-item-right {
+  text-align: left;
+  width: 95%; }
+  .form-item-right img {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 0; }
+  .form-item-right span {
+    float: left;
+    font-size: 400%;
+    color: white;
+    margin-left: 2%;
+    margin-top: -1%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  .form-item-right #back_icon_btn {
+    float: left;
+    margin-left: -4%;
+    margin-top: 2%;
+    max-width: 40px; }
+  .form-item-right #menu_icon_btn {
+    float: right;
+    max-width: 70px; }
+
 #top_menu_options {
   margin: 0 auto;
   position: relative;
@@ -80,7 +114,7 @@ html, body {
 #top_menu_options_list {
   width: 70%;
   background-color: #38404D;
-  left: 0;
+  right: 0;
   position: absolute;
   z-index: 300;
   opacity: .9;
@@ -138,7 +172,7 @@ html, body {
   .form-item-right img {
     width: 300%; }
 
-h1 {
+h1, .pod_content h1 {
   width: 100%;
   margin: 30px auto 15px auto;
   font-size: 250%;
@@ -265,7 +299,11 @@ h1 {
   font-size: 200%;
   position: relative;
   margin: 1% 1%;
-  display: inline-block; }
+  display: inline-block;
+  -webkit-border-radius: 30px 30px 30px 30px;
+  -moz-border-radius: 30px 30px 30px 30px;
+  -ms-border-radius: 30px 30px 30px 30px;
+  border-radius: 30px 30px 30px 30px; }
 
 .profile .skill {
   font-size: 250%;
@@ -304,7 +342,8 @@ h1 {
   margin-top: 4%; }
   .mobile_buttons button {
     height: 3em;
-    font-size: 250%; }
+    font-size: 250%;
+    /*@include border-radius(30px,30px,30px,30px); 	*/ }
 
 .mobile_social_bar {
   margin-top: 1.5em;
@@ -334,3 +373,30 @@ h1 {
 
 .hidden {
   display: none; }
+
+.pod {
+  position: relative;
+  width: 90%;
+  border: 1px dashed #f0f0f0;
+  margin: 3% 0 .5% 0;
+  display: inline-block;
+  text-align: center;
+  background: white;
+  padding: 0; }
+
+.pod_content {
+  text-align: center;
+  font-size: 170%;
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  padding: 0; }
+  .pod_content h1 {
+    font-size: 120%; }
+
+iframe {
+  border: none;
+  overflow: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0; }

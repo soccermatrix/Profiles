@@ -30,6 +30,7 @@
 <script>
     var v = Math.floor((Math.random() * 10) + 1);
 </script>
+<script src="/js/utilities.js?v=" + v></script>
 <script src="/js/globals.js?v=" + v></script>
 
 <!-- sub directives -->
@@ -82,7 +83,7 @@
          <button id="submit"></button>
        </div>
        <div class="form-item-right">
-         <image id="menu_icon_btn" src="/images/icon_menu.png"/>
+         <img id="menu_icon_btn" src="/images/icon_menu.svg"/>
        </div>
      </form>  
      <div id="top_menu_options">
@@ -100,7 +101,7 @@
 
 
    <div class="cards">
-     <h1>PROFILES ({{totalEmployees}})</h1>
+     <h1>TALENT POOL ({{totalEmployees}})</h1>
      <!-- <div data-role id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'"> -->
      <div id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search">
       <div id="{{ 'dg_' + employee.id }}" class="main" ng-mousedown="setActiveDraggable(employee.id)">
@@ -132,7 +133,7 @@
         <div class="buttons mobile_buttons">
           <button id="{{ 'btn_' + employee.id }}" class="portfolio btn-blue-light" ng-click="setActiveEmployee(employee,employee.id)"> PROFILE</button>
 
-          <button id="{{ 'btn_assemble_' + employee.id }}" class="portfolio btn-green-light" ng-click="setActiveEmployee(employee,employee.id)" onclick="window.location.href='#assemble'">ASSEMBLE</button>
+          <button id="{{ 'btn_assemble_' + employee.id }}" class="portfolio btn-green-light" ng-click="setActiveEmployee(employee,employee.id)" onclick="window.location.href='#assemble'">HIRE</button>
         </div>
       </div> 
     </div>

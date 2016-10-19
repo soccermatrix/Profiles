@@ -64,6 +64,11 @@ html, body{
 	}
 }
 
+.dz {
+	position: relative;
+	width: 235px;
+	min-height: 700px;
+}
 
 .cards {
 	min-height:100%;
@@ -85,6 +90,41 @@ html, body{
 	text-align: center;
 	z-index: 2;
 }
+
+.form-item-right {
+	text-align: left;
+	width:95%;
+	img {
+		display:inline-block;
+		width:auto;
+		height:auto;
+		margin:0;
+	}
+	span {
+		float:left;
+		font-size:400%;
+		color:white;
+		margin-left:2%;
+		margin-top:-1%;
+
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+	#back_icon_btn {
+		float:left;
+		margin-left:-4%;		
+		margin-top:2%;
+		max-width:40px;
+	}
+	#menu_icon_btn {
+		float:right;		
+		max-width:70px;
+	}
+}
 #top_menu_options {
 	margin: 0 auto;
 	position: relative;
@@ -94,7 +134,7 @@ html, body{
 #top_menu_options_list {
 	width:70%;
 	background-color: #38404D;
-	left:0;
+	right:0;
 	position:absolute;
 	z-index: 300;
 	opacity:.9;	
@@ -168,6 +208,9 @@ h1 {
 	font-weight: bolder;
 	text-align: center;
 	color: #616971;
+	
+	
+
 }
 
 .dz {
@@ -303,6 +346,8 @@ h1 {
 	position:relative;
 	margin:1% 1%;
 	display:inline-block;
+
+	@include border-radius(30px,30px,30px,30px); 	
 }
 
 .profile .skill {
@@ -350,6 +395,8 @@ h1 {
 	button  {
 		height:3em;
 		font-size: 250%;
+
+		/*@include border-radius(30px,30px,30px,30px); 	*/
 	}
 }
 
@@ -391,4 +438,37 @@ h1 {
 
 .hidden {
 	display:none;
+}
+
+.pod {	
+	position: relative;
+	width: 90%;
+	border: 1px dashed #f0f0f0;
+	margin:3% 0 .5% 0;
+	display:inline-block;
+
+	text-align: center; 
+	background: white; 
+	padding:0; 
+}
+.pod_content {
+	text-align: center; 
+	font-size:170%;
+	width:100%;
+	position: relative; 
+	display: inline-block; 
+	padding:0; 
+
+	h1 {
+		@extend h1;
+		font-size: 120%;
+	}
+}
+
+iframe {
+	border:none;
+	overflow: none;
+	display: inline-block;
+	padding: 0;
+	margin: 0;
 }
