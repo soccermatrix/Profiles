@@ -220,6 +220,12 @@ function loadNav(){
 				}
 			});//END SUBMIT FUNCTIONALITY - FORMS 
 
+			
+			$(window).resize(function(e){ 
+		 		//$( '#iframe_tools' ).attr( 'src', function ( i, val ) { return val; });
+		 		resizeIframe($('#iframe_tools'))
+		 	});
+
 			// SCROLLING FUNCTIONALITY
 			//scrolling snaping of top menu
 		 	positionElements();

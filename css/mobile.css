@@ -5,33 +5,12 @@ html, body {
   padding: 0;
   font-size: 100%; }
 
-#banner {
+#banner, #iframe_tools, #header {
   display: none; }
 
 #wrapper {
   width: 100%;
   margin-top: 0; }
-
-#header {
-  display: none; }
-
-#header ul {
-  list-style: none;
-  display: block;
-  text-align: center; }
-
-#header li {
-  border: 1px solid #ccc;
-  padding: .3em .8em;
-  font-size: .8em;
-  color: #999;
-  margin-right: .5em;
-  margin-top: 5px;
-  display: inline-block;
-  -webkit-border-radius: 10px 10px 10px 10px;
-  -moz-border-radius: 10px 10px 10px 10px;
-  -ms-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px; }
 
 #footer {
   color: lightGray;

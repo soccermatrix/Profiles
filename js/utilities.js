@@ -15,3 +15,12 @@ $.urlParam = function(name){
 		return results[1] || 0;
 	}
 }
+
+//resize dynamic iframes
+function resizeIframe(obj) {
+	console.log('resizeIframe()');
+    //console.log(obj)
+    //console.log(obj[0])
+    console.log(obj[0].contentDocument.body.offsetHeight)
+    obj[0].style.height = obj[0].contentDocument.body.offsetHeight + 'px';
+}
