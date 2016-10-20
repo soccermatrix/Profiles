@@ -32,7 +32,7 @@ $data = "";
 while($rs = $sql->fetch_array(MYSQLI_ASSOC)) {
     if ($data != "") {$data .= ",";}
     $data .= '{';
-    $data .= '"id":"'  . $rs["ID"] . '",';
+    $data .= '"userId":"'  . $rs["ID"] . '",';
     $data .= '"fullName":"'  . $rs["NAME"] . '",';
     $data .= '"title":"'  . $rs["TITLE"] . '",';
     $data .= '"sub_title":"'  . $rs["SUB_TITLE"] . '",';

@@ -102,6 +102,13 @@ html, body{
 		max-width:70px;
 	}
 }
+
+/*
+this css is disabled until i have time to add new pages to edit profiles in mobile version
+in the mean time, there is no menu icon in the profile page.
+#menu_icon_btn is hidden for now
+*/
+/*
 #top_menu_options {
 	margin: 0 auto;
 	position: relative;
@@ -115,7 +122,6 @@ html, body{
 	position:absolute;
 	z-index: 300;
 	opacity:.9;	
-	/*display: none;*/
 	ul{
 		margin:0 0 100px 0;
 		padding:0;
@@ -156,6 +162,7 @@ html, body{
 #menu_move {
 	background:url('../images/icon_move.png');
 }
+*/
 
 .disabled {
 	opacity:.3;

@@ -1,6 +1,7 @@
-console.log('globals.js')
+//console.log('globals.js')
 
 var fields = [
+['userId','id'],
 ['fullName','Full Name'],
 ['title','Title'],
 ['sub_title','Sub Title'],
@@ -12,9 +13,9 @@ var fields = [
 ['price','Hourly Rate'],
 ['avatar','Photo / Avatar']
 ];
-//console.log('fields.length: ' + fields.length)
-//console.log('fields[0]: ' + fields[0])
-//console.log('fields[0][0]: ' + fields[0][0])
+////console.log('fields.length: ' + fields.length)
+////console.log('fields[0]: ' + fields[0])
+////console.log('fields[0][0]: ' + fields[0][0])
 
 var field = {};
 
@@ -37,7 +38,7 @@ $('<link href="/css/dialog_d.css?v=' + v + '" rel="stylesheet" type="text/css" /
 
 // tasks to do if it is a Mobile Device
 //window.location.replace("mobile.html"); 
-console.log('mobileMode: ' + mobileMode)
+//console.log('mobileMode: ' + mobileMode)
 if(mobileMode){
     var link1 = document.createElement('link');
     link1.rel = 'stylesheet';
@@ -102,7 +103,7 @@ var scripts   = [
 //create function that evaluates each response in order
 //$(document).ready(function(){
 	function eval_scripts() {
-		console.log('eval_scripts()')
+		//console.log('eval_scripts()')
 	    for (var i = 0, len = scripts.length; i < len; i++) {
 	        eval(responses[scripts[i]]);
 	    }
@@ -115,7 +116,7 @@ var scripts   = [
 	        //force the dataType to be `text` rather than `script`
 	        dataType : 'text',
 	        success  : function (textScript) {
-	        	console.log('success, ' + textScript)
+	        	//console.log('success, ' + textScript)
 
 	            //add the response to the `responses` object
 	            responses[value] = textScript;
@@ -126,7 +127,7 @@ var scripts   = [
 	        },
 	        error    : function (jqXHR, textStatus, errorThrown) {
 	         //don't forget to handle errors
-	         console.log('error')
+	         //console.log('error')
 	     	}
 	    });
 	});

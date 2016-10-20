@@ -4,6 +4,7 @@ var activeEmployeeID;
 var activeEmployee;
 var employeesList = [];
 var loadDataComplete = false;
+var employees;
 
 //console.log('location.hostname: ' + location.hostname)
 var httpPath = 'http://profiles.luisespinal.com/';
@@ -30,9 +31,9 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 	console.log('HomeCtrol');
 	console.log('runController: ' + runController);
 	$scope.setActiveEmployee = function(employee,id) {
-		console.log('setActiveEmployee(), id: ' + id)
+		console.log('setActiveEmployee(), userId: ' + employee.userId)
 		var activeEmployee = {
-			id 			: employee.id,
+			userId 		: employee.userId,
 			fullName 	: employee.fullName,
 			title		: employee.title,
 			sub_title	: employee.sub_title,
@@ -47,7 +48,7 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 
 		$scope.activeEmployee = activeEmployee;
 		activeEmployee = activeEmployee;
-		activeEmployeeID = activeEmployee.id;
+		activeEmployeeID = activeEmployee.userId;
 		////console.log('activeEmployee.fullName: ' + $scope.activeEmployee.fullName)
 	}		
 
@@ -56,7 +57,7 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 		console.log('data: ' + data);
 		console.log('data.currentScope.fullName: ' + data.currentScope.fullName);
 		for (var i = 0; i<totalEmployees; i++){
-			if($scope.employees[i].id == activeEmployeeID){
+			if($scope.employees[i].userId == activeEmployeeID){
 				//console.log('found user: ' + $scope.employees[i].fullName)
 				// update every field value within the $scope
 				for (var a = 0; a < fields.length; a++) {
@@ -80,7 +81,7 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 		console.log('data: ' + data);
 		console.log('data.currentScope.fullName: ' + data.currentScope.fullName);
 		for (var i = 0; i<totalEmployees; i++){
-			if($scope.employees[i].id == activeEmployeeID){
+			if($scope.employees[i].userId == activeEmployeeID){
 				//console.log('found user: ' + $scope.employees[i].fullName)
 				// update every field value within the $scope
 				$('#dz_' + activeEmployeeID).hide('slow', function(){
@@ -128,25 +129,23 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 				console.log('HomeCtrol - success');
 				console.log('mobileMode: ' + mobileMode)
 				//////console.log('success loading json')
-				//////console.log(employees_data.employees )
+				//console.log(employees_data.employees )
 				//employees_data_string = JSON.stringify(employees_data);
-				var employees = employees_data.employees;
-				// ////console.log(employees[0].quote)
-
-				$scope.employees = employees;		
-
-				totalEmployees = employees.length;
-				// ////console.log('totalEmployees: ' + totalEmployees)
-
-				
+				$scope.employees = employees_data.employees;
+				$scope.totalEmployees = $scope.employees.length;
 				
 
-				$scope.totalEmployees = totalEmployees;
+				console.log($scope.employees[2].userId)
+
+				
+
 
 				//replace special charter codes back into readable characters
-				for (var i = 0; i<totalEmployees; i++){
+				for (var i = 0; i<$scope.totalEmployees; i++){
 					for (var ii = 0; ii < fields.length; ii++) {
-						employees[i][ fields[ii][0] ] = employees[i][ fields[ii][0] ]
+						//console.log(fields[ii][0] + ': ' + employees[i][ fields[ii][0] ])
+						//console.log($scope.employees[i].userId)
+						$scope.employees[i][ fields[ii][0] ] = $scope.employees[i][ fields[ii][0] ]
 								.replace(/&rsquo;/g, "'")
 								.replace(/&gt;/g, ">")
 								.replace(/&lt;/g, "<")
@@ -154,27 +153,31 @@ angular.module('controller',['angular_insert_module','angular_update_module','an
 								.replace(/&#33;/g, '!')
 					}
 
-					employeesList.push(employees[i].id);
+					employeesList.push($scope.employees[i].userId);
 
 					//split sub_title and color theme
-					employees[i].sub_title = employees[i].sub_title.split(',');				
-					for (var a = 0; a<employees[i].sub_title.length; a++){
+					$scope.employees[i].sub_title = $scope.employees[i].sub_title.split(',');				
+					for (var a = 0; a<$scope.employees[i].sub_title.length; a++){
 						//trim() removes leading whitespace
-						employees[i].sub_title[a] = employees[i].sub_title[a].trim();
-						//console.log('employees[i].sub_title[a]: ' + employees[i].sub_title[a])
+						$scope.employees[i].sub_title[a] = $scope.employees[i].sub_title[a].trim();
+						//console.log('$scope.employees[i].sub_title[a]: ' + $scope.employees[i].sub_title[a])
 					}
 
 					//split skills
-					employees[i].skills = employees[i].skills.split(',');
-					for (var b = 0; b<employees[i].skills.length; b++){
+					$scope.employees[i].skills = $scope.employees[i].skills.split(',');
+					for (var b = 0; b<$scope.employees[i].skills.length; b++){
 						//trim() removes leading whitespace
-						employees[i].skills[b] = employees[i].skills[b].trim();
-						//employees[i].skills[b] = employees[i].skills[b].replace(/&rsquo;/g, "'")
-						//console.log('employees[i].skills[b]: ' + employees[i].skills[b])
+						$scope.employees[i].skills[b] = $scope.employees[i].skills[b].trim();
+						//$scope.employees[i].skills[b] = $scope.employees[i].skills[b].replace(/&rsquo;/g, "'")
+						//console.log('$scope.employees[i].skills[b]: ' + $scope.employees[i].skills[b])
 					}
 					//shuffle skills array using lodash.js
-					employees[i].skills = _.shuffle(employees[i].skills)
+					$scope.employees[i].skills = _.shuffle($scope.employees[i].skills)
 				}//end loop through each recordset
+
+				employees = $scope.employees;
+				totalEmployees = employees.length;
+				// ////console.log('totalEmployees: ' + totalEmployees)
 
 				if(mobileMode){
 					$scope.skillsToDisplay = 8;

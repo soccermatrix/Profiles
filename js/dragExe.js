@@ -26,15 +26,17 @@ function loadFunction(){
 
 
 
+		//console.log(employees)
 		$('.cards').fadeTo('fast',1,function(){
 			$('#footer').fadeTo('fast',1);
 			//var s helps fade in effect start at first item - top-bottom sequence.
 			var s = 0;
 			// for(var i = employeesList.length - 1; i>=0; i--){
-			for(var i = 0; i<employeesList.length; i++){
-				dropZones['dz_' + employeesList[s]] = 'dg_' + employeesList[s];
+			for(var i = 0; i<employees.length; i++){
+				//console.log(employees[s].userId)
+				dropZones['dz_' + employees[s].userId] = 'dg_' + employees[s].userId;
 				var delay = 30 * s;
-				$('#dg_' + employeesList[i]).delay( delay ).fadeTo('fast',1);
+				$('#dg_' + employees[i].userId).delay( delay ).fadeTo('fast',1);
 				++s
 			}
 		});

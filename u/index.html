@@ -20,7 +20,7 @@
 
   <link  href="/js/bootstrap.min.css" rel="stylesheet">
   <script src="/js/bootstrap.min.js"></script>
-  
+
   <script src="http://d3js.org/d3.v3.min.js"></script>
 
 
@@ -85,7 +85,7 @@ polyline{
        <div class="form-item-right">
          <img id="back_icon_btn" src="/images/icon_back.png"/>
          <span id="back_icon_btn_label">TALENT</span>
-         <img id="menu_icon_btn" src="/images/icon_menu.png"/>
+         <img id="menu_icon_btn" class="hidden" src="/images/icon_menu.png"/>
        </div>
      </form>  
      <div id="top_menu_options">
@@ -102,17 +102,17 @@ polyline{
    </div><!-- end top_menu -->
     
 <div class="cards profile">
-     <div id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees">
-      <div id="{{ 'dg_' + employee.id }}" class="main">
+     <div id="{{ 'dz_' + employee.userId }}" class="dz" ng-repeat="employee in employees">
+      <div id="{{ 'dg_' + employee.userId }}" class="main">
        <div class="card">
         <div class="content">
           <div class="card_menu_row">
-            <img id="card_menu_update_{{ employee.id }}" class="card_menu_update card_menu card_button" src="/images/icon_update.png"  ng-controller="UpdateCtrol" Xng-mousedown="updateActiveEmployee(employee,employee.id)"/>
-            <img id="card_menu_delete_{{ employee.id }}" class="card_menu_delete card_menu card_button" src="/images/icon_delete.png"  ng-controller="DeleteCtrol" Xng-mousedown="updateActiveEmployee(employee,employee.id)" />
+            <img id="card_menu_update_{{ employee.userId }}" class="card_menu_update card_menu card_button" src="/images/icon_update.png"  ng-controller="UpdateCtrol" Xng-mousedown="updateActiveEmployee(employee,employee.userId)"/>
+            <img id="card_menu_delete_{{ employee.userId }}" class="card_menu_delete card_menu card_button" src="/images/icon_delete.png"  ng-controller="DeleteCtrol" Xng-mousedown="updateActiveEmployee(employee,employee.userId)" />
           </div>
           <div class="price">${{ employee.price }}/hr</div>
-          <img class="photo card_button" ng-src="/images/{{ employee.avatar }}.png" Xng-click="setActiveEmployee(employee,employee.id)"/>
-          <div class="name card_button" Xng-click="setActiveEmployee(employee,employee.id)">
+          <img class="photo card_button" ng-src="/images/{{ employee.avatar }}.png" Xng-click="setActiveEmployee(employee)"/>
+          <div class="name card_button" Xng-click="setActiveEmployee(employee)">
             {{employee.fullName}}               
           </div>
           <div class="title">

@@ -43,7 +43,8 @@ angular.module('angular_insert_module', [])
 			$scope.description = $scope.description.replace("'", "&rsquo;")
 			$scope.quote = $scope.quote.replace("'", "&rsquo;")
 
-			//$http.post("user_insert.php",{
+			//SQL server
+			//$http.post(httpPath + 'user_insert_sql_server.php', {
 			$http.post(httpPath + 'user_insert.php', {
 					//$http.post("http://www.luisespinal.com/profiles/user_insert.php",{
 					//$http.post("http://www.shiquinkira.com/profiles/user_insert.php",{

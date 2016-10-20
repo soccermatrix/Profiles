@@ -19,51 +19,34 @@ db name projects80%
 // $db =  "projectsUser";
 
 
-
-//Windows Server
-$host = "projectsUser.db.2596913.hostedresource.com";
-$user = "projectsUser";
-$pass = "Projects80%";
-$db =  "projectsUser";
-
-//Linux Server
-
-// $host = "projectsUser2.db.3872119.hostedresource.com";
-// $user = "projectsUser2";
-// $pass = "Projects80%";
-// $db =  "projectsUser2";
-
-
 $conn = new mysqli($host, $user, $pass, $db);
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
 
-$sql = $conn->query("SELECT * FROM employee_tbl");
+$sql = "
+CREATE TABLE MyGuests (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+reg_date TIMESTAMP
+)
+";
 
-$data = "";
-while($rs = $sql->fetch_array(MYSQLI_ASSOC)) {
-    if ($data != "") {$data .= ",";}
-    $data .= '{';
-    $data .= '"userId":"'  . $rs["ID"] . '",';
-    $data .= '"fullName":"'  . $rs["NAME"] . '",';
-    $data .= '"title":"'  . $rs["TITLE"] . '",';
-    $data .= '"sub_title":"'  . $rs["SUB_TITLE"] . '",';
-    $data .= '"skills":"'  . $rs["SKILLS"] . '",';
-    $data .= '"count":"'  . $rs["COUNT"] . '",';
-    $data .= '"description":"'  . $rs["DESCRIPTION"] . '",';
-    $data .= '"quote":"'  . $rs["QUOTE"] . '",';
-    $data .= '"available":"'  . $rs["AVAILABLE"] . '",';
-    $data .= '"price":"'  . $rs["PRICE"] . '",';
-    $data .= '"avatar":"'  . $rs["AVATAR"] .'"';    
-    $data .= '}';
+/*
+
+*/
+
+
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table MyGuests created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
 }
-$data ='{"employees":['.$data.']}';
-
-
 
 $conn->close();
-//echo($data);
-//new line added Oct 13 to support RESTful web service
-//$result = json_decode($data);
-echo($data)
-//echo($data->$data['employees'])
 
 ?>

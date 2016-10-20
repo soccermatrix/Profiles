@@ -6,10 +6,10 @@ header('Access-Control-Allow-Origin: *');
 
 $data = json_decode(file_get_contents("php://input"));
 
-$fullName       = $data->fullName;
+$fullName       = $data->fullName; 
 $title          = $data->title;
 $sub_title      = $data->sub_title;
-$skills         = $data->skill;
+$skills         = $data->skills;
 $count          = $data->count;
 $description    = $data->description;
 $quote          = $data->quote;

@@ -98,19 +98,19 @@
 
    <div class="cards">
      <h1>TALENT POOL ({{totalEmployees}})</h1>
-     <!-- <div data-role id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'"> -->
-     <div id="{{ 'dz_' + employee.id }}" class="dz" ng-repeat="employee in employees | filter: search">
-      <div id="{{ 'dg_' + employee.id }}" class="main" ng-mousedown="setActiveDraggable(employee.id)">
+     <!-- <div data-role id="{{ 'dz_' + employee.userId }}" class="dz" ng-repeat="employee in employees | filter: search | orderBy: '-'"> -->
+     <div id="{{ 'dz_' + employee.userId }}" class="dz" ng-repeat="employee in employees | filter: search">
+      <div id="{{ 'dg_' + employee.userId }}" class="main" ng-mousedown="setActiveDraggable(employee.userId)">
        <div class="card">
         <div class="content">
           <div class="card_menu_row">
-            <img id="card_menu_update_{{ employee.id }}" class="card_menu_update card_menu card_button" src="/images/icon_update.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(employee,employee.id)"/>           
-            <img id="card_menu_delete_{{ employee.id }}" class="card_menu_delete card_menu card_button" src="/images/icon_delete.png"  ng-controller="DeleteCtrol" ng-mousedown="updateActiveEmployee(employee,employee.id)" />
+            <img id="card_menu_update_{{ employee.userId }}" class="card_menu_update card_menu card_button" src="/images/icon_update.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(employee,employee.userId)"/>           
+            <img id="card_menu_delete_{{ employee.userId }}" class="card_menu_delete card_menu card_button" src="/images/icon_delete.png"  ng-controller="DeleteCtrol" ng-mousedown="updateActiveEmployee(employee,employee.userId)" />
           </div>           
           <div class="price">${{ employee.price }}/hr</div>
-          <img class="photo card_button" ng-src="/images/{{ employee.avatar }}.png" ng-click="setActiveEmployee(employee,employee.id)"/>
-          <div class="name card_button" ng-click="setActiveEmployee(employee,employee.id)">
-            {{employee.fullName}}               
+          <img class="photo card_button" ng-src="/images/{{ employee.avatar }}.png" ng-click="setActiveEmployee(employee)"/>
+          <div class="name card_button" ng-click="setActiveEmployee(employee)">
+            {{employee.fullName}} ({{employee.userId}})
           </div>
           <div class="title">
             {{employee.title}}									
@@ -127,9 +127,9 @@
           {{ employee.quote }} 
         </div>
         <div class="buttons mobile_buttons">
-          <button id="{{ 'btn_' + employee.id }}" class="portfolio btn-blue-light" ng-click="setActiveEmployee(employee,employee.id)"> PROFILE</button>
+          <button id="{{ 'btn_' + employee.userId }}" class="portfolio btn-blue-light" ng-click="setActiveEmployee(employee)"> PROFILE</button>
 
-          <button id="{{ 'btn_assemble_' + employee.id }}" class="portfolio btn-green-light" ng-click="setActiveEmployee(employee,employee.id)" onclick="window.location.href='#assemble'">HIRE</button>
+          <button id="{{ 'btn_assemble_' + employee.userId }}" class="portfolio btn-green-light" ng-click="setActiveEmployee(employee)" onclick="window.location.href='#assemble'">HIRE</button>
         </div>
       </div> 
     </div>
@@ -151,8 +151,8 @@
    <div class="dialog_content"> 
     <div class="dialog_top_bar"></div>
     <div class="dialog_card_menu_row">
-      <img id="card_menu_update_{{ activeEmployee.id }}" class="card_menu_update card_menu card_button" src="/images/icon_update_black.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(activeEmployee,activeEmployee.id)"/>           
-      <img id="card_menu_delete_{{ activeEmployee.id }}" class="card_menu_delete card_menu card_button" src="/images/icon_delete_black.png"  ng-controller="DeleteCtrol" ng-mousedown="updateActiveEmployee(activeEmployee,activeEmployee.id)" />
+      <img id="card_menu_update_{{ activeEmployee.userId }}" class="card_menu_update card_menu card_button" src="/images/icon_update_black.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(activeEmployee,activeEmployee.userId)"/>           
+      <img id="card_menu_delete_{{ activeEmployee.userId }}" class="card_menu_delete card_menu card_button" src="/images/icon_delete_black.png"  ng-controller="DeleteCtrol" ng-mousedown="updateActiveEmployee(activeEmployee,activeEmployee.userId)" />
     </div>           
     <div class="dialog_price">${{ activeEmployee.price }}/hr</div>
     <img class="dialog_photo" ng-src="/images/{{ activeEmployee.avatar }}.png"/>
@@ -343,6 +343,12 @@
 </div>
 </div><!-- end delete form -->
 
+<!-- delete form -->
+<div id="dialog_confirmation" class="dialog">
+ <div id="dialog_confirmation_main" class="dialog_main">
+    <div id="dialog_confirmation_message">MESSAGE HERE</div>
+</div>
+</div><!-- end delete form -->
 
 
 </div> <!-- end HomeCtrol -->

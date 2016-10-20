@@ -1,14 +1,14 @@
-console.log('nav.js')
+//console.log('nav.js')
 
 var loadNavComplete = false;
 function loadNav(){
-	console.log('loadNav()');
+	//console.log('loadNav()');
 	
 	//cllick functionality anywhere in the screen
 	$(document).click(function(e){
-		console.log('document click()');
+		//console.log('document click()');
 		var target = e.target;
-		console.log('$(target).parents().parents(): ' + $(target).parents().parents().id)
+		//console.log('$(target).parents().parents(): ' + $(target).parents().parents().id)
 		if (!$(target).is('#top_menu_options_list') && !$(target).is('#menu_icon_btn')) {
 			$('#top_menu_options_list').hide();
 		}
@@ -54,8 +54,8 @@ function loadNav(){
 					$('.ui-widget-overlay,#dialog_active_user').on('click', function(){
 						hideAll();
 					});
-					console.log('activeEmployeeID: ' + activeEmployeeID)
-					console.log('className: ' + $('.' + e.currentTarget.className))
+					//console.log('activeEmployeeID: ' + activeEmployeeID)
+					//console.log('className: ' + $('.' + e.currentTarget.className))
 					$('.portfolio-active').removeClass('portfolio-active');
 					$('#btn_' + activeEmployeeID).addClass('portfolio-active');
 				} else {
@@ -118,7 +118,7 @@ function loadNav(){
 			// END Top Menu Options-------------------------------
 
 			$('.card_menu_update').on('click', function(e){
-				console.log('click() update, activeEmployeeID: ' + activeEmployeeID)
+				//console.log('click() update, activeEmployeeID: ' + activeEmployeeID)
 				hideAll();
 				dialog_name = 'dialog_form_update';
 				dialog_modal = true;
@@ -127,7 +127,7 @@ function loadNav(){
 			});
 
 			$('.card_menu_delete').on('click', function(e){
-				console.log('click() delete, activeEmployeeID: ' + activeEmployeeID)
+				//console.log('click() delete, activeEmployeeID: ' + activeEmployeeID)
 				hideAll();
 				dialog_name = 'dialog_form_delete';
 				dialog_modal = true;
@@ -139,7 +139,7 @@ function loadNav(){
 			//DIALOG FUNCTIONALITY / SETTINGS---------------------
 			$( "#" + dialog_name ).hide();
 			function show_dialog(){
-				//console.log('show_dialog(), dialog_name: ' + dialog_name)
+				////console.log('show_dialog(), dialog_name: ' + dialog_name)
 				if(dialog_modal){			
 					$('.cards').addClass('blurEffect');
 					$('.cards').fadeTo("fast", 0.5);
@@ -161,8 +161,8 @@ function loadNav(){
 			}//END DIALOG FUNCTIONALITY / SETTINGS---------------------
 
 			function hideAll(){
-				//console.log('hideAll()');
-				//console.log('active_dialog: ' + active_dialog);
+				////console.log('hideAll()');
+				////console.log('active_dialog: ' + active_dialog);
 				if(active_dialog){
 					$('#' + active_dialog).dialog("close");
 					$('.cards').removeClass('blurEffect');
@@ -181,7 +181,7 @@ function loadNav(){
 			//add tooltip attributes to input fields
 			var forms = ['update','insert','delete'];
 			for(var i=0; i<fields.length; i++){
-			 	////console.log('fields[i]: ' + fields[i])
+			 	//////console.log('fields[i]: ' + fields[i])
 			 	for(var a=0; a<forms.length; a++){
 			 		field[ fields[i][0] ] = $('#' + forms[a] + '_' + fields[i][0]);
 			 		field[ fields[i][0] ].attr('data-toggle','tooltip');
@@ -200,6 +200,12 @@ function loadNav(){
 			 	angular.element('#dialog_form_update_main').scope().$apply();
 			 	angular.element('#dialog_form_update_main').scope().user_update();
 			 	hideAll();
+/*
+			 	dialog_name = 'dialog_confirmation';
+				dialog_appendTo = $('#wrapper');
+				setTimeout(show_dialog, 50);
+				*/
+
 			 });
 
 			 $('#form_user_insert').submit(function(){
@@ -209,7 +215,7 @@ function loadNav(){
 			 });
 
 			 $('#form_user_delete').submit(function(){
-				//console.log('adminMode: ' + adminMode)
+				////console.log('adminMode: ' + adminMode)
 				if(adminMode){
 					angular.element('#dialog_form_delete_main').scope().$apply();
 					angular.element('#dialog_form_delete_main').scope().user_delete();

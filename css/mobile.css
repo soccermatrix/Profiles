@@ -84,56 +84,66 @@ html, body {
     float: right;
     max-width: 70px; }
 
+/*
+this css is disabled until i have time to add new pages to edit profiles in mobile version
+in the mean time, there is no menu icon in the profile page.
+#menu_icon_btn is hidden for now
+*/
+/*
 #top_menu_options {
-  margin: 0 auto;
-  position: relative;
-  width: 100%;
-  height: 5px; }
-
+	margin: 0 auto;
+	position: relative;
+	width:100%;
+	height:5px;
+}
 #top_menu_options_list {
-  width: 70%;
-  background-color: #38404D;
-  right: 0;
-  position: absolute;
-  z-index: 300;
-  opacity: .9;
-  /*display: none;*/ }
-  #top_menu_options_list ul {
-    margin: 0 0 100px 0;
-    padding: 0; }
-    #top_menu_options_list ul li {
-      text-align: left;
-      list-style: none;
-      cursor: pointer;
-      border: 1px solid #404B58;
-      border-width: 1px 0 1px 0;
-      color: #f5f5f5;
-      font-size: 200%;
-      padding: 10% 0 10% 30%;
-      background-size: 10% 35%;
-      background-position: 15% 50%;
-      background-repeat: no-repeat; }
-    #top_menu_options_list ul li:hover {
-      background-color: #282F3E; }
-    #top_menu_options_list ul .disabled:hover {
-      background-color: #38404D;
-      cursor: default; }
-
+	width:70%;
+	background-color: #38404D;
+	right:0;
+	position:absolute;
+	z-index: 300;
+	opacity:.9;	
+	ul{
+		margin:0 0 100px 0;
+		padding:0;
+		li{
+			text-align: left;
+			list-style: none;
+			cursor: pointer;
+			border: 1px solid #404B58;
+			border-width:1px 0 1px 0;
+			color:#f5f5f5;
+			font-size: 200%;
+			padding: 10% 0 10% 30%;
+			background-size:10% 35%;
+			background-position: 15% 50%;
+			background-repeat: no-repeat;
+		}
+		li:hover {
+			background-color: #282F3E;
+		}
+		.disabled:hover {
+			background-color: #38404D;
+			cursor: default;
+		}
+	}
+}
 #menu_add {
-  background: url("../images/icon_add.png"); }
-
+	background:url('../images/icon_add.png');
+}
 #menu_capabilities {
-  background: url("../images/icon_list.png"); }
-
+	background:url('../images/icon_list.png');
+}
 #menu_about {
-  background: url("../images/icon_about.png"); }
-
+	background:url('../images/icon_about.png');
+}
 #menu_contact {
-  background: url("../images/icon_contact.png"); }
-
+	background:url('../images/icon_contact.png');
+}
 #menu_move {
-  background: url("../images/icon_move.png"); }
-
+	background:url('../images/icon_move.png');
+}
+*/
 .disabled {
   opacity: .3;
   font-style: italic; }
