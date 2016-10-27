@@ -64,10 +64,12 @@ function loadNav(){
 					//here i'm trying to link to a hash to support back button to land on scrolling spot,
 					//however, with no luck, page reloads to the top as soon as it's reloaded using back button.
 					//implement mechanism so on back navigation, user goes back to scrolling spot.
-					window.location.hash="test";
-					setTimeout(function(){
-						window.location.href = '/u?uid=' + activeEmployeeID;
-					}, 50);
+					//window.location.hash="test";
+					if(!$('.sub_page').length){						
+						setTimeout(function(){
+							window.location.href = '/u?uid=' + activeEmployeeID;
+						}, 50);
+					}
 				}
 			});
 
@@ -311,6 +313,45 @@ function loadNav(){
 						($tm).css({'position': 'relative', 'top': '0px', 'width': '100%', 'z-index': '2'}); 
 						($c).css({'top': '0px'});
 					} 
+
+					// start d3 graph animations when they are visible after scrolling
+					/* Check the location of each desired element */
+			        $('.arc').each( function(i){
+			        	if(this.ChartAnimateCompleted == undefined){
+			            
+				            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+				            var bottom_of_window = $(window).scrollTop() + $(window).height();
+				            
+				            /* If the object is completely visible in the window, fade it it */
+				            if( bottom_of_window > bottom_of_object ){
+				                
+				                // get the object's id from this class instance
+				                var $f = $("#" + this.id);
+
+								// if iframes is loaded in the viewing area right away,
+								// functions will not be ready yet. 
+								// check if iframe content is loaded first and functions are ready
+								// returns undefined || function
+								console.log(typeof $f[0].contentWindow.BeginChartAnimation)
+								if(typeof $f[0].contentWindow.BeginChartAnimation != 'undefined'){
+									//console.log("this.ChartAnimateCompleted: " + this.ChartAnimateCompleted)
+									// prevent multiple calls to iFrame function
+									// default value undefined, change it to true on first run.
+							 		this.ChartAnimateCompleted = true;
+							 		$f[0].contentWindow.BeginChartAnimation();  // run function
+								} else {
+									// prevent multiple calls to iFrame function
+									// default value undefined, change it to true on first run.
+									setTimeout(function(){
+								 		this.ChartAnimateCompleted = true;
+								 		$f[0].contentWindow.BeginChartAnimation();  // run function
+									}, 500);								
+								}
+				                    
+				            }//end bottom_of_window > bottom_of_object
+				        } //end if(ChartAnimateCompleted)
+			            
+			        }); 
 				}
 			}
 			 // END SCROLLING FUNCTIONALITY
@@ -332,6 +373,8 @@ function loadNav(){
 			} else {
 				//
 			}
+
+			
 
 
 		}//end if

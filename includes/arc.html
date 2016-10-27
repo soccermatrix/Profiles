@@ -46,7 +46,10 @@ document.write(
   '<h1 class="label">' + urlLabel + '</h1>'
   )
 
-
+function BeginChartAnimation() {
+  //console.log('BeginChartAnimation()')
+  animateChart();
+}
 </script>
 <body style="padding: 0; margin: 0; text-align: center;">  
 
@@ -87,12 +90,14 @@ var foreground = g.append("path")
 // Every so often, start a transition to a new random angle. The attrTween
 // definition is encapsulated in a separate function (a closure) below.
 
-//d3.interval(function() {
+function animateChart() {
+  //console.log('animateChart()')
   foreground.transition()
-      .duration(750)
+      .duration(1500)//750
       //.attrTween("d", arcTween(Math.random() * tau));
       .attrTween("d", arcTween(tau * urlValue/100));
-//}, 1500);
+};
+//animateChart();
 
 // Returns a tween for a transition’s "d" attribute, transitioning any selected
 // arcs from their current angle to the specified new angle.
