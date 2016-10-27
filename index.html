@@ -61,15 +61,10 @@
   <ng-view></ng-view>
   <div id="HomeCtrol" ng-controller="HomeCtrol" ng-init="init();">
     <div id="banner">
-      Single Page Application <span>ALPHA</span>
+      <label id="banner-label">Single Page Application</label> <span>ALPHA</span> <span id="screenRes" style="color:white; float:right; background-color:gray;"></span>
     </div><!-- end  banner -->
 
     <div id="wrapper" >  
-
-      <!-- header frameworks / tools -->
-      <iframe id="iframe_tools" src="/includes/list_tools_header.html" id="iframe_expertice" width="100%" height="20px" scrolling="no" frameborder="0" onload="resizeIframe($('#iframe_tools'))" style="_border:1px solid red; margin-bottom:20px"> </iframe>      
-      
-
 
     <div id="top_menu">
       <form class="form fixedElement" ng-submit="setSearch(searchStr)">
@@ -104,8 +99,8 @@
        <div class="card">
         <div class="content">
           <div class="card_menu_row">
-            <img id="card_menu_update_{{ employee.userId }}" class="card_menu_update card_menu card_button" src="/images/icon_update.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(employee,employee.userId)"/>           
-            <img id="card_menu_delete_{{ employee.userId }}" class="card_menu_delete card_menu card_button" src="/images/icon_delete.png"  ng-controller="DeleteCtrol" ng-mousedown="updateActiveEmployee(employee,employee.userId)" />
+            <img id="card_menu_update_{{ employee.userId }}" class="card_menu_update card_menu card_button" src="/images/icon_update.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(employee)"/>           
+            <img id="card_menu_delete_{{ employee.userId }}" class="card_menu_delete card_menu card_button" src="/images/icon_delete.png"  ng-controller="DeleteCtrol" ng-mousedown="deleteActiveEmployee(employee)" />
           </div>           
           <div class="price">${{ employee.price }}/hr</div>
           <img class="photo card_button" ng-src="/images/{{ employee.avatar }}.png" ng-click="setActiveEmployee(employee)"/>
@@ -142,6 +137,10 @@
   All work is being completed by Web Developer \ UI-UX Designer Luis Espinal.<br/><br/>
   <a href="https://trello.com/b/dPaqF7PT/profiles-web-application" target="_blank">tasks @Trello.com</a> | <a href="https://github.com/soccermatrix/Profiles" target="_blank">code @GitHub.com</a>
 </div> <!-- end footer -->  
+
+<!-- tools frameworks / tools -->
+  <iframe id="iframe_tools" src="/includes/list_tools_header.html" id="iframe_expertice" width="100%" height="20px" scrolling="no" frameborder="0" onload="resizeIframe($('#iframe_tools'))" style="_border:1px solid red; margin-bottom:20px"> </iframe>      
+
 </div> <!-- end wrapper -->
 
 <!-- Active user dialog -->
@@ -151,8 +150,8 @@
    <div class="dialog_content"> 
     <div class="dialog_top_bar"></div>
     <div class="dialog_card_menu_row">
-      <img id="card_menu_update_{{ activeEmployee.userId }}" class="card_menu_update card_menu card_button" src="/images/icon_update_black.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(activeEmployee,activeEmployee.userId)"/>           
-      <img id="card_menu_delete_{{ activeEmployee.userId }}" class="card_menu_delete card_menu card_button" src="/images/icon_delete_black.png"  ng-controller="DeleteCtrol" ng-mousedown="updateActiveEmployee(activeEmployee,activeEmployee.userId)" />
+      <img id="card_menu_update_{{ activeEmployee.userId }}" class="card_menu_update card_menu card_button" src="/images/icon_update_black.png"  ng-controller="UpdateCtrol" ng-mousedown="updateActiveEmployee(activeEmployee)"/>           
+      <img id="card_menu_delete_{{ activeEmployee.userId }}" class="card_menu_delete card_menu card_button" src="/images/icon_delete_black.png"  ng-controller="DeleteCtrol" ng-mousedown="deleteActiveEmployee(activeEmployee)" />
     </div>           
     <div class="dialog_price">${{ activeEmployee.price }}/hr</div>
     <img class="dialog_photo" ng-src="/images/{{ activeEmployee.avatar }}.png"/>
@@ -191,36 +190,35 @@
      </div>
      <div class="dialog_form_items">
       <form id="form_user_insert">
-
        <div class="dialog_form_row">       
-         <span class="icon icon-name"></span><input id="insert_fullName" type="text" ngRequired  ng-model="fullName">
+         <span class="icon icon-name"></span><input id="insert_fullName" type="text" ngRequired  ng-model="employee.fullName">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-title"></span><input id="insert_title" type="text" ngRequired  ng-model="title">
+         <span class="icon icon-title"></span><input id="insert_title" type="text" ngRequired  ng-model="employee.title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-sub_title"></span><input id="insert_sub_title" type="text" ngRequired  ng-model="sub_title">
+         <span class="icon icon-sub_title"></span><input id="insert_sub_title" type="text" ngRequired  ng-model="employee.sub_title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-skills"></span><input id="insert_skills" type="text" ng-model="skills">
+         <span class="icon icon-skills"></span><input id="insert_skills" type="text" ng-model="employee.skills">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-count"></span><input id="insert_count" type="text" ng-model="count">
+         <span class="icon icon-count"></span><input id="insert_count" type="text" ng-model="employee.count">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-description"></span><textarea id="insert_description" maxlength="285" ng-model="description"></textarea>
+         <span class="icon icon-description"></span><textarea id="insert_description" maxlength="285" ng-model="employee.description"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-quote"></span><textarea id="insert_quote" class="textarea-quote" maxlength="90" ng-model="quote"></textarea>
+         <span class="icon icon-quote"></span><textarea id="insert_quote" class="textarea-quote" maxlength="90" ng-model="employee.quote"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-available"></span><input id="insert_available" type="text" ng-model="available">
+         <span class="icon icon-available"></span><input id="insert_available" type="text" ng-model="employee.available">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-price"></span><input id="insert_price" type="text" ng-model="price">
+         <span class="icon icon-price"></span><input id="insert_price" type="text" ng-model="employee.price">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-avatar"></span><input id="insert_avatar" type="text" ng-model="avatar">
+         <span class="icon icon-avatar"></span><input id="insert_avatar" type="text" ng-model="employee.avatar">
        </div>
 
        <div class="dialog_buttons">
@@ -245,36 +243,36 @@
      <div class="dialog_form_items">
       <form id="form_user_update">
        <div class="dialog_form_row">       
-         <span class="icon icon-name"></span><input id="update_fullName" type="text" ngRequired  ng-model="$parent.fullName">
-         <!-- fullName: {{ $parent.fullName }} -->
+         <span class="icon icon-name"></span><input id="update_fullName" type="text" ngRequired  ng-model="$parent.employee.fullName">
+         fullName: {{ $parent.employee.fullName }}
          <!-- fullName: {{ activeEmployee.fullName }} -->
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-title"></span><input id="update_title" type="text" ngRequired  ng-model="$parent.title">
+         <span class="icon icon-title"></span><input id="update_title" type="text" ngRequired  ng-model="$parent.employee.title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-sub_title"></span><input id="update_sub_title" type="text" ngRequired  ng-model="$parent.sub_title">
+         <span class="icon icon-sub_title"></span><input id="update_sub_title" type="text" ngRequired  ng-model="$parent.employee.sub_title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-skills"></span><input id="update_skills" type="text" ng-model="$parent.skills">
+         <span class="icon icon-skills"></span><input id="update_skills" type="text" ng-model="$parent.employee.skills">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-count"></span><input id="update_count" type="text" ng-model="$parent.count">
+         <span class="icon icon-count"></span><input id="update_count" type="text" ng-model="$parent.employee.count">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-description"></span><textarea id="update_description"  class="textarea-description" maxlength="285" ng-model="$parent.description"></textarea>
+         <span class="icon icon-description"></span><textarea id="update_description"  class="textarea-description" maxlength="285" ng-model="$parent.employee.description"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-quote"></span><textarea id="update_quote" class="textarea-quote" maxlength="90" ng-model="$parent.quote"></textarea>
+         <span class="icon icon-quote"></span><textarea id="update_quote" class="textarea-quote" maxlength="90" ng-model="$parent.employee.quote"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-available"></span><input id="update_available" type="text" ng-model="$parent.available">
+         <span class="icon icon-available"></span><input id="update_available" type="text" ng-model="$parent.employee.available">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-price"></span><input id="update_price" type="text" ng-model="$parent.price">
+         <span class="icon icon-price"></span><input id="update_price" type="text" ng-model="$parent.employee.price">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-avatar"></span><input id="update_avatar" type="text" ng-model="$parent.avatar">
+         <span class="icon icon-avatar"></span><input id="update_avatar" type="text" ng-model="$parent.employee.avatar">
        </div>
 
        <div class="dialog_buttons">
@@ -301,34 +299,34 @@
 
       <form id="form_user_delete">
        <div class="dialog_form_row">       
-         <span class="icon icon-name"></span><input id="delete_fullName" type="text" ngRequired  ng-model="fullName" >
+         <span class="icon icon-name"></span><input id="delete_fullName" type="text" ngRequired  ng-model="$parent.employee.fullName" >
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-title"></span><input id="delete_title" type="text" ngRequired  ng-model="title">
+         <span class="icon icon-title"></span><input id="delete_title" type="text" ngRequired  ng-model="$parent.employee.title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-sub_title"></span><input id="delete_sub_title" type="text" ngRequired  ng-model="sub_title">
+         <span class="icon icon-sub_title"></span><input id="delete_sub_title" type="text" ngRequired  ng-model="$parent.employee.sub_title">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-skills"></span><input id="delete_skills" type="text" ng-model="skills">
+         <span class="icon icon-skills"></span><input id="delete_skills" type="text" ng-model="$parent.employee.skills">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-count"></span><input id="delete_count" type="text" ng-model="count">
+         <span class="icon icon-count"></span><input id="delete_count" type="text" ng-model="$parent.employee.count">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-description"></span><textarea id="delete_description" maxlength="285" ng-model="description"></textarea>
+         <span class="icon icon-description"></span><textarea id="delete_description" maxlength="285" ng-model="$parent.employee.description"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-quote"></span><textarea id="delete_quote" class="textarea-quote" maxlength="90" ng-model="quote"></textarea>
+         <span class="icon icon-quote"></span><textarea id="delete_quote" class="textarea-quote" maxlength="90" ng-model="$parent.employee.quote"></textarea>
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-available"></span><input id="delete_available" type="text" ng-model="available">
+         <span class="icon icon-available"></span><input id="delete_available" type="text" ng-model="$parent.employee.available">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-price"></span><input id="delete_price" type="text" ng-model="price">
+         <span class="icon icon-price"></span><input id="delete_price" type="text" ng-model="$parent.employee.price">
        </div>
        <div class="dialog_form_row">       
-         <span class="icon icon-avatar"></span><input id="delete_avatar" type="text" ng-model="avatar">
+         <span class="icon icon-avatar"></span><input id="delete_avatar" type="text" ng-model="$parent.employee.avatar">
        </div>
 
        <div class="dialog_buttons">

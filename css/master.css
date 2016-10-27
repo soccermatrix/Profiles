@@ -99,7 +99,8 @@ body {
   padding: 0;
   text-align: center;
   /*z-index: 300;*/
-  cursor: pointer; }
+  cursor: pointer;
+  margin-top: 60px; }
 
 #top_menu_options {
   margin: 0 auto;

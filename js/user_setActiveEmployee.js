@@ -6,7 +6,7 @@ angular.module('angular_setActiveEmployee_module', [])
 	$scope.$on('setActiveEmployee', function(employee,id){
 		console.log('setActiveEmployee(), id: ' + id)
 		var activeEmployee = {
-			id 			: employee.id,
+			userId 			: employee.id,
 			fullName 	: employee.fullName,
 			title		: employee.title,
 			sub_title	: employee.sub_title,

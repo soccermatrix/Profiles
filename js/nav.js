@@ -216,7 +216,7 @@ function loadNav(){
 
 			 $('#form_user_delete').submit(function(){
 				////console.log('adminMode: ' + adminMode)
-				if(adminMode){
+				if(adminMode=true){
 					angular.element('#dialog_form_delete_main').scope().$apply();
 					angular.element('#dialog_form_delete_main').scope().user_delete();
 					hideAll();
@@ -227,10 +227,53 @@ function loadNav(){
 			});//END SUBMIT FUNCTIONALITY - FORMS 
 
 			
+			// display window width/height in the top banner
+			var winWidth = $(window).width();
+			var winHeight = $(window).height();
+			$('#screenRes').html(winWidth + " x " + winHeight);
+			checkWindowSize();
+
 			$(window).resize(function(e){ 
-		 		//$( '#iframe_tools' ).attr( 'src', function ( i, val ) { return val; });
-		 		resizeIframe($('#iframe_tools'))
+		 		checkWindowSize();
 		 	});
+		 	function checkWindowSize(){
+		 		if($('#iframe_tools').length){
+		 			resizeIframe($('#iframe_tools'));
+		 		} 
+		 		
+				//get dimmensions of devices's screen
+				winWidth = $(window).width();
+				winHeight = $(window).height();
+		 		$('#screenRes').html(winWidth + " x " + winHeight);
+				console.log(winWidth + " x " + winHeight);
+
+				if(winWidth < 530){
+					$('.form-item-left span').hide();
+					$('.form-item-left').css('margin-left','10px');
+
+				} else {
+					$('.form-item-left span').show();
+					$('.form-item-left').css('margin-left','0');
+				}
+				if(winWidth < 400){
+					$('#banner-label').hide();
+
+				} else {
+					if(!mobileMode)$('#banner-label').show();
+				}
+				if(winWidth < 365){
+					$('.form-item-left').hide();
+					$('#banner #label').hide();
+
+				} else {
+					$('.form-item-left').show();
+					if(mobileMode)$('.form-item-left span').hide();
+					if(mobileMode)$('.form-item-left').css('margin-left','20px');
+					if(!mobileMode)$('#banner #label').show();
+					$('.sub_page .form-item-left').hide();
+					$('.sub_page .form-item-right').css({'float':'left','width':'50%'});
+				}
+		 	}
 
 			// SCROLLING FUNCTIONALITY
 			//scrolling snaping of top menu
@@ -245,12 +288,12 @@ function loadNav(){
 			 	var $c = $('.cards'); 
 			 	var isPositionFixed = ($tm.css('position') == 'fixed');
 			 	if(!mobileMode){
-			 		if ($(this).scrollTop() > 95 && !isPositionFixed){ 
+			 		if ($(this).scrollTop() > 10 && !isPositionFixed){ 
 						// place it back top of page
-						($tm).css({'position': 'fixed', 'top': '48px', 'width': '90%', 'z-index': '3'});
-						($c).css({'top': '75px'});
+						($tm).css({'position': 'fixed', 'top': '-12px', 'width': '90%', 'z-index': '3'});
+						($c).css({'top': '105px'});
 					}
-					if ($(this).scrollTop() < 95 && isPositionFixed)
+					if ($(this).scrollTop() < 10 && isPositionFixed)
 					{
 						// show over the scrolling content
 						($tm).css({'position': 'relative', 'top': '0px', 'width': '100%', 'z-index': '3'}); 

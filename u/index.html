@@ -72,18 +72,18 @@ polyline{
 </style>
 
 </head>
-<body style="visibility: hidden;">
+<body style="visibility: hidden;" class="sub_page">
   <ng-view></ng-view>
   <div id="GetCtrol" ng-controller="GetCtrol" ng-init="user_get()">
    <div id="top_menu">
       <form class="form fixedElement" ng-submit="setSearch(searchStr)">
-        <div class="form-item-left">                
+        <div class="form-item-left">                    
          <span class="label">Search for Talent:</span>
          <input type="text" id="searchStr" ng-model="searchStr" name="searchStr" ng-change="setSearch(searchStr)"/>
          <button id="submit"></button>
        </div>
        <div class="form-item-right">
-         <img id="back_icon_btn" src="/images/icon_back.png"/>
+         <div id="back_icon_btn"></div>
          <span id="back_icon_btn_label">TALENT</span>
          <img id="menu_icon_btn" class="hidden" src="/images/icon_menu.png"/>
        </div>
@@ -134,7 +134,7 @@ polyline{
         </div>
         <div class="dialog_buttons mobile_buttons">
          <button>CONTACT ME</button>   
-         <button>ASSEMBLE ME</button><br/>
+         <button>HIRE ME</button><br/>
          <img class="mobile_social_bar" src="/images/social_bar.png"/>
         </div>
       

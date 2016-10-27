@@ -18,6 +18,17 @@ $available      = $data->available;
 $price          = $data->price;
 $avatar         = $data->avatar;
 
+//$fullName       = "fullName";
+//$title          = "title";
+//$sub_title      = "sub title";
+//$skills         = "skills";
+//$count          = 25;
+//$description    = "description";
+//$quote          = "quote";
+//$available      = 1;
+//$price          = 50;
+//$avatar         = "avatar_1";
+
 $host = "projectsUser.db.2596913.hostedresource.com";
 $user = "projectsUser";
 $pass = "Projects80%";

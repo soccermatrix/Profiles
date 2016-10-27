@@ -9,7 +9,7 @@ var app = express();
 
 //liveSever properties
 var params = {
-    port: 8080, // Set the server port. Defaults to 8080. 
+    port: 7000, // Set the server port. Defaults to 8080. 
     // host: "0.0.0.0", // Set the address to bind to. Defaults to 0.0.0.0 or process.env.IP. 
     root: "/public", // Set root directory that's being server. Defaults to cwd. 
     open: false, // When false, it won't load your browser by default. 
@@ -38,6 +38,6 @@ app.use(bodyParser.urlencoded( {extended: false}));
 //define routes
 
 
-app.listen(8080, '127.0.0.1', function() {
-	console.log('ready on port 8080');
+app.listen(7000, '127.0.0.1', function() {
+	console.log('ready on port 7000');
 });

@@ -96,6 +96,14 @@ html, body{
 		margin-left:-4%;		
 		margin-top:2%;
 		max-width:40px;
+		background:url('/images/icon_back.png') no-repeat -10% 10%;
+		background-size:3em;
+		width:40%;
+		height:6em;
+	}
+	#back_icon_btn_label {		
+		margin-left:5%;
+		margin-top:-2%;
 	}
 	#menu_icon_btn {
 		float:right;		
@@ -108,7 +116,7 @@ this css is disabled until i have time to add new pages to edit profiles in mobi
 in the mean time, there is no menu icon in the profile page.
 #menu_icon_btn is hidden for now
 */
-/*
+
 #top_menu_options {
 	margin: 0 auto;
 	position: relative;
@@ -162,7 +170,7 @@ in the mean time, there is no menu icon in the profile page.
 #menu_move {
 	background:url('../images/icon_move.png');
 }
-*/
+
 
 .disabled {
 	opacity:.3;
@@ -172,18 +180,45 @@ in the mean time, there is no menu icon in the profile page.
 .form {
 	height:150px;
 }
-.form-item-left {
+
+.form input {
+	height:50%;
+	width:80%;
+	background:url('/images/search.png') no-repeat #f5f5f5 3% 40%;
+	background-size:1em;
+	color:black;
+	font-size:250%;
+	padding-left:10%;
+	margin-top:1.5%;
+	margin-left:2%;
+
+	@include border-radius(15px,15px,15px,15px);  
+}
+
+.form button {
 	display:none;
 }
-.form-item-right {  
+
+
+.form-item-left {
+	display:inline-block;	
 	float:left;
+	width:70%;
+	height:10em;
+}
+
+.form-item-right {  
+	float:right;
 	text-align: left;
 	padding:15px 0 0 60px;
+	width:20%;
+	margin-right:5%;
 
 	img {
 		width:300%;
 	}
 }
+
 
 h1 {
 	width: 100%;
