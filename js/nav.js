@@ -368,10 +368,8 @@ function loadNav(){
 			if(mobileMode){
 				//hide drag/drop functionality
 				$('#menu_move').hide();
-
-				
 			} else {
-				//
+				$('#menu_move').click();
 			}
 
 			
